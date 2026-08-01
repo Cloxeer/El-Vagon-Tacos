@@ -1,0 +1,1165 @@
+{
+  "type": "restaurant",
+  "meta": {
+    "title": "El Vagon Tacos — Las Cruces, NM",
+    "description": "Authentic tacos, quesadillas, birria ramen, and catering in Las Cruces. Est. 2020. Order online or call (575) 621-5897."
+  },
+  "theme": {
+    "fontDisplay": "Nunito Sans",
+    "fontBody": "Roboto",
+    "colorText": "#000000",
+    "colorMuted": "#303E1E",
+    "colorAccent": "#B03D27",
+    "colorBackground": "#FFFFFF",
+    "colorSurface": "#FFEDD8"
+  },
+  "business": {
+    "name": "El Vagon Tacos",
+    "phone": "(575) 621-5897",
+    "phoneTel": "5756215897",
+    "address": {
+      "street": "1602 S Solano Dr",
+      "city": "Las Cruces",
+      "state": "New Mexico",
+      "zip": "88001",
+      "note": "Las Cruces, NM"
+    },
+    "hours": {
+      "label": "Hours",
+      "time": "Wed–Sun 11 AM–6/9 PM · Mon & Tue closed"
+    },
+    "established": "2020"
+  },
+  "nav": {
+    "links": [
+      {
+        "href": "/menu",
+        "label": "Menu"
+      },
+      {
+        "href": "/catering",
+        "label": "Catering"
+      },
+      {
+        "href": "/our-story",
+        "label": "Our Story"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "phone": {
+      "showInDesktopHeader": false,
+      "showInMobileMenu": false,
+      "showInFooter": true,
+      "showInFooterOnMobile": false
+    }
+  },
+  "hero": {
+    "tag": "Las Cruces · Est. 2020",
+    "headline": "Authentic Tacos",
+    "image": "images/hero-poster.png",
+    "primaryCta": {
+      "label": "Order Online",
+      "href": "#order"
+    },
+    "showPhoneCta": false
+  },
+  "infoStrip": {
+    "enabled": false
+  },
+  "gallery": [],
+  "about": {
+    "eyebrow": "El Vagon Tacos · Est. 2020",
+    "headline": "Highly-Rated Authentic Tacos",
+    "paragraphs": [
+      "Family-owned taco shop serving Las Cruces since 2020 with birria, pastor, asada, and more.",
+      "Dine in, take out, catering, and family packs for every occasion."
+    ],
+    "image": "images/hero-poster.png",
+    "imageAlt": "Tacos — placeholder photo",
+    "services": [
+      "Dine-in",
+      "Catering",
+      "Takeout & Delivery",
+      "Vegan options",
+      "Kids' menu"
+    ]
+  },
+  "menu": {
+    "eyebrow": "El Vagon",
+    "title": "Our Menu",
+    "subtitle": "Authentic tacos, quesadillas, starters, and sides made fresh in Las Cruces.",
+    "tabs": [
+      "all"
+    ],
+    "categories": [
+      {
+        "id": "starters",
+        "title": "Starters",
+        "items": [
+          {
+            "name": "Papota",
+            "description": "Baked potato with butter, cheese, sour cream, cilantro, onion & your choice of meat",
+            "price": "$11"
+          },
+          {
+            "name": "Loaded Fries",
+            "description": "French fries, nacho cheese, shredded cheese, sour cream, cilantro, onion, your choice of meat",
+            "price": "$11"
+          },
+          {
+            "name": "Nachos",
+            "description": "Tortilla chips, nacho cheese, shredded cheese, sour cream, cilantro, onion, your choice of meat",
+            "price": "$13"
+          },
+          {
+            "name": "Birria Ramen",
+            "description": "Topped with onion, cilantro & served with a side of chips",
+            "price": "$10"
+          },
+          {
+            "name": "Chips n' Queso",
+            "description": "",
+            "price": "$8"
+          },
+          {
+            "name": "Chips n' Guac",
+            "description": "",
+            "price": "$8"
+          }
+        ]
+      },
+      {
+        "id": "kiddos",
+        "title": "Kiddos",
+        "note": "Kids 12 & under — all meals include 1 small agua fresca",
+        "items": [
+          {
+            "name": "Cheese Quesadilla w/ Fries",
+            "description": "",
+            "price": "$7"
+          },
+          {
+            "name": "Chicken Quesadilla",
+            "description": "",
+            "price": "$7"
+          },
+          {
+            "name": "Papita",
+            "description": "",
+            "price": "$7"
+          },
+          {
+            "name": "1 Taco, Beans & Rice",
+            "description": "",
+            "price": "$7"
+          }
+        ]
+      },
+      {
+        "id": "sides",
+        "title": "Sides",
+        "items": [
+          {
+            "name": "Rice",
+            "description": "",
+            "price": "$2"
+          },
+          {
+            "name": "Beans",
+            "description": "",
+            "price": "$2"
+          },
+          {
+            "name": "Fries",
+            "description": "",
+            "price": "$3"
+          },
+          {
+            "name": "Guacamole",
+            "description": "",
+            "price": "$4"
+          },
+          {
+            "name": "Sour Cream",
+            "description": "",
+            "price": "$1"
+          },
+          {
+            "name": "Baked Potato",
+            "description": "",
+            "price": "$3"
+          },
+          {
+            "name": "Chips and Salsa",
+            "description": "",
+            "price": "$2"
+          },
+          {
+            "name": "Chiles Toreados (3)",
+            "description": "",
+            "price": "$2"
+          }
+        ]
+      },
+      {
+        "id": "tacos",
+        "title": "Tacos",
+        "note": "Served on a corn tortilla with mozzarella cheese & your choice of meat",
+        "items": [
+          {
+            "name": "Asada",
+            "description": "",
+            "price": "$10"
+          },
+          {
+            "name": "Pastor",
+            "description": "",
+            "price": "$10"
+          },
+          {
+            "name": "Birria",
+            "description": "",
+            "price": "$11"
+          },
+          {
+            "name": "Chicken Adobado",
+            "description": "",
+            "price": "$10"
+          },
+          {
+            "name": "Alambre",
+            "description": "",
+            "price": "$11"
+          },
+          {
+            "name": "Veggie Tacos",
+            "description": "Bell peppers, sautéed onions, tomato, cheese",
+            "price": "$10"
+          },
+          {
+            "name": "Vegan Tacos",
+            "description": "Bell peppers, sautéed onions, tomato, potato",
+            "price": "$10"
+          },
+          {
+            "name": "Keto Tacos",
+            "description": "Cheese shell, choice of meat",
+            "price": "$11"
+          }
+        ]
+      },
+      {
+        "id": "quesadillas",
+        "title": "Quesadillas",
+        "note": "Served on a flour tortilla with mozzarella cheese & your choice of meat",
+        "items": [
+          {
+            "name": "Asada",
+            "description": "",
+            "price": "$10"
+          },
+          {
+            "name": "Pastor",
+            "description": "",
+            "price": "$10"
+          },
+          {
+            "name": "Birria",
+            "description": "",
+            "price": "$11"
+          },
+          {
+            "name": "Chicken Adobado",
+            "description": "",
+            "price": "$10"
+          },
+          {
+            "name": "Alambre",
+            "description": "",
+            "price": "$11"
+          },
+          {
+            "name": "Veggie Quesa",
+            "description": "Bell peppers, sautéed onion, tomato, cheese",
+            "price": "$10"
+          },
+          {
+            "name": "Low Carb Quesa",
+            "description": "Choice of meat, cheese, flaxseed tortilla",
+            "price": "$11"
+          }
+        ]
+      },
+      {
+        "id": "drinks",
+        "title": "Drinks",
+        "items": [
+          {
+            "name": "Aguas",
+            "description": "$2.00 refill",
+            "price": "$5.00"
+          },
+          {
+            "name": "Mexican Coke",
+            "description": "",
+            "price": "$3.50"
+          },
+          {
+            "name": "Can Soda",
+            "description": "",
+            "price": "$1.50"
+          }
+        ]
+      }
+    ],
+    "footerNote": "Prices subject to change. Ask about daily specials."
+  },
+  "specials": {
+    "eyebrow": "Favorites",
+    "title": "Customer Favorites",
+    "subtitle": "Highly rated in Las Cruces",
+    "tiles": [
+      {
+        "when": "Every day",
+        "what": "Birria Tacos",
+        "price": "$11"
+      },
+      {
+        "when": "Every day",
+        "what": "Birria Ramen",
+        "price": "$10"
+      },
+      {
+        "when": "Feed the family",
+        "what": "Medium Taco Box",
+        "price": "$45"
+      },
+      {
+        "when": "Feed the family",
+        "what": "Parrillas",
+        "price": "$25"
+      }
+    ]
+  },
+  "contact": {
+    "headline": "Visit El Vagon Tacos",
+    "mapEmbedUrl": "https://maps.google.com/maps?q=El+Vagon+Tacos+1602+S+Solano+Dr+Las+Cruces+NM&hl=en&z=17&output=embed",
+    "takeoutNote": "1602 S Solano Dr, Las Cruces, NM 88001",
+    "services": [
+      "Amazing food, friendly staff, fair prices! — Viki López",
+      "The food was amazing and Cindy is super nice and friendly. — Guadalupe Rogers",
+      "Great food and our waitress Arely was wonderful! — Trish Black"
+    ]
+  },
+  "footer": {
+    "links": [
+      {
+        "label": "(575) 621-5897",
+        "href": "tel:5756215897"
+      }
+    ],
+    "copyright": "© 2026 El Vagon Tacos. All rights reserved.",
+    "disclaimer": "1602 S Solano Dr, Las Cruces, NM 88001 · elvagontacos@gmail.com"
+  },
+  "custom": {
+    "nav": {
+      "logo": "images/logo.png",
+      "title": "images/title.png",
+      "homeHref": "/",
+      "findLabel": "Order Online",
+      "menuMobileLabel": "See Menu",
+      "loginLabel": "Order Online",
+      "specialsLabel": "Catering",
+      "giftLabel": "Contact",
+      "eclubLabel": "Hours",
+      "careersLabel": "About",
+      "contactLabel": "Contact"
+    },
+    "hero": {
+      "headlineLine2": "in Las Cruces",
+      "secondaryCta": {
+        "label": "See Menu",
+        "href": "/menu"
+      }
+    },
+    "eClub": {
+      "headline": "Hours",
+      "footnote": "Est. 2020 · Las Cruces, NM",
+      "locationTitle": "Location",
+      "location": "1602 S Solano Dr, Las Cruces, NM 88001",
+      "mapLabel": "Get directions",
+      "mapHref": "https://www.google.com/maps/place/El+Vagon+Tacos/@32.2957917,-106.7626113,17z/data=!3m1!4b1!4m6!3m5!1s0x86de17e1323b3727:0xa729e630210c1dc!8m2!3d32.2957917!4d-106.7600364!16s%2Fg%2F11t8dv788t?hl=en-US&entry=ttu",
+      "mapEmbedUrl": "https://maps.google.com/maps?q=El+Vagon+Tacos+1602+S+Solano+Dr+Las+Cruces+NM&hl=en&z=17&output=embed",
+      "timezone": "America/Denver",
+      "schedule": [
+        {
+          "dayIndex": 1,
+          "label": "Mon",
+          "closed": true
+        },
+        {
+          "dayIndex": 2,
+          "label": "Tue",
+          "closed": true
+        },
+        {
+          "dayIndex": 3,
+          "label": "Wed",
+          "closed": false,
+          "hours": "11:00 AM - 6:00 PM",
+          "open": "11:00 AM",
+          "close": "6:00 PM"
+        },
+        {
+          "dayIndex": 4,
+          "label": "Thu",
+          "closed": false,
+          "hours": "11:00 AM - 8:00 PM",
+          "open": "11:00 AM",
+          "close": "8:00 PM"
+        },
+        {
+          "dayIndex": 5,
+          "label": "Fri",
+          "closed": false,
+          "hours": "11:00 AM - 9:00 PM",
+          "open": "11:00 AM",
+          "close": "9:00 PM"
+        },
+        {
+          "dayIndex": 6,
+          "label": "Sat",
+          "closed": false,
+          "hours": "11:00 AM - 9:00 PM",
+          "open": "11:00 AM",
+          "close": "9:00 PM"
+        },
+        {
+          "dayIndex": 0,
+          "label": "Sun",
+          "closed": false,
+          "hours": "11:00 AM - 6:00 PM",
+          "open": "11:00 AM",
+          "close": "6:00 PM"
+        }
+      ]
+    },
+    "specialsCarousel": {
+      "title": "Customer Favorites",
+      "viewAllLabel": "View Full Menu",
+      "viewAllHref": "/menu",
+      "amenities": [
+        {
+          "label": "Vegan options",
+          "href": "/menu#menu-tacos"
+        },
+        {
+          "label": "Kids' menu",
+          "href": "/menu#menu-kiddos"
+        }
+      ],
+      "favoritesList": [
+        {
+          "label": "Al Pastor Tacos",
+          "href": "/menu#menu-tacos"
+        },
+        {
+          "label": "Birria Ramen",
+          "href": "/menu#menu-starters"
+        },
+        {
+          "label": "Birria Tacos",
+          "href": "/menu#menu-tacos"
+        },
+        {
+          "label": "Carne Asada Tacos",
+          "href": "/menu#menu-tacos"
+        },
+        {
+          "label": "Birria Quesadilla",
+          "href": "/menu#menu-quesadillas"
+        },
+        {
+          "label": "Mix Box (14 tacos, 8 quesadillas)",
+          "href": "/catering"
+        },
+        {
+          "label": "Loaded Fries with Carne Asada",
+          "href": "/menu#menu-starters"
+        },
+        {
+          "label": "Large Chips and Salsa",
+          "href": "/menu#menu-sides"
+        },
+        {
+          "label": "Chicken Quesadillas",
+          "href": "/menu#menu-kiddos"
+        },
+        {
+          "label": "Quesadilla De Pollo",
+          "href": "/menu#menu-kiddos"
+        },
+        {
+          "label": "Kato Tacos De Asada",
+          "href": "/menu#menu-tacos"
+        },
+        {
+          "label": "Chicken Adobado",
+          "href": "/menu#menu-tacos"
+        },
+        {
+          "label": "Tacos Al Pastor",
+          "href": "/menu#menu-tacos"
+        },
+        {
+          "label": "Tacos De Pollo",
+          "href": "/menu#menu-tacos"
+        },
+        {
+          "label": "Chicken Tacos",
+          "href": "/menu#menu-tacos"
+        }
+      ],
+      "orderHref": "https://order.spoton.com/so-el-vagon-tacos-18420",
+      "cards": [
+        {
+          "learnLabel": "Al Pastor Tacos",
+          "orderLabel": "Order Now",
+          "menuHref": "/menu#menu-tacos",
+          "image": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&q=75&fit=crop"
+        },
+        {
+          "learnLabel": "Birria Ramen",
+          "orderLabel": "Order Now",
+          "menuHref": "/menu#menu-starters",
+          "image": "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=600&q=75&fit=crop"
+        },
+        {
+          "learnLabel": "Birria Tacos",
+          "orderLabel": "Order Now",
+          "menuHref": "/menu#menu-tacos",
+          "image": "https://images.unsplash.com/photo-1618040996337-56904b7850b9?w=600&q=75&fit=crop"
+        },
+        {
+          "learnLabel": "Carne Asada Tacos",
+          "orderLabel": "Order Now",
+          "menuHref": "/menu#menu-tacos",
+          "image": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&q=75&fit=crop"
+        }
+      ]
+    },
+    "reviews": {
+      "title": "Customer Reviews",
+      "subtitle": "Highly rated across Las Cruces",
+      "platforms": [
+        {
+          "name": "Restaurantji",
+          "rating": "4.7",
+          "countLabel": "out of 182 reviews",
+          "href": "https://www.restaurantji.com/nm/las-cruces/el-vagon-tacos-/",
+          "quotes": [
+            {
+              "text": "Everything is excellent! I'm so thankful I found this spot while passing through NM. The veggie tacos are yum, their salsas add a really good kick, and the service is great. Really recommend!",
+              "author": "Carolina",
+              "stars": 5
+            },
+            {
+              "text": "This a casual place with excellent food and service. The server was super nice and price was very good for the amount and quality of food you get! Would definitely recommend come back!",
+              "author": "lais mamao",
+              "stars": 5
+            },
+            {
+              "text": "Loved it! Quick, friendly and great food. A definite must try.",
+              "author": "beau stites",
+              "stars": 5
+            }
+          ]
+        },
+        {
+          "name": "Facebook",
+          "rating": "100%",
+          "countLabel": "from 39 reviews",
+          "href": "https://www.facebook.com/elvagon/",
+          "quotes": [
+            {
+              "text": "My family and I were passing through Las Cruces on our way to Mexico. Amazing food, friendly staff, fair prices! Would recommend 100%.",
+              "author": "Viki López",
+              "stars": 5
+            },
+            {
+              "text": "Authentic mexican food. very tasty and delicious. A 5 star.",
+              "author": "WilMil Yazz",
+              "stars": 5
+            },
+            {
+              "text": "Delicious tacos! If I lived in Las Cruces I would be there all the time!",
+              "author": "Maureen Young Tortorella",
+              "stars": 5
+            }
+          ]
+        },
+        {
+          "name": "Yelp",
+          "rating": "4.7",
+          "countLabel": "out of 64 reviews",
+          "href": "https://www.yelp.com/biz/el-vagon-tacos-las-cruces",
+          "quotes": [
+            {
+              "text": "Delicious vegan tacos for me, yummy tacos for my carnivorous son. A win win! We ate here twice on our 2-day trip to Las Cruces, so good! Friendly and competent service. Can't wait to visit Las Cruces again so we can come back!",
+              "author": "Kerri W.",
+              "stars": 5
+            },
+            {
+              "text": "The Alambre tacos with a Mexican Coke is delicious. Great flavor. Quick and friendly service. The inside is fun and friendly and clean. Will definitely return.",
+              "author": "Aric C.",
+              "stars": 5
+            },
+            {
+              "text": "The tacos were amazing! The portions are huge, and the left overs were just as good. Our server Arely was so nice, everyone was nice I would definitely recommend!",
+              "author": "Lisa H.",
+              "stars": 5
+            }
+          ]
+        },
+        {
+          "name": "Google",
+          "rating": "4.8",
+          "countLabel": "out of 582 reviews",
+          "href": "https://www.google.com/maps/place/El+Vagon+Tacos/@32.2957917,-106.7626113,17z/data=!3m1!4b1!4m6!3m5!1s0x86de17e1323b3727:0xa729e630210c1dc!8m2!3d32.2957917!4d-106.7600364!16s%2Fg%2F11t8dv788t?hl=en-US&entry=ttu",
+          "quotes": [
+            {
+              "text": "Everything you'd expect from a small cafe in the barrio! Great atmosphere, beautiful views around the building & of course, the very delicious TRUE New Mexico style food! Full of flavors and just the right amount of heat. Very recommend!",
+              "author": "Raymond Barron",
+              "stars": 5
+            },
+            {
+              "text": "Bring your appetite and empty stomach. They're very generous with the meat! Amazing tacos, perfect portions, the best beans in Las Cruces.",
+              "author": "Sara Beth Moran",
+              "stars": 5
+            },
+            {
+              "text": "Everything is excellent! I'm so thankful I found this spot while passing through NM. The veggie tacos are yum, their salsas add a really good kick, and the service is great. Really recommend!",
+              "author": "Carolina",
+              "stars": 5
+            }
+          ]
+        }
+      ]
+    },
+    "footer": {
+      "socialTitle": "Follow Us",
+      "appsTitle": "Order & Contact",
+      "columns": [
+        {
+          "title": "Menu",
+          "links": [
+            {
+              "label": "Starters",
+              "href": "/menu#menu-starters"
+            },
+            {
+              "label": "Kiddos",
+              "href": "/menu#menu-kiddos"
+            },
+            {
+              "label": "Sides",
+              "href": "/menu#menu-sides"
+            },
+            {
+              "label": "Tacos",
+              "href": "/menu#menu-tacos"
+            },
+            {
+              "label": "Quesadillas",
+              "href": "/menu#menu-quesadillas"
+            },
+            {
+              "label": "Drinks",
+              "href": "/menu#menu-drinks"
+            }
+          ]
+        },
+        {
+          "title": "Visit",
+          "links": [
+            {
+              "label": "1602 S Solano Dr",
+              "href": "https://www.google.com/maps/place/El+Vagon+Tacos/@32.2957917,-106.7626113,17z/data=!3m1!4b1!4m6!3m5!1s0x86de17e1323b3727:0xa729e630210c1dc!8m2!3d32.2957917!4d-106.7600364!16s%2Fg%2F11t8dv788t?hl=en-US&entry=ttu"
+            },
+            {
+              "label": "Las Cruces, NM 88001",
+              "href": "https://www.google.com/maps/place/El+Vagon+Tacos/@32.2957917,-106.7626113,17z/data=!3m1!4b1!4m6!3m5!1s0x86de17e1323b3727:0xa729e630210c1dc!8m2!3d32.2957917!4d-106.7600364!16s%2Fg%2F11t8dv788t?hl=en-US&entry=ttu"
+            },
+            {
+              "label": "(575) 621-5897",
+              "href": "tel:5756215897"
+            },
+            {
+              "label": "Hours & Location",
+              "href": "/contact"
+            }
+          ]
+        },
+        {
+          "title": "Connect",
+          "links": [
+            {
+              "label": "Instagram",
+              "href": "https://www.instagram.com/elvagontacos"
+            },
+            {
+              "label": "Facebook",
+              "href": "https://www.facebook.com/elvagon/"
+            },
+            {
+              "label": "elvagontacos@gmail.com",
+              "href": "mailto:elvagontacos@gmail.com"
+            }
+          ]
+        },
+        {
+          "title": "Services",
+          "links": [
+            {
+              "label": "Dine-In",
+              "href": "/menu"
+            },
+            {
+              "label": "Takeout",
+              "href": "#order"
+            },
+            {
+              "label": "Catering",
+              "href": "/catering"
+            },
+            {
+              "label": "Our Story",
+              "href": "/our-story"
+            }
+          ]
+        }
+      ],
+      "legal": [
+        {
+          "label": "Privacy",
+          "href": "#"
+        },
+        {
+          "label": "Accessibility",
+          "href": "#"
+        },
+        {
+          "label": "Contact",
+          "href": "#contact"
+        }
+      ]
+    },
+    "catering": {
+      "title": "Catering",
+      "subtitle": "Bring El Vagon to your next event",
+      "intro": "From weddings and office lunches to family gatherings — we prepare fresh, authentic tacos, quesadillas, and more for groups of any size. Family packs and custom menus available.",
+      "phoneCta": "Call (575) 621-5897",
+      "emailCta": "Email for a Quote",
+      "note": "Please allow 48 hours notice for large orders. Custom menus available upon request.",
+      "packages": [
+        {
+          "name": "Small Taco Box (12 tacos)",
+          "description": "Choose your meat, cilantro, onion, limes, red & green salsa",
+          "price": "$27"
+        },
+        {
+          "name": "Medium Taco Box (20 tacos)",
+          "description": "Choose your meat, cilantro, onion, limes, red & green salsa",
+          "price": "$45"
+        },
+        {
+          "name": "Large Taco Box (28 tacos)",
+          "description": "Choose your meat, cilantro, onion, limes, red & green salsa",
+          "price": "$55"
+        },
+        {
+          "name": "Mix Box (14 tacos, 8 quesadillas)",
+          "description": "Choose your meat, cilantro, onion, limes, red & green salsa",
+          "price": "$50"
+        },
+        {
+          "name": "Parrillas",
+          "description": "Tortillas, grilled onions, cilantro, chiles toreados, beans & rice. Meats: Asada, Pastor, Birria, Chicken Adobado, Alambre",
+          "price": "$25"
+        }
+      ],
+      "packagesEs": [
+        {
+          "name": "Caja Pequeña (12 tacos)",
+          "description": "Elige carne, cilantro, cebolla, limones, salsas",
+          "price": "$27"
+        },
+        {
+          "name": "Caja Mediana (20 tacos)",
+          "description": "Elige carne, cilantro, cebolla, limones, salsas",
+          "price": "$45"
+        },
+        {
+          "name": "Caja Grande (28 tacos)",
+          "description": "Elige carne, cilantro, cebolla, limones, salsas",
+          "price": "$55"
+        },
+        {
+          "name": "Caja Mixta (14 tacos, 8 quesadillas)",
+          "description": "Elige carne, cilantro, cebolla, limones, salsas",
+          "price": "$50"
+        },
+        {
+          "name": "Parrillas",
+          "description": "Tortillas, cebolla asada, cilantro, chiles, frijoles y arroz",
+          "price": "$25"
+        }
+      ]
+    },
+    "menuImages": {
+      "categories": {
+        "starters": [
+          "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=480&q=75&fit=crop",
+          "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=480&q=75&fit=crop",
+          "https://images.unsplash.com/photo-1513456852971-3c5a7be75608?w=480&q=75&fit=crop"
+        ],
+        "kiddos": [
+          "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=480&q=75&fit=crop",
+          "https://images.unsplash.com/photo-1599974579688-8dbddb0e2f48?w=480&q=75&fit=crop"
+        ],
+        "sides": [
+          "https://images.unsplash.com/photo-1627308595229-7830a5c91f2f?w=480&q=75&fit=crop",
+          "https://images.unsplash.com/photo-1582169296194-e4d644c48063?w=480&q=75&fit=crop"
+        ],
+        "tacos": [
+          "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=480&q=75&fit=crop",
+          "https://images.unsplash.com/photo-1618040996337-56904b7850b9?w=480&q=75&fit=crop",
+          "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=480&q=75&fit=crop",
+          "https://images.unsplash.com/photo-1599974579688-8dbddb0e2f48?w=480&q=75&fit=crop"
+        ],
+        "quesadillas": [
+          "https://images.unsplash.com/photo-1618040996337-56904b7850b9?w=480&q=75&fit=crop",
+          "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=480&q=75&fit=crop"
+        ],
+        "drinks": [
+          "https://images.unsplash.com/photo-1546173159-315724a31696?w=480&q=75&fit=crop",
+          "https://images.unsplash.com/photo-1629203851122-3726a4ae4eec?w=480&q=75&fit=crop"
+        ]
+      }
+    },
+    "menuCategoriesEs": [
+      {
+        "id": "starters",
+        "title": "Entradas",
+        "items": [
+          {
+            "name": "Papota",
+            "description": "Papa al horno con mantequilla, queso, crema, cilantro, cebolla y carne a elegir",
+            "price": "$11"
+          },
+          {
+            "name": "Papas Cargadas",
+            "description": "Papas fritas, queso nacho, queso rallado, crema, cilantro, cebolla, carne a elegir",
+            "price": "$11"
+          },
+          {
+            "name": "Nachos",
+            "description": "Totopos, queso nacho, queso rallado, crema, cilantro, cebolla, carne a elegir",
+            "price": "$13"
+          },
+          {
+            "name": "Ramen de Birria",
+            "description": "Con cebolla, cilantro y totopos al lado",
+            "price": "$10"
+          },
+          {
+            "name": "Totopos con Queso",
+            "description": "",
+            "price": "$8"
+          },
+          {
+            "name": "Totopos con Guacamole",
+            "description": "",
+            "price": "$8"
+          }
+        ]
+      },
+      {
+        "id": "kiddos",
+        "title": "Niños",
+        "note": "Niños de 12 años o menos — incluye 1 agua fresca pequeña",
+        "items": [
+          {
+            "name": "Quesadilla de Queso con Papas",
+            "description": "",
+            "price": "$7"
+          },
+          {
+            "name": "Quesadilla de Pollo",
+            "description": "",
+            "price": "$7"
+          },
+          {
+            "name": "Papita",
+            "description": "",
+            "price": "$7"
+          },
+          {
+            "name": "1 Taco, Frijoles y Arroz",
+            "description": "",
+            "price": "$7"
+          }
+        ]
+      },
+      {
+        "id": "sides",
+        "title": "Acompañamientos",
+        "items": [
+          {
+            "name": "Arroz",
+            "description": "",
+            "price": "$2"
+          },
+          {
+            "name": "Frijoles",
+            "description": "",
+            "price": "$2"
+          },
+          {
+            "name": "Papas Fritas",
+            "description": "",
+            "price": "$3"
+          },
+          {
+            "name": "Guacamole",
+            "description": "",
+            "price": "$4"
+          },
+          {
+            "name": "Crema",
+            "description": "",
+            "price": "$1"
+          },
+          {
+            "name": "Papa al Horno",
+            "description": "",
+            "price": "$3"
+          },
+          {
+            "name": "Totopos y Salsa",
+            "description": "",
+            "price": "$2"
+          },
+          {
+            "name": "Chiles Toreados (3)",
+            "description": "",
+            "price": "$2"
+          }
+        ]
+      },
+      {
+        "id": "tacos",
+        "title": "Tacos",
+        "note": "Tortilla de maíz con queso mozzarella y carne a elegir",
+        "items": [
+          {
+            "name": "Asada",
+            "description": "",
+            "price": "$10"
+          },
+          {
+            "name": "Pastor",
+            "description": "",
+            "price": "$10"
+          },
+          {
+            "name": "Birria",
+            "description": "",
+            "price": "$11"
+          },
+          {
+            "name": "Pollo Adobado",
+            "description": "",
+            "price": "$10"
+          },
+          {
+            "name": "Alambre",
+            "description": "",
+            "price": "$11"
+          },
+          {
+            "name": "Tacos Vegetarianos",
+            "description": "Pimientos, cebolla salteada, tomate, queso",
+            "price": "$10"
+          },
+          {
+            "name": "Tacos Veganos",
+            "description": "Pimientos, cebolla salteada, tomate, papa",
+            "price": "$10"
+          },
+          {
+            "name": "Tacos Keto",
+            "description": "Con queso, carne a elegir",
+            "price": "$11"
+          }
+        ]
+      },
+      {
+        "id": "quesadillas",
+        "title": "Quesadillas",
+        "note": "Tortilla de harina con queso mozzarella y carne a elegir",
+        "items": [
+          {
+            "name": "Asada",
+            "description": "",
+            "price": "$10"
+          },
+          {
+            "name": "Pastor",
+            "description": "",
+            "price": "$10"
+          },
+          {
+            "name": "Birria",
+            "description": "",
+            "price": "$11"
+          },
+          {
+            "name": "Pollo Adobado",
+            "description": "",
+            "price": "$10"
+          },
+          {
+            "name": "Alambre",
+            "description": "",
+            "price": "$11"
+          },
+          {
+            "name": "Quesa Vegetariana",
+            "description": "Pimientos, cebolla, tomate, queso",
+            "price": "$10"
+          },
+          {
+            "name": "Quesa Baja en Carbohidratos",
+            "description": "Carne, queso, tortilla de linaza",
+            "price": "$11"
+          }
+        ]
+      },
+      {
+        "id": "drinks",
+        "title": "Bebidas",
+        "items": [
+          {
+            "name": "Aguas Frescas",
+            "description": "Relleno $2.00",
+            "price": "$5.00"
+          },
+          {
+            "name": "Coca Mexicana",
+            "description": "",
+            "price": "$3.50"
+          },
+          {
+            "name": "Refresco en Lata",
+            "description": "",
+            "price": "$1.50"
+          }
+        ]
+      }
+    ],
+    "i18n": {
+      "es": {
+        "nav.links.0.label": "Menú",
+        "nav.links.0.href": "/menu",
+        "nav.links.1.label": "Catering",
+        "nav.links.1.href": "/catering",
+        "nav.links.2.label": "Nuestra Historia",
+        "nav.links.2.href": "/our-story",
+        "nav.links.3.label": "Contacto",
+        "nav.links.3.href": "/contact",
+        "custom.nav.findLabel": "Ordenar en Línea",
+        "hero.headline": "Tacos Auténticos",
+        "custom.hero.headlineLine2": "en Las Cruces",
+        "hero.primaryCta.label": "Ordenar en Línea",
+        "custom.hero.secondaryCta.label": "Ver Menú",
+        "custom.eClub.headline": "Horario",
+        "custom.eClub.footnote": "Est. 2020 · Las Cruces, NM",
+        "custom.eClub.locationTitle": "Ubicación",
+        "custom.eClub.location": "1602 S Solano Dr, Las Cruces, NM 88001",
+        "custom.eClub.mapLabel": "Cómo llegar",
+        "custom.specialsCarousel.title": "Favoritos del Cliente",
+        "custom.reviews.title": "Reseñas de Clientes",
+        "custom.reviews.subtitle": "Muy bien calificados en Las Cruces",
+        "custom.reviews.platforms.0.name": "Restaurantji",
+        "custom.reviews.platforms.0.rating": "4.7",
+        "custom.reviews.platforms.0.countLabel": "de 182 reseñas",
+        "custom.reviews.platforms.1.name": "Facebook",
+        "custom.reviews.platforms.1.rating": "100%",
+        "custom.reviews.platforms.1.countLabel": "de 39 reseñas",
+        "custom.reviews.platforms.2.name": "Yelp",
+        "custom.reviews.platforms.2.rating": "4.7",
+        "custom.reviews.platforms.2.countLabel": "de 64 reseñas",
+        "custom.reviews.platforms.3.name": "Google",
+        "custom.reviews.platforms.3.rating": "4.8",
+        "custom.reviews.platforms.3.countLabel": "de 582 reseñas",
+        "custom.specialsCarousel.viewAllLabel": "Ver Menú Completo",
+        "custom.specialsCarousel.cards.0.learnLabel": "Tacos de Birria",
+        "custom.specialsCarousel.cards.0.orderLabel": "Ordenar",
+        "custom.specialsCarousel.cards.1.learnLabel": "Ramen de Birria",
+        "custom.specialsCarousel.cards.1.orderLabel": "Ordenar",
+        "custom.specialsCarousel.cards.2.learnLabel": "Caja de Tacos",
+        "custom.specialsCarousel.cards.2.orderLabel": "Ordenar",
+        "custom.specialsCarousel.cards.3.learnLabel": "Parrillas",
+        "custom.specialsCarousel.cards.3.orderLabel": "Ordenar",
+        "menu.title": "Nuestro Menú",
+        "menu.subtitle": "Tacos auténticos, quesadillas, entradas y acompañamientos hechos frescos en Las Cruces.",
+        "custom.catering.title": "Catering",
+        "custom.catering.subtitle": "Lleva El Vagon a tu próximo evento",
+        "custom.catering.intro": "Desde bodas y oficinas hasta reuniones familiares — preparamos tacos auténticos, quesadillas y más para grupos de cualquier tamaño.",
+        "custom.catering.phoneCta": "Llamar (575) 621-5897",
+        "custom.catering.emailCta": "Correo para Cotización",
+        "custom.catering.note": "Favor de avisar con 48 horas de anticipación para pedidos grandes. Menús personalizados disponibles.",
+        "custom.footer.socialTitle": "Síguenos",
+        "custom.footer.appsTitle": "Ordenar y Contacto",
+        "custom.footer.columns.0.title": "Menú",
+        "custom.footer.columns.0.links.0.label": "Entradas",
+        "custom.footer.columns.0.links.1.label": "Niños",
+        "custom.footer.columns.0.links.2.label": "Acompañamientos",
+        "custom.footer.columns.0.links.3.label": "Tacos",
+        "custom.footer.columns.0.links.4.label": "Quesadillas",
+        "custom.footer.columns.0.links.5.label": "Bebidas",
+        "custom.footer.columns.1.title": "Visítanos",
+        "custom.footer.columns.1.links.0.label": "1602 S Solano Dr",
+        "custom.footer.columns.1.links.1.label": "Las Cruces, NM 88001",
+        "custom.footer.columns.1.links.2.label": "(575) 621-5897",
+        "custom.footer.columns.1.links.3.label": "Horario y Ubicación",
+        "custom.footer.columns.2.title": "Conéctate",
+        "custom.footer.columns.2.links.0.label": "Instagram",
+        "custom.footer.columns.2.links.1.label": "Facebook",
+        "custom.footer.columns.2.links.2.label": "elvagontacos@gmail.com",
+        "custom.footer.columns.3.title": "Servicios",
+        "custom.footer.columns.3.links.0.label": "Comer Aquí",
+        "custom.footer.columns.3.links.1.label": "Para Llevar",
+        "custom.footer.columns.3.links.2.label": "Catering",
+        "custom.footer.columns.3.links.3.label": "Nuestra Historia",
+        "menu.footerNote": "Precios sujetos a cambio. Pregunte por especiales del día.",
+        "custom.footer.legal.0.label": "Privacidad",
+        "custom.footer.legal.1.label": "Accesibilidad",
+        "custom.footer.legal.2.label": "Contacto",
+        "footer.copyright": "© 2026 El Vagon Tacos. Todos los derechos reservados.",
+        "business.phone": "(575) 621-5897",
+        "integrations.email": "elvagontacos@gmail.com"
+      }
+    }
+  },
+  "integrations": {
+    "email": "elvagontacos@gmail.com",
+    "instagram": "https://www.instagram.com/elvagontacos",
+    "facebook": "https://www.facebook.com/elvagon/",
+    "orderOnline": "https://order.spoton.com/so-el-vagon-tacos-18420"
+  }
+}

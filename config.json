@@ -1,0 +1,72 @@
+{
+  "version": 2,
+  "projectType": "restaurant",
+  "sections": [
+    "nav",
+    "hero",
+    "eClub",
+    "ourStory",
+    "specialsCarousel",
+    "reviews",
+    "menuList",
+    "catering",
+    "footer"
+  ],
+  "pages": [
+    {
+      "id": "home",
+      "label": "Home",
+      "path": "index.html",
+      "sections": [
+        "nav",
+        "hero",
+        "eClub",
+        "specialsCarousel",
+        "reviews",
+        "footer"
+      ]
+    },
+    {
+      "id": "menu",
+      "label": "Menu",
+      "path": "menu/index.html",
+      "sections": [
+        "nav",
+        "menuList",
+        "footer"
+      ]
+    },
+    {
+      "id": "catering",
+      "label": "Catering",
+      "path": "catering/index.html",
+      "sections": [
+        "nav",
+        "catering",
+        "reviews",
+        "footer"
+      ]
+    },
+    {
+      "id": "our-story",
+      "label": "Our Story",
+      "path": "our-story/index.html",
+      "sections": [
+        "nav",
+        "ourStory",
+        "footer"
+      ]
+    },
+    {
+      "id": "contact",
+      "label": "Contact",
+      "path": "contact/index.html",
+      "sections": [
+        "nav",
+        "eClub",
+        "footer"
+      ]
+    }
+  ],
+  "templateVariant": "olive-garden"
+}
