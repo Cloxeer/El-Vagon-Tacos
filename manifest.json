@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "renderer": "custom",
+  "projectType": "restaurant",
+  "templateVariant": "olive-garden",
+  "label": "Olive Garden",
+  "sections": [
+    { "key": "alertBar", "file": "sections/alert-bar.html", "placement": "beforeMain" },
+    { "key": "nav", "file": "sections/nav.html", "placement": "beforeMain" },
+    { "key": "hero", "file": "sections/hero.html", "placement": "main" },
+    { "key": "eClub", "file": "sections/eclub.html", "placement": "main" },
+    { "key": "ourStory", "file": "sections/our-story.html", "placement": "main" },
+    { "key": "promoBannerDelivery", "file": "sections/promo-banner-delivery.html", "placement": "main" },
+    { "key": "promoBannerSeasonal", "file": "sections/promo-banner-seasonal.html", "placement": "main" },
+    { "key": "specialsCarousel", "file": "sections/specials-carousel.html", "placement": "main" },
+    { "key": "reviews", "file": "sections/reviews.html", "placement": "main" },
+    { "key": "menuGrid", "file": "sections/menu-grid.html", "placement": "main" },
+    { "key": "menuList", "file": "sections/menu-list.html", "placement": "main" },
+    { "key": "catering", "file": "sections/catering.html", "placement": "main" },
+    { "key": "quickActions", "file": "sections/quick-actions.html", "placement": "main" },
+    { "key": "footer", "file": "sections/footer.html", "placement": "afterMain" }
+  ],
+  "pages": [
+    {
+      "id": "home",
+      "label": "Home",
+      "path": "index.html",
+      "sections": [
+        { "key": "nav", "file": "sections/nav.html", "placement": "beforeMain" },
+        { "key": "hero", "file": "sections/hero.html", "placement": "main" },
+        { "key": "eClub", "file": "sections/eclub.html", "placement": "main" },
+        { "key": "specialsCarousel", "file": "sections/specials-carousel.html", "placement": "main" },
+        { "key": "reviews", "file": "sections/reviews.html", "placement": "main" },
+        { "key": "footer", "file": "sections/footer.html", "placement": "afterMain" }
+      ]
+    },
+    {
+      "id": "menu",
+      "label": "Menu",
+      "path": "menu/index.html",
+      "sections": [
+        { "key": "nav", "file": "sections/nav.html", "placement": "beforeMain" },
+        { "key": "menuList", "file": "sections/menu-list.html", "placement": "main" },
+        { "key": "footer", "file": "sections/footer.html", "placement": "afterMain" }
+      ]
+    },
+    {
+      "id": "catering",
+      "label": "Catering",
+      "path": "catering/index.html",
+      "sections": [
+        { "key": "nav", "file": "sections/nav.html", "placement": "beforeMain" },
+        { "key": "catering", "file": "sections/catering.html", "placement": "main" },
+        { "key": "reviews", "file": "sections/reviews.html", "placement": "main" },
+        { "key": "footer", "file": "sections/footer.html", "placement": "afterMain" }
+      ]
+    },
+    {
+      "id": "our-story",
+      "label": "Our Story",
+      "path": "our-story/index.html",
+      "sections": [
+        { "key": "nav", "file": "sections/nav.html", "placement": "beforeMain" },
+        { "key": "ourStory", "file": "sections/our-story.html", "placement": "main" },
+        { "key": "footer", "file": "sections/footer.html", "placement": "afterMain" }
+      ]
+    },
+    {
+      "id": "contact",
+      "label": "Contact",
+      "path": "contact/index.html",
+      "sections": [
+        { "key": "nav", "file": "sections/nav.html", "placement": "beforeMain" },
+        { "key": "eClub", "file": "sections/eclub.html", "placement": "main" },
+        { "key": "footer", "file": "sections/footer.html", "placement": "afterMain" }
+      ]
+    }
+  ],
+  "scripts": ["scripts.js"],
+  "fields": [
+    { "path": ["custom", "alertBar", "message"], "label": "Alert bar message", "section": "alertBar" },
+    { "path": ["custom", "eClub", "headline"], "label": "eClub headline", "section": "eClub" },
+    { "path": ["custom", "eClub", "footnote"], "label": "eClub footnote", "section": "eClub" },
+    { "path": ["about", "headline"], "label": "Our story headline", "section": "ourStory" },
+    { "path": ["about", "paragraphs"], "label": "Our story paragraphs", "section": "ourStory" },
+    { "path": ["custom", "promoBannerDelivery", "imageDesktop"], "label": "Delivery banner (desktop)", "section": "promoBannerDelivery" },
+    { "path": ["custom", "promoBannerDelivery", "imageMobile"], "label": "Delivery banner (mobile)", "section": "promoBannerDelivery" },
+    { "path": ["custom", "promoBannerSeasonal", "imageDesktop"], "label": "Seasonal banner (desktop)", "section": "promoBannerSeasonal" },
+    { "path": ["custom", "promoBannerSeasonal", "imageMobile"], "label": "Seasonal banner (mobile)", "section": "promoBannerSeasonal" },
+    { "path": ["custom", "specialsCarousel", "title"], "label": "Specials section title", "section": "specialsCarousel" },
+    { "path": ["custom", "specialsCarousel", "cards"], "label": "Specials cards", "section": "specialsCarousel" },
+    { "path": ["custom", "menuGrid", "title"], "label": "Menu highlights title", "section": "menuGrid" },
+    { "path": ["custom", "menuGrid", "items"], "label": "Menu highlight cards", "section": "menuGrid" },
+    { "path": ["menu", "title"], "label": "Full menu title", "section": "menuList" },
+    { "path": ["menu", "subtitle"], "label": "Full menu subtitle", "section": "menuList" },
+    { "path": ["menu", "footerNote"], "label": "Menu footer note", "section": "menuList" },
+    { "path": ["custom", "quickActions", "cards"], "label": "Quick action cards", "section": "quickActions" }
+  ]
+}

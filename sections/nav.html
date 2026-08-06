@@ -1,0 +1,64 @@
+<header class="og-header" id="og-header" data-halite-section="nav">
+  <div class="og-header__inner">
+    <button type="button" class="og-header__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="og-mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="og-header__brand">
+      <a href="/" class="og-header__logo" aria-label="El Vagon Tacos home" data-halite-href='["custom","nav","homeHref"]'>
+        <img src="images/logo.png" alt="El Vagon Tacos" width="56" height="56" data-halite-path='["custom","nav","logo"]' data-halite-image="true" />
+      </a>
+      <img
+        class="og-header__title"
+        src="images/title.png"
+        alt="El Vagón Taco Shop"
+        width="128"
+        height="56"
+        data-halite-path='["custom","nav","title"]'
+        data-halite-image="true"
+      />
+    </div>
+
+    <nav class="og-header__nav" aria-label="Main navigation">
+      <ul class="og-header__links">
+        <li><a href="/menu" data-halite-href='["nav","links",0,"href"]' data-halite-path='["nav","links",0,"label"]'>Menu</a></li>
+        <li><a href="/catering" data-halite-href='["nav","links",1,"href"]' data-halite-path='["nav","links",1,"label"]'>Catering</a></li>
+        <li><a href="/our-story" data-halite-href='["nav","links",2,"href"]' data-halite-path='["nav","links",2,"label"]'>Our Story</a></li>
+        <li><a href="/contact" data-halite-href='["nav","links",3,"href"]' data-halite-path='["nav","links",3,"label"]'>Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="og-header__actions">
+      <div class="og-lang-toggle" role="group" aria-label="Language">
+        <button type="button" class="og-lang-toggle__btn is-active" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" class="og-lang-toggle__btn" data-lang="es" aria-pressed="false">ES</button>
+      </div>
+      <a href="#order" class="og-header__btn og-header__btn--primary" data-halite-path='["custom","nav","findLabel"]'>Order Online</a>
+      <a href="/menu" class="og-header__btn og-header__btn--menu-mobile" data-menu-mobile-cta="true" data-halite-href='["nav","links",0,"href"]' data-halite-path='["custom","nav","menuMobileLabel"]'>See Menu</a>
+    </div>
+  </div>
+
+  <nav id="og-mobile-nav" class="og-mobile-nav" aria-hidden="true" aria-label="Mobile navigation">
+    <div class="og-mobile-nav__header">
+      <button type="button" class="og-mobile-nav__close" aria-label="Close menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <ul class="og-mobile-nav__list">
+      <li><a href="/menu" data-halite-href='["nav","links",0,"href"]'><span data-halite-path='["nav","links",0,"label"]'>Menu</span><img src="images/icon-chevron.svg" alt="" /></a></li>
+      <li><a href="/catering" data-halite-href='["nav","links",1,"href"]'><span data-halite-path='["nav","links",1,"label"]'>Catering</span><img src="images/icon-chevron.svg" alt="" /></a></li>
+      <li><a href="/our-story" data-halite-href='["nav","links",2,"href"]'><span data-halite-path='["nav","links",2,"label"]'>Our Story</span><img src="images/icon-chevron.svg" alt="" /></a></li>
+      <li><a href="/contact" data-halite-href='["nav","links",3,"href"]'><span data-halite-path='["nav","links",3,"label"]'>Contact</span><img src="images/icon-chevron.svg" alt="" /></a></li>
+      <li><a href="#order"><span data-halite-path='["custom","nav","findLabel"]'>Order Online</span><img src="images/icon-chevron.svg" alt="" /></a></li>
+      <li class="og-mobile-nav__lang">
+        <div class="og-lang-toggle" role="group" aria-label="Language">
+          <button type="button" class="og-lang-toggle__btn is-active" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" class="og-lang-toggle__btn" data-lang="es" aria-pressed="false">ES</button>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <div class="og-mobile-nav__backdrop" hidden></div>
+</header>
