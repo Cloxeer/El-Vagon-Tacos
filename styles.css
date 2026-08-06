@@ -117,8 +117,9 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 .og-header__hamburger span {
   display: block;
+  width: 100%;
   height: 2px;
-  background: var(--color-text);
+  background: var(--color-text, #1a1a1a);
   border-radius: 1px;
 }
 
