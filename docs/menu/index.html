@@ -28,6 +28,13 @@
   --radius-pill: 30px;
   --radius-btn: 50px;
   --shadow-header: 0 2px 12px rgba(0, 0, 0, 0.08);
+  --og-carousel-gap: 16px;
+  --og-carousel-card-basis: 31%;
+  --og-carousel-card-min-height: 420px;
+  --og-carousel-hover-grow-x: 10%;
+  --og-carousel-slide-ms: 800ms;
+  --og-carousel-slide-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --og-carousel-hover-shadow: 0 22px 44px rgba(0, 0, 0, 0.32);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -979,6 +986,22 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   font-weight: 700;
   font-size: 15px;
   margin: 0 0 2px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.og-menu-item__badge {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  background: var(--color-accent);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
 }
 .og-menu-item__desc {
   margin: 0;
@@ -1149,6 +1172,13 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   .og-title-row__taco-wrap--right {
     animation: none;
   }
+  .og-carousel__track,
+  .og-special-card,
+  .og-special-card::before,
+  .og-special-card__hit,
+  .og-special-card__content {
+    transition: none;
+  }
 }
 
 /* ── Section titles ── */
@@ -1184,12 +1214,19 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   display: flex;
   align-items: center;
   gap: 8px;
+  padding-block: 28px;
+  overflow: visible;
 }
-.og-carousel__viewport { overflow: hidden; flex: 1; }
+.og-carousel__viewport {
+  overflow: hidden;
+  flex: 1;
+  padding: 28px 20px;
+}
 .og-carousel__track {
   display: flex;
-  gap: 16px;
-  transition: transform 0.35s ease;
+  gap: var(--og-carousel-gap);
+  align-items: center;
+  transition: transform var(--og-carousel-slide-ms) var(--og-carousel-slide-ease);
 }
 .og-carousel__arrow {
   flex-shrink: 0;
@@ -1201,6 +1238,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   justify-content: center;
   background: var(--color-surface);
   color: #000000;
+  z-index: 4;
   transition: background 0.15s, border-color 0.15s;
 }
 .og-carousel__arrow:hover { background: var(--color-accent); border-color: var(--color-accent); }
@@ -1208,17 +1246,27 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 .og-special-card {
   position: relative;
-  flex: 0 0 calc(25% - 12px);
-  min-height: 420px;
+  flex: 0 0 var(--og-carousel-card-basis);
+  min-height: var(--og-carousel-card-min-height);
   border-radius: 12px;
-  background-image: var(--card-bg);
-  background-size: cover;
-  background-position: center;
   background-color: #1a1a1a;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
+  isolation: isolate;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  transition:
+    flex var(--og-carousel-slide-ms) var(--og-carousel-slide-ease),
+    box-shadow 0.45s var(--og-carousel-slide-ease);
+}
+.og-special-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: var(--card-bg);
+  background-size: cover;
+  background-position: center;
 }
 .og-special-card__hit {
   position: absolute;
@@ -1226,14 +1274,16 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   z-index: 0;
 }
 .og-special-card__content {
-  position: relative;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 1;
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-  width: 100%;
   background: linear-gradient(transparent 35%, rgba(0, 0, 0, 0.82));
   pointer-events: none;
 }
@@ -1246,6 +1296,16 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 .og-special-card:hover .og-special-card__content .og-btn {
   text-decoration: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .og-special-card:hover {
+    z-index: 3;
+    flex: 0 0 calc(var(--og-carousel-card-basis) + var(--og-carousel-hover-grow-x));
+    box-shadow: var(--og-carousel-hover-shadow);
+  }
+}
+.og-special-card.is-active {
+  z-index: 2;
 }
 .og-special-card__title {
   margin: 0;
@@ -1460,8 +1520,11 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 /* ── Responsive ── */
 @media (max-width: 1024px) {
-  :root { --container-pad: 40px; }
-  .og-special-card { flex: 0 0 calc(33.333% - 11px); }
+  :root {
+    --container-pad: 40px;
+    --og-carousel-card-basis: calc(45% - 8px);
+    --og-carousel-card-min-height: 380px;
+  }
   .og-quick-actions__grid { grid-template-columns: repeat(2, 1fr); }
   .og-footer__grid { grid-template-columns: repeat(3, 1fr); }
   .og-reviews__groups { grid-template-columns: repeat(2, 1fr); }
@@ -1523,8 +1586,22 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   .og-title-row__taco { width: 48px; }
   .og-reviews__groups { grid-template-columns: 1fr; }
   .og-reviews__platforms { grid-template-columns: 1fr; }
-  .og-special-card { flex: 0 0 85%; min-height: 360px; scroll-snap-align: center; }
-  .og-carousel__arrow { display: none; }
+  :root {
+    --og-carousel-card-basis: 78%;
+    --og-carousel-card-min-height: 340px;
+  }
+  .og-special-card { scroll-snap-align: center; }
+  .og-carousel { padding-block: 16px; }
+  .og-carousel__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    background: var(--color-surface);
+  }
+  .og-carousel__arrow--prev { left: 0; }
+  .og-carousel__arrow--next { right: 0; }
   .og-carousel__viewport {
     overflow-x: auto;
     overflow-y: hidden;
@@ -1639,7 +1716,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
     </div>
 
     <div id="og-menu-list-root" class="og-menu-list__content" aria-live="polite"></div>
-    <p data-halite-path='["menu","footerNote"]' class="og-menu-list__footer">Prices subject to change. Ask about daily specials.</p>
+    <p data-halite-path='["menu","footerNote"]' class="og-menu-list__footer">Online menu prices. Prices subject to change. All info is from order.online. Last updated August 2026.</p>
   </div>
 </section>
 
@@ -1727,14 +1804,14 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 
 <script>
-window.__HALITE_MENU__ = {"categories":[{"id":"starters","title":"Starters","items":[{"name":"Papota","description":"Baked potato with butter, cheese, sour cream, cilantro, onion & your choice of meat","price":"$11"},{"name":"Loaded Fries","description":"French fries, nacho cheese, shredded cheese, sour cream, cilantro, onion, your choice of meat","price":"$11"},{"name":"Nachos","description":"Tortilla chips, nacho cheese, shredded cheese, sour cream, cilantro, onion, your choice of meat","price":"$13"},{"name":"Birria Ramen","description":"Topped with onion, cilantro & served with a side of chips","price":"$10"},{"name":"Chips n' Queso","description":"","price":"$8"},{"name":"Chips n' Guac","description":"","price":"$8"}]},{"id":"kiddos","title":"Kiddos","note":"Kids 12 & under — all meals include 1 small agua fresca","items":[{"name":"Cheese Quesadilla w/ Fries","description":"","price":"$7"},{"name":"Chicken Quesadilla","description":"","price":"$7"},{"name":"Papita","description":"","price":"$7"},{"name":"1 Taco, Beans & Rice","description":"","price":"$7"}]},{"id":"sides","title":"Sides","items":[{"name":"Rice","description":"","price":"$2"},{"name":"Beans","description":"","price":"$2"},{"name":"Fries","description":"","price":"$3"},{"name":"Guacamole","description":"","price":"$4"},{"name":"Sour Cream","description":"","price":"$1"},{"name":"Baked Potato","description":"","price":"$3"},{"name":"Chips and Salsa","description":"","price":"$2"},{"name":"Chiles Toreados (3)","description":"","price":"$2"}]},{"id":"tacos","title":"Tacos","note":"Served on a corn tortilla with mozzarella cheese & your choice of meat","items":[{"name":"Asada","description":"","price":"$10"},{"name":"Pastor","description":"","price":"$10"},{"name":"Birria","description":"","price":"$11"},{"name":"Chicken Adobado","description":"","price":"$10"},{"name":"Alambre","description":"","price":"$11"},{"name":"Veggie Tacos","description":"Bell peppers, sautéed onions, tomato, cheese","price":"$10"},{"name":"Vegan Tacos","description":"Bell peppers, sautéed onions, tomato, potato","price":"$10"},{"name":"Keto Tacos","description":"Cheese shell, choice of meat","price":"$11"}]},{"id":"quesadillas","title":"Quesadillas","note":"Served on a flour tortilla with mozzarella cheese & your choice of meat","items":[{"name":"Asada","description":"","price":"$10"},{"name":"Pastor","description":"","price":"$10"},{"name":"Birria","description":"","price":"$11"},{"name":"Chicken Adobado","description":"","price":"$10"},{"name":"Alambre","description":"","price":"$11"},{"name":"Veggie Quesa","description":"Bell peppers, sautéed onion, tomato, cheese","price":"$10"},{"name":"Low Carb Quesa","description":"Choice of meat, cheese, flaxseed tortilla","price":"$11"}]},{"id":"drinks","title":"Drinks","items":[{"name":"Aguas","description":"$2.00 refill","price":"$5.00"},{"name":"Mexican Coke","description":"","price":"$3.50"},{"name":"Can Soda","description":"","price":"$1.50"}]}],"categoriesEs":[{"id":"starters","title":"Entradas","items":[{"name":"Papota","description":"Papa al horno con mantequilla, queso, crema, cilantro, cebolla y carne a elegir","price":"$11"},{"name":"Papas Cargadas","description":"Papas fritas, queso nacho, queso rallado, crema, cilantro, cebolla, carne a elegir","price":"$11"},{"name":"Nachos","description":"Totopos, queso nacho, queso rallado, crema, cilantro, cebolla, carne a elegir","price":"$13"},{"name":"Ramen de Birria","description":"Con cebolla, cilantro y totopos al lado","price":"$10"},{"name":"Totopos con Queso","description":"","price":"$8"},{"name":"Totopos con Guacamole","description":"","price":"$8"}]},{"id":"kiddos","title":"Niños","note":"Niños de 12 años o menos — incluye 1 agua fresca pequeña","items":[{"name":"Quesadilla de Queso con Papas","description":"","price":"$7"},{"name":"Quesadilla de Pollo","description":"","price":"$7"},{"name":"Papita","description":"","price":"$7"},{"name":"1 Taco, Frijoles y Arroz","description":"","price":"$7"}]},{"id":"sides","title":"Acompañamientos","items":[{"name":"Arroz","description":"","price":"$2"},{"name":"Frijoles","description":"","price":"$2"},{"name":"Papas Fritas","description":"","price":"$3"},{"name":"Guacamole","description":"","price":"$4"},{"name":"Crema","description":"","price":"$1"},{"name":"Papa al Horno","description":"","price":"$3"},{"name":"Totopos y Salsa","description":"","price":"$2"},{"name":"Chiles Toreados (3)","description":"","price":"$2"}]},{"id":"tacos","title":"Tacos","note":"Tortilla de maíz con queso mozzarella y carne a elegir","items":[{"name":"Asada","description":"","price":"$10"},{"name":"Pastor","description":"","price":"$10"},{"name":"Birria","description":"","price":"$11"},{"name":"Pollo Adobado","description":"","price":"$10"},{"name":"Alambre","description":"","price":"$11"},{"name":"Tacos Vegetarianos","description":"Pimientos, cebolla salteada, tomate, queso","price":"$10"},{"name":"Tacos Veganos","description":"Pimientos, cebolla salteada, tomate, papa","price":"$10"},{"name":"Tacos Keto","description":"Con queso, carne a elegir","price":"$11"}]},{"id":"quesadillas","title":"Quesadillas","note":"Tortilla de harina con queso mozzarella y carne a elegir","items":[{"name":"Asada","description":"","price":"$10"},{"name":"Pastor","description":"","price":"$10"},{"name":"Birria","description":"","price":"$11"},{"name":"Pollo Adobado","description":"","price":"$10"},{"name":"Alambre","description":"","price":"$11"},{"name":"Quesa Vegetariana","description":"Pimientos, cebolla, tomate, queso","price":"$10"},{"name":"Quesa Baja en Carbohidratos","description":"Carne, queso, tortilla de linaza","price":"$11"}]},{"id":"drinks","title":"Bebidas","items":[{"name":"Aguas Frescas","description":"Relleno $2.00","price":"$5.00"},{"name":"Coca Mexicana","description":"","price":"$3.50"},{"name":"Refresco en Lata","description":"","price":"$1.50"}]}]};
-window.__HALITE_MENU_IMAGES__ = {"categories":{"starters":["https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=480&q=75&fit=crop","https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=480&q=75&fit=crop","https://images.unsplash.com/photo-1513456852971-3c5a7be75608?w=480&q=75&fit=crop"],"kiddos":["https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=480&q=75&fit=crop","https://images.unsplash.com/photo-1599974579688-8dbddb0e2f48?w=480&q=75&fit=crop"],"sides":["https://images.unsplash.com/photo-1627308595229-7830a5c91f2f?w=480&q=75&fit=crop","https://images.unsplash.com/photo-1582169296194-e4d644c48063?w=480&q=75&fit=crop"],"tacos":["https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=480&q=75&fit=crop","https://images.unsplash.com/photo-1618040996337-56904b7850b9?w=480&q=75&fit=crop","https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=480&q=75&fit=crop","https://images.unsplash.com/photo-1599974579688-8dbddb0e2f48?w=480&q=75&fit=crop"],"quesadillas":["https://images.unsplash.com/photo-1618040996337-56904b7850b9?w=480&q=75&fit=crop","https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=480&q=75&fit=crop"],"drinks":["https://images.unsplash.com/photo-1546173159-315724a31696?w=480&q=75&fit=crop","https://images.unsplash.com/photo-1629203851122-3726a4ae4eec?w=480&q=75&fit=crop"]}};
-window.__HALITE_CATERING__ = {"title":"Catering","subtitle":"Bring El Vagon to your next event","intro":"From weddings and office lunches to family gatherings — we prepare fresh, authentic tacos, quesadillas, and more for groups of any size. Family packs and custom menus available.","phoneCta":"Call (575) 621-5897","emailCta":"Email for a Quote","note":"Please allow 48 hours notice for large orders. Custom menus available upon request.","packages":[{"name":"Small Taco Box (12 tacos)","description":"Choose your meat, cilantro, onion, limes, red & green salsa","price":"$27"},{"name":"Medium Taco Box (20 tacos)","description":"Choose your meat, cilantro, onion, limes, red & green salsa","price":"$45"},{"name":"Large Taco Box (28 tacos)","description":"Choose your meat, cilantro, onion, limes, red & green salsa","price":"$55"},{"name":"Mix Box (14 tacos, 8 quesadillas)","description":"Choose your meat, cilantro, onion, limes, red & green salsa","price":"$50"},{"name":"Parrillas","description":"Tortillas, grilled onions, cilantro, chiles toreados, beans & rice. Meats: Asada, Pastor, Birria, Chicken Adobado, Alambre","price":"$25"}],"packagesEs":[{"name":"Caja Pequeña (12 tacos)","description":"Elige carne, cilantro, cebolla, limones, salsas","price":"$27"},{"name":"Caja Mediana (20 tacos)","description":"Elige carne, cilantro, cebolla, limones, salsas","price":"$45"},{"name":"Caja Grande (28 tacos)","description":"Elige carne, cilantro, cebolla, limones, salsas","price":"$55"},{"name":"Caja Mixta (14 tacos, 8 quesadillas)","description":"Elige carne, cilantro, cebolla, limones, salsas","price":"$50"},{"name":"Parrillas","description":"Tortillas, cebolla asada, cilantro, chiles, frijoles y arroz","price":"$25"}]};
-window.__HALITE_SPECIALS__ = {"title":"Customer Favorites","viewAllLabel":"View Full Menu","viewAllHref":"/menu","amenities":[{"label":"Vegan options","href":"/menu#menu-tacos"},{"label":"Kids' menu","href":"/menu#menu-kiddos"}],"favoritesList":[{"label":"Al Pastor Tacos","href":"/menu#menu-tacos"},{"label":"Birria Ramen","href":"/menu#menu-starters"},{"label":"Birria Tacos","href":"/menu#menu-tacos"},{"label":"Carne Asada Tacos","href":"/menu#menu-tacos"},{"label":"Birria Quesadilla","href":"/menu#menu-quesadillas"},{"label":"Mix Box (14 tacos, 8 quesadillas)","href":"/catering"},{"label":"Loaded Fries with Carne Asada","href":"/menu#menu-starters"},{"label":"Large Chips and Salsa","href":"/menu#menu-sides"},{"label":"Chicken Quesadillas","href":"/menu#menu-kiddos"},{"label":"Quesadilla De Pollo","href":"/menu#menu-kiddos"},{"label":"Kato Tacos De Asada","href":"/menu#menu-tacos"},{"label":"Chicken Adobado","href":"/menu#menu-tacos"},{"label":"Tacos Al Pastor","href":"/menu#menu-tacos"},{"label":"Tacos De Pollo","href":"/menu#menu-tacos"},{"label":"Chicken Tacos","href":"/menu#menu-tacos"}],"orderHref":"https://order.spoton.com/so-el-vagon-tacos-18420","cards":[{"learnLabel":"Al Pastor Tacos","orderLabel":"Order Now","menuHref":"/menu#menu-tacos","image":"https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&q=75&fit=crop"},{"learnLabel":"Birria Ramen","orderLabel":"Order Now","menuHref":"/menu#menu-starters","image":"https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=600&q=75&fit=crop"},{"learnLabel":"Birria Tacos","orderLabel":"Order Now","menuHref":"/menu#menu-tacos","image":"https://images.unsplash.com/photo-1618040996337-56904b7850b9?w=600&q=75&fit=crop"},{"learnLabel":"Carne Asada Tacos","orderLabel":"Order Now","menuHref":"/menu#menu-tacos","image":"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&q=75&fit=crop"}]};
+window.__HALITE_MENU__ = {"categories":[{"id":"most-ordered","title":"Most Ordered","note":"The most commonly ordered items from order.online.","items":[{"name":"Birria Tacos","description":"Birria on corn tortillas with mozzarella.","price":"$14.99","badge":"#1 most liked"},{"name":"Asada Tacos","description":"Steak tacos on corn tortillas with mozzarella.","price":"$13.99"},{"name":"Birria Ramen","description":"Slow-cooked beef birria in a rich broth with ramen noodles, onions, and cilantro. Served with tortilla chips, red salsa, and limes.","price":"$13.99"},{"name":"Loaded Fries","description":"French fries with nacho cheese, mozzarella, cilantro, onion, sour cream, and your choice of meat.","price":"$13.99"},{"name":"Birria Quesadilla","description":"Tender beef, melted cheese, onions, and cilantro in a folded tortilla. Served with consomé for dipping.","price":"$13.99"},{"name":"Pastor Taco","description":"Marinated pork (al pastor) tacos.","price":"$13.99"},{"name":"Taco Box - Medium","description":"20 tacos with mozzarella and your choice of meat.","price":"$63.99"},{"name":"Nachos","description":"Crispy nachos with nacho cheese, refried beans, mozzarella, cilantro, onion, sour cream, and your choice of meat.","price":"$15.39"}]},{"id":"starters","title":"Starters","items":[{"name":"Birria Ramen","description":"Slow-cooked beef birria in a rich broth with ramen noodles, onions, and cilantro. Served with tortilla chips, red salsa, and limes.","price":"$13.99"},{"name":"Papota","description":"Baked potato with butter, mozzarella, cilantro, onion, sour cream, and your choice of meat.","price":"$12.99"},{"name":"Loaded Fries","description":"French fries with nacho cheese, mozzarella, cilantro, onion, sour cream, and your choice of meat.","price":"$13.99"},{"name":"Nachos","description":"Crispy nachos with nacho cheese, refried beans, mozzarella, cilantro, onion, sour cream, and your choice of meat.","price":"$15.39"},{"name":"Chips N' Guac","description":"Tortilla chips with guacamole.","price":"$9.59"}]},{"id":"tacos","title":"Tacos","note":"Served on a corn tortilla with mozzarella cheese.","items":[{"name":"Birria Tacos","description":"Birria on corn tortillas with mozzarella.","price":"$14.99","badge":"#1 most liked"},{"name":"Asada Tacos","description":"Steak tacos on corn tortillas with mozzarella.","price":"$13.99"},{"name":"Pastor Taco","description":"Marinated pork (al pastor) tacos.","price":"$13.99"},{"name":"Chicken Adobado Tacos","description":"Chicken adobado on corn tortillas with mozzarella.","price":"$13.99"},{"name":"Alambre Tacos","description":"Alambre tacos with mixed grilled meat, peppers, and onion.","price":"$14.99"},{"name":"Veggie Taco","description":"Grilled zucchini, carrots, onions, pasilla, and bell peppers on a corn tortilla with cheese.","price":"$13.99"},{"name":"Vegan Tacos","description":"Plant-based tacos with grilled vegetables.","price":"$13.99"},{"name":"Shrimp Tacos","description":"Shrimp in soft tortillas with fresh salsa.","price":"$16.39"},{"name":"Shrimp Taco (1)","description":"Grilled shrimp with lettuce, pico de gallo, and chipotle sauce on a flour tortilla.","price":"$4.99"}]},{"id":"quesadillas","title":"Quesadillas","note":"Served on a flour tortilla with mozzarella cheese.","items":[{"name":"Birria Quesadilla","description":"Tender beef, melted cheese, onions, and cilantro in a folded tortilla. Served with consomé for dipping.","price":"$13.99"},{"name":"Asada Quesadilla","description":"Steak and melted cheese, served with sour cream and salsas.","price":"$13.99"},{"name":"Pastor Quesadilla","description":"Pork adobado and melted cheese, served with sour cream and salsa.","price":"$13.99"},{"name":"Chicken Adobado Quesadilla","description":"Marinated chicken adobado, melted cheese, and chipotle cream.","price":"$13.99"},{"name":"Alambre Quesadilla","description":"Steak, bell peppers, onions, bacon, and melted cheese, served with sour cream.","price":"$14.99"},{"name":"Cheese Quesadilla","description":"Melted cheese in a crispy folded tortilla.","price":"$6.79"}]},{"id":"sides","title":"Sides","items":[{"name":"Elote","description":"Corn in a cup with mayonnaise, cotija, chili powder, crema, and lime.","price":"$5.99"},{"name":"Chipotle Sweet Potato Fries","description":"Sweet potato fries with chipotle dry seasoning.","price":"$7.99"},{"name":"Side of Guacamole","description":"Fresh creamy avocado dip.","price":"$5.99"},{"name":"Side Chips & Salsa","description":"Freshly fried tortilla chips with house red and green salsa.","price":"$4.99"},{"name":"28 Oz Side Salsa","description":"Large salsa — traditional, red (creamy árbol), or green (creamy jalapeño).","price":"$10.99"},{"name":"Side of Rice","description":"Lightly seasoned Mexican rice.","price":"$2.99"},{"name":"Large Rice","description":"Mexican rice cooked with tomato, garlic, onion, and spices.","price":"$8.29"},{"name":"Side of Beans","description":"Savory seasoned beans.","price":"$2.99"},{"name":"Large Beans","description":"Slow-cooked pinto beans, typically topped with queso fresco.","price":"$8.99"},{"name":"Baked Potato","description":"Baked potato with butter, sour cream, and shredded cheese.","price":"$4.99"},{"name":"Lg Consome","description":"Braised beef broth with onion, cilantro, and lime.","price":"$5.99"}]},{"id":"kiddos","title":"Kiddos","note":"Kids 12 & under.","items":[{"name":"Kids Chicken Quesadilla","description":"Grilled chicken and melted cheese in a flour tortilla.","price":"$10.59"},{"name":"Kids Papita","description":"Choice of asada or chicken.","price":"$8.69"},{"name":"Cheese Quesadilla with Fries","description":"Grilled flour tortilla with melted cheese, served with fries.","price":"$8.99"},{"name":"Kids 2 Tacos","description":"Choice of asada, pastor, birria, chicken adobado, alambre, or veggie.","price":"$9.99"}]},{"id":"family-packs","title":"Family Packs","items":[{"name":"Taco Box - Small","description":"12 tacos with mozzarella and your choice of meat.","price":"$37.99"},{"name":"Taco Box - Medium","description":"20 tacos with mozzarella and your choice of meat.","price":"$63.99"},{"name":"Taco Box - Large","description":"28 tacos with mozzarella and your choice of meat.","price":"$84.99"},{"name":"Taco Box - Mix Box","description":"14 tacos and 8 quesadilla pieces with mozzarella and your choice of meat.","price":"$70.99"},{"name":"Parrillas","description":"Grilled meats with tortillas, onions, cilantro, chiles, beans, and rice.","price":"$37.99"}]},{"id":"drinks","title":"Drinks","items":[{"name":"Aguas","description":"House agua fresca.","price":"$6.49"},{"name":"Small Agua with Topping","description":"Agua fresca with optional chamoy, tajín, or fruit.","price":"$4.79"},{"name":"Large Agua with Topping","description":"Agua fresca topped with chamoy, tajín, and chile.","price":"$6.69"},{"name":"Small Agua","description":"Kids-size agua fresca.","price":"$4.79"},{"name":"Mexican Coke","description":"Bottled Coke made with cane sugar.","price":"$4.79"},{"name":"Can Soda","description":"Coke, Diet Coke, or Sprite.","price":"$2.99"},{"name":"20 oz Coke","description":"","price":"$4.45"},{"name":"20 oz Coke Zero","description":"","price":"$4.45"},{"name":"20 oz Diet Coke","description":"","price":"$4.45"},{"name":"20 oz Sprite","description":"","price":"$4.45"}]},{"id":"trays","title":"Trays","items":[{"name":"Tray of Rice","description":"Seasoned Mexican rice tray.","price":"$27.89"},{"name":"Tray of Beans","description":"Refried beans, typically topped with melted jack and cheddar.","price":"$31.69"},{"name":"Tray of Meat","description":"Seasoned meats with sautéed onions and peppers.","price":"$124.89"},{"name":"Tray of Birria","description":"Tray of birria.","price":"$127.69"}]}],"categoriesEs":[{"id":"most-ordered","title":"Más Pedidos","note":"Los artículos más pedidos en order.online.","items":[{"name":"Tacos de Birria","description":"Birria en tortilla de maíz con mozzarella.","price":"$14.99","badge":"#1 más gustado"},{"name":"Tacos de Asada","description":"Tacos de asada en tortilla de maíz con mozzarella.","price":"$13.99"},{"name":"Ramen de Birria","description":"Birria de res en caldo con ramen, cebolla y cilantro. Con totopos, salsa roja y limones.","price":"$13.99"},{"name":"Papas Cargadas","description":"Papas fritas con queso nacho, mozzarella, cilantro, cebolla, crema y carne a elegir.","price":"$13.99"},{"name":"Quesadilla de Birria","description":"Res, queso, cebolla y cilantro. Con consomé para dippear.","price":"$13.99"},{"name":"Taco al Pastor","description":"Tacos de cerdo marinado al pastor.","price":"$13.99"},{"name":"Caja de Tacos Mediana","description":"20 tacos con mozzarella y carne a elegir.","price":"$63.99"},{"name":"Nachos","description":"Nachos con queso, frijoles, mozzarella, cilantro, cebolla, crema y carne a elegir.","price":"$15.39"}]},{"id":"starters","title":"Entradas","items":[{"name":"Ramen de Birria","description":"Birria de res en caldo con ramen, cebolla y cilantro. Con totopos, salsa roja y limones.","price":"$13.99"},{"name":"Papota","description":"Papa al horno con mantequilla, mozzarella, cilantro, cebolla, crema y carne a elegir.","price":"$12.99"},{"name":"Papas Cargadas","description":"Papas fritas con queso nacho, mozzarella, cilantro, cebolla, crema y carne a elegir.","price":"$13.99"},{"name":"Nachos","description":"Nachos con queso, frijoles, mozzarella, cilantro, cebolla, crema y carne a elegir.","price":"$15.39"},{"name":"Totopos con Guacamole","description":"Totopos con guacamole.","price":"$9.59"}]},{"id":"tacos","title":"Tacos","note":"En tortilla de maíz con queso mozzarella.","items":[{"name":"Tacos de Birria","description":"Birria en tortilla de maíz con mozzarella.","price":"$14.99","badge":"#1 más gustado"},{"name":"Tacos de Asada","description":"Tacos de asada en tortilla de maíz con mozzarella.","price":"$13.99"},{"name":"Taco al Pastor","description":"Tacos de cerdo marinado al pastor.","price":"$13.99"},{"name":"Tacos de Pollo Adobado","description":"Pollo adobado en tortilla de maíz con mozzarella.","price":"$13.99"},{"name":"Tacos de Alambre","description":"Alambre con carne, pimientos y cebolla.","price":"$14.99"},{"name":"Taco Veggie","description":"Calabaza, zanahoria, cebolla, pasilla y pimiento en tortilla de maíz con queso.","price":"$13.99"},{"name":"Tacos Veganos","description":"Tacos de verduras a la parrilla.","price":"$13.99"},{"name":"Tacos de Camarón","description":"Camarón en tortilla suave con salsa fresca.","price":"$16.39"},{"name":"Taco de Camarón (1)","description":"Camarón a la parrilla con lechuga, pico de gallo y chipotle.","price":"$4.99"}]},{"id":"quesadillas","title":"Quesadillas","note":"En tortilla de harina con queso mozzarella.","items":[{"name":"Quesadilla de Birria","description":"Res, queso, cebolla y cilantro. Con consomé para dippear.","price":"$13.99"},{"name":"Quesadilla de Asada","description":"Asada y queso, con crema y salsas.","price":"$13.99"},{"name":"Quesadilla al Pastor","description":"Cerdo adobado y queso, con crema y salsa.","price":"$13.99"},{"name":"Quesadilla de Pollo Adobado","description":"Pollo adobado, queso y crema de chipotle.","price":"$13.99"},{"name":"Quesadilla de Alambre","description":"Asada, pimiento, cebolla, tocino y queso, con crema.","price":"$14.99"},{"name":"Quesadilla de Queso","description":"Queso derretido en tortilla crujiente.","price":"$6.79"}]},{"id":"sides","title":"Acompañamientos","items":[{"name":"Elote","description":"Elote en vaso con mayonesa, cotija, chile, crema y limón.","price":"$5.99"},{"name":"Papas Dulces Chipotle","description":"Papas de camote con sazón de chipotle.","price":"$7.99"},{"name":"Guacamole","description":"Guacamole fresco.","price":"$5.99"},{"name":"Totopos y Salsa","description":"Totopos con salsa roja y verde.","price":"$4.99"},{"name":"Salsa 28 oz","description":"Salsa grande — tradicional, roja o verde.","price":"$10.99"},{"name":"Arroz","description":"Arroz mexicano.","price":"$2.99"},{"name":"Arroz Grande","description":"Arroz mexicano con jitomate, ajo y cebolla.","price":"$8.29"},{"name":"Frijoles","description":"Frijoles sazonados.","price":"$2.99"},{"name":"Frijoles Grandes","description":"Frijoles de la olla, con queso fresco.","price":"$8.99"},{"name":"Papa al Horno","description":"Papa al horno con mantequilla, crema y queso.","price":"$4.99"},{"name":"Consomé Grande","description":"Consomé de res con cebolla, cilantro y limón.","price":"$5.99"}]},{"id":"kiddos","title":"Niños","note":"Niños de 12 años o menos.","items":[{"name":"Quesadilla de Pollo","description":"Pollo asado y queso en tortilla de harina.","price":"$10.59"},{"name":"Papita","description":"Asada o pollo.","price":"$8.69"},{"name":"Quesadilla de Queso con Papas","description":"Quesadilla de queso con papas fritas.","price":"$8.99"},{"name":"2 Tacos de Niño","description":"Asada, pastor, birria, pollo adobado, alambre o veggie.","price":"$9.99"}]},{"id":"family-packs","title":"Paquetes Familiares","items":[{"name":"Caja de Tacos Chica","description":"12 tacos con mozzarella y carne a elegir.","price":"$37.99"},{"name":"Caja de Tacos Mediana","description":"20 tacos con mozzarella y carne a elegir.","price":"$63.99"},{"name":"Caja de Tacos Grande","description":"28 tacos con mozzarella y carne a elegir.","price":"$84.99"},{"name":"Caja Mixta","description":"14 tacos y 8 pedazos de quesadilla.","price":"$70.99"},{"name":"Parrillas","description":"Carnes asadas con tortillas, cebolla, cilantro, chiles, frijoles y arroz.","price":"$37.99"}]},{"id":"drinks","title":"Bebidas","items":[{"name":"Aguas","description":"Agua fresca de la casa.","price":"$6.49"},{"name":"Agua Chica con Topping","description":"Agua fresca con chamoy, tajín o fruta.","price":"$4.79"},{"name":"Agua Grande con Topping","description":"Agua fresca con chamoy, tajín y chile.","price":"$6.69"},{"name":"Agua Chica","description":"Agua fresca tamaño niño.","price":"$4.79"},{"name":"Coca Mexicana","description":"Coca de caña en botella.","price":"$4.79"},{"name":"Refresco en Lata","description":"Coca, Coca Light o Sprite.","price":"$2.99"},{"name":"Coca 20 oz","description":"","price":"$4.45"},{"name":"Coca Zero 20 oz","description":"","price":"$4.45"},{"name":"Coca Light 20 oz","description":"","price":"$4.45"},{"name":"Sprite 20 oz","description":"","price":"$4.45"}]},{"id":"trays","title":"Charolas","items":[{"name":"Charola de Arroz","description":"Charola de arroz mexicano.","price":"$27.89"},{"name":"Charola de Frijoles","description":"Frijoles refritos con queso.","price":"$31.69"},{"name":"Charola de Carne","description":"Carnes sazonadas con cebolla y pimiento.","price":"$124.89"},{"name":"Charola de Birria","description":"Charola de birria.","price":"$127.69"}]}]};
+window.__HALITE_MENU_IMAGES__ = {"items":{"starters:0":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/1fe60092-42c1-473f-bd6b-1c3ae6bc24be-retina-large.jpg","starters:1":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/617e9fe8-6f70-4a1b-b07d-1dcc710a5899.png","starters:2":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/427d476d-2544-4840-b0ac-fab6ef9604f9-retina-large.jpg","starters:3":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ef6f074f-6d0f-4cc1-9ae4-1f2144702b23-retina-large.jpg","starters:4":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/fc801432-289c-440d-9f92-e7f2f89777be.jpg","tacos:0":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/e801e92f-6e2a-4ebd-bbb6-e62f38e39f2a-retina-large.jpg","tacos:1":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/6f99c5bc-d659-4232-b4cd-d1a785a64f1a-retina-large.jpg","tacos:2":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ecc41d2f-e19b-4ec1-a699-cde69329946e-retina-large.jpg","tacos:3":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/000ccb22-ba72-4b3c-8aa9-4e281e2418ae-retina-large.jpg","tacos:4":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/7fec2fb1-8d1a-4dcf-9d0d-cbe7ece4e40f-retina-large.jpg","tacos:5":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/b14b7203-3c18-4aaf-a881-71946b3eeb50.jpg","tacos:6":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ba94069b-87b3-4897-b05c-bbce85121505-retina-large.jpg","tacos:7":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/1f632a64-7387-452f-97ba-979d62aa5326-retina-large.jpg","tacos:8":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/21326dca-648e-492f-a26c-82c06f6fe94d.jpg","quesadillas:0":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/29c73002-e013-4a86-8462-d26c4283b51f-retina-large.jpg","quesadillas:1":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/f205ee13-56dc-4bbb-a8d1-374ff6992b67-retina-large.jpg","quesadillas:2":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ad3f699a-b31c-4477-9083-6562960c88a3-retina-large.png","quesadillas:3":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/7cef58fe-e12a-4c5d-b7ab-9b3728c0a4f1-retina-large.jpg","quesadillas:4":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/d2a96171-ff54-4b4f-9d1a-bd405979a772.png","quesadillas:5":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/81c67284-05df-460b-9e3e-f27b5aa8b7e5-2861357c-4c79-487f-86ae-076ff5d21301.jpg","sides:0":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/0163a4bb-7133-4892-82f1-5752e757e38b-a618828e-ff31-4e0d-b8b0-f13b04ae4d51.jpg","sides:1":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/bb8846a1-d30c-4c65-b10b-cc46d77b2194.jpg","sides:2":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/7539cb81-752f-4edb-af1a-7bfdc8f89dc3.png","sides:3":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/83123f70-2c58-4b01-9c78-9befad872fec.png","sides:4":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/03716a47-c7a7-417a-a871-a989c4590bee.jpg","sides:5":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/e4e65f9a-1bc5-4e1e-8533-eef71b57630c-retina-large.jpg","sides:6":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/e4e65f9a-1bc5-4e1e-8533-eef71b57630c-retina-large.jpg","sides:7":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ea78d6e7-c1d8-413d-9e27-9026d7350d05-retina-large.jpg","sides:8":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ea78d6e7-c1d8-413d-9e27-9026d7350d05-retina-large.jpg","sides:9":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/d0ff2d71-b2f5-4142-aa14-7473ea8cc93e-retina-large.jpg","sides:10":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/0f1abc35-1192-4601-9fd9-7179a50287e1-d9fef73b-4413-4b2c-8dca-97ddeced4828.jpg","kiddos:0":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/e8ae2ed9-2f04-474f-b6a0-2dddc07a2d39-d9fe4d94-1196-4c2f-b68d-88ac4c0044f2.jpg","kiddos:1":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/9bf00a77-fe87-416a-9778-dbe612dfbf51.jpg","kiddos:2":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/18fd44b2-0f52-41f0-a24f-c8ea97ad3afd.jpg","kiddos:3":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/725084e7-1740-4e78-9e5f-6ee043962d01.jpg","drinks:0":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/0830912e-96ff-4f95-88aa-3420ae79b89f-retina-large.jpg","drinks:1":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/1f7953d8-50df-468d-ac40-8e6b95dfe052.jpg","drinks:2":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/3c8dbad0-4059-4f01-a517-e3ce37771ead.png","drinks:4":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/621d9ac7-7673-4801-bef5-79768c9c6b5c-retina-large.jpeg","drinks:5":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/10041ef7-9f70-4c81-aef5-89c0578aeb19.jpg","drinks:6":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/f6c0cf64-1ecd-4812-861b-789f63b61e5a-retina-large.jpg","drinks:7":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/85c5e634-d9a7-40fd-a2f1-b312af4f5760-5a601862-89b4-4a6d-b391-63d8a2508167-retina-large.jpg","drinks:8":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/122ddb7a-1572-4499-a7eb-e5fc6f456395-40737ece-e74f-47bf-8920-d4e45b77bbcd-retina-large.jpg","drinks:9":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/242f4baa-a988-4533-92a0-997b457b1416-df8592ee-addf-476c-a656-218fa6f30e17-retina-large.jpg","family-packs:0":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/d889d8a0-df9f-454c-91af-37576a9cf779-retina-large.jpg","family-packs:1":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ee315f69-4e7e-46ec-9f1b-3758bc2e492a-retina-large.png","family-packs:2":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/17b00922-6e15-4533-822b-3dfa0be5f05e-retina-large.jpg","family-packs:3":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/88c156fd-3c81-44a8-9f75-6f5ca2e84ef2-retina-large.png","family-packs:4":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/b090097c-9483-410d-83ff-a765e9604e03-retina-large.png","trays:0":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/768e2895-76a7-4e7a-98ad-fcc00043ee39-c90ee2ca-6d7a-4727-94a3-cb26824315c1-retina-large.jpg","trays:2":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/47d5f18e-64d6-428d-b807-38d06855fbab-retina-large.png","trays:3":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/2c8a0dfc-ea22-4ffe-bd66-3681a2c68b37-retina-large.jpg","drinks:3":"","trays:1":"","most-ordered:0":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/e801e92f-6e2a-4ebd-bbb6-e62f38e39f2a-retina-large.jpg","most-ordered:1":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/6f99c5bc-d659-4232-b4cd-d1a785a64f1a-retina-large.jpg","most-ordered:2":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/1fe60092-42c1-473f-bd6b-1c3ae6bc24be-retina-large.jpg","most-ordered:3":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/427d476d-2544-4840-b0ac-fab6ef9604f9-retina-large.jpg","most-ordered:4":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/29c73002-e013-4a86-8462-d26c4283b51f-retina-large.jpg","most-ordered:5":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ecc41d2f-e19b-4ec1-a699-cde69329946e-retina-large.jpg","most-ordered:6":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ee315f69-4e7e-46ec-9f1b-3758bc2e492a-retina-large.png","most-ordered:7":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ef6f074f-6d0f-4cc1-9ae4-1f2144702b23-retina-large.jpg"},"categories":{"starters":["https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/1fe60092-42c1-473f-bd6b-1c3ae6bc24be-retina-large.jpg","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/617e9fe8-6f70-4a1b-b07d-1dcc710a5899.png","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/427d476d-2544-4840-b0ac-fab6ef9604f9-retina-large.jpg","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ef6f074f-6d0f-4cc1-9ae4-1f2144702b23-retina-large.jpg"],"tacos":["https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/e801e92f-6e2a-4ebd-bbb6-e62f38e39f2a-retina-large.jpg","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/6f99c5bc-d659-4232-b4cd-d1a785a64f1a-retina-large.jpg","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ecc41d2f-e19b-4ec1-a699-cde69329946e-retina-large.jpg","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/000ccb22-ba72-4b3c-8aa9-4e281e2418ae-retina-large.jpg"],"quesadillas":["https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/29c73002-e013-4a86-8462-d26c4283b51f-retina-large.jpg","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/f205ee13-56dc-4bbb-a8d1-374ff6992b67-retina-large.jpg","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ad3f699a-b31c-4477-9083-6562960c88a3-retina-large.png","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/7cef58fe-e12a-4c5d-b7ab-9b3728c0a4f1-retina-large.jpg"],"sides":["https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/0163a4bb-7133-4892-82f1-5752e757e38b-a618828e-ff31-4e0d-b8b0-f13b04ae4d51.jpg","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/bb8846a1-d30c-4c65-b10b-cc46d77b2194.jpg","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/7539cb81-752f-4edb-af1a-7bfdc8f89dc3.png","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/83123f70-2c58-4b01-9c78-9befad872fec.png"],"kiddos":["https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/e8ae2ed9-2f04-474f-b6a0-2dddc07a2d39-d9fe4d94-1196-4c2f-b68d-88ac4c0044f2.jpg","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/9bf00a77-fe87-416a-9778-dbe612dfbf51.jpg","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/18fd44b2-0f52-41f0-a24f-c8ea97ad3afd.jpg","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/725084e7-1740-4e78-9e5f-6ee043962d01.jpg"],"drinks":["https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/0830912e-96ff-4f95-88aa-3420ae79b89f-retina-large.jpg","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/1f7953d8-50df-468d-ac40-8e6b95dfe052.jpg","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/3c8dbad0-4059-4f01-a517-e3ce37771ead.png","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/621d9ac7-7673-4801-bef5-79768c9c6b5c-retina-large.jpeg"],"family-packs":["https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/d889d8a0-df9f-454c-91af-37576a9cf779-retina-large.jpg","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ee315f69-4e7e-46ec-9f1b-3758bc2e492a-retina-large.png","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/17b00922-6e15-4533-822b-3dfa0be5f05e-retina-large.jpg","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/88c156fd-3c81-44a8-9f75-6f5ca2e84ef2-retina-large.png"],"trays":["https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/768e2895-76a7-4e7a-98ad-fcc00043ee39-c90ee2ca-6d7a-4727-94a3-cb26824315c1-retina-large.jpg","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/47d5f18e-64d6-428d-b807-38d06855fbab-retina-large.png","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/2c8a0dfc-ea22-4ffe-bd66-3681a2c68b37-retina-large.jpg"],"most-ordered":["https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/e801e92f-6e2a-4ebd-bbb6-e62f38e39f2a-retina-large.jpg","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/6f99c5bc-d659-4232-b4cd-d1a785a64f1a-retina-large.jpg","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/1fe60092-42c1-473f-bd6b-1c3ae6bc24be-retina-large.jpg","https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/427d476d-2544-4840-b0ac-fab6ef9604f9-retina-large.jpg"]}};
+window.__HALITE_CATERING__ = {"title":"Catering","subtitle":"Bring El Vagon to your next event","intro":"From weddings and office lunches to family gatherings — we prepare fresh, authentic tacos, quesadillas, and more for groups of any size. Family packs and custom menus available.","phoneCta":"Call (575) 621-5897","emailCta":"Email for a Quote","note":"Please allow 48 hours notice for large orders. Custom menus available upon request.","packages":[{"name":"Taco Box - Small","description":"12 tacos with mozzarella and your choice of meat.","price":"$37.99"},{"name":"Taco Box - Medium","description":"20 tacos with mozzarella and your choice of meat.","price":"$63.99"},{"name":"Taco Box - Large","description":"28 tacos with mozzarella and your choice of meat.","price":"$84.99"},{"name":"Taco Box - Mix Box","description":"14 tacos and 8 quesadilla pieces with mozzarella and your choice of meat.","price":"$70.99"},{"name":"Parrillas","description":"Grilled meats with tortillas, onions, cilantro, chiles, beans, and rice.","price":"$37.99"},{"name":"Tray of Rice","description":"Seasoned Mexican rice tray.","price":"$27.89"},{"name":"Tray of Beans","description":"Refried beans, typically topped with melted jack and cheddar.","price":"$31.69"},{"name":"Tray of Meat","description":"Seasoned meats with sautéed onions and peppers.","price":"$124.89"},{"name":"Tray of Birria","description":"Tray of birria.","price":"$127.69"}],"packagesEs":[{"name":"Caja de Tacos Chica","description":"12 tacos con mozzarella y carne a elegir.","price":"$37.99"},{"name":"Caja de Tacos Mediana","description":"20 tacos con mozzarella y carne a elegir.","price":"$63.99"},{"name":"Caja de Tacos Grande","description":"28 tacos con mozzarella y carne a elegir.","price":"$84.99"},{"name":"Caja Mixta","description":"14 tacos y 8 pedazos de quesadilla.","price":"$70.99"},{"name":"Parrillas","description":"Carnes asadas con tortillas, cebolla, cilantro, chiles, frijoles y arroz.","price":"$37.99"},{"name":"Charola de Arroz","description":"Charola de arroz mexicano.","price":"$27.89"},{"name":"Charola de Frijoles","description":"Frijoles refritos con queso.","price":"$31.69"},{"name":"Charola de Carne","description":"Carnes sazonadas con cebolla y pimiento.","price":"$124.89"},{"name":"Charola de Birria","description":"Charola de birria.","price":"$127.69"}]};
+window.__HALITE_SPECIALS__ = {"title":"Customer Favorites","viewAllLabel":"View Full Menu","viewAllHref":"/menu","amenities":[{"label":"Vegan options","href":"/menu#menu-tacos"},{"label":"Kids' menu","href":"/menu#menu-kiddos"}],"favoritesList":[{"label":"Birria Tacos","href":"/menu#menu-most-ordered"},{"label":"Asada Tacos","href":"/menu#menu-tacos"},{"label":"Birria Ramen","href":"/menu#menu-starters"},{"label":"Loaded Fries","href":"/menu#menu-starters"},{"label":"Birria Quesadilla","href":"/menu#menu-quesadillas"},{"label":"Pastor Taco","href":"/menu#menu-tacos"},{"label":"Taco Box - Medium","href":"/menu#menu-family-packs"},{"label":"Nachos","href":"/menu#menu-starters"}],"orderHref":"https://order.online/store/-32666423","cards":[{"learnLabel":"Birria Tacos","orderLabel":"Order Now","menuHref":"/menu#menu-most-ordered","image":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/e801e92f-6e2a-4ebd-bbb6-e62f38e39f2a-retina-large.jpg"},{"learnLabel":"Asada Tacos","orderLabel":"Order Now","menuHref":"/menu#menu-tacos","image":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/6f99c5bc-d659-4232-b4cd-d1a785a64f1a-retina-large.jpg"},{"learnLabel":"Birria Ramen","orderLabel":"Order Now","menuHref":"/menu#menu-starters","image":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/1fe60092-42c1-473f-bd6b-1c3ae6bc24be-retina-large.jpg"},{"learnLabel":"Loaded Fries","orderLabel":"Order Now","menuHref":"/menu#menu-starters","image":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/427d476d-2544-4840-b0ac-fab6ef9604f9-retina-large.jpg"},{"learnLabel":"Birria Quesadilla","orderLabel":"Order Now","menuHref":"/menu#menu-quesadillas","image":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/29c73002-e013-4a86-8462-d26c4283b51f-retina-large.jpg"},{"learnLabel":"Pastor Taco","orderLabel":"Order Now","menuHref":"/menu#menu-tacos","image":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ecc41d2f-e19b-4ec1-a699-cde69329946e-retina-large.jpg"},{"learnLabel":"Taco Box - Medium","orderLabel":"Order Now","menuHref":"/menu#menu-family-packs","image":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ee315f69-4e7e-46ec-9f1b-3758bc2e492a-retina-large.png"},{"learnLabel":"Nachos","orderLabel":"Order Now","menuHref":"/menu#menu-starters","image":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ef6f074f-6d0f-4cc1-9ae4-1f2144702b23-retina-large.jpg"}]};
 window.__HALITE_REVIEWS__ = {"title":"Customer Reviews","subtitle":"Highly rated across Las Cruces","platforms":[{"name":"Restaurantji","rating":"4.7","countLabel":"out of 182 reviews","href":"https://www.restaurantji.com/nm/las-cruces/el-vagon-tacos-/","quotes":[{"text":"Everything is excellent! I'm so thankful I found this spot while passing through NM. The veggie tacos are yum, their salsas add a really good kick, and the service is great. Really recommend!","author":"Carolina","stars":5},{"text":"This a casual place with excellent food and service. The server was super nice and price was very good for the amount and quality of food you get! Would definitely recommend come back!","author":"lais mamao","stars":5},{"text":"Loved it! Quick, friendly and great food. A definite must try.","author":"beau stites","stars":5}]},{"name":"Facebook","rating":"100%","countLabel":"from 39 reviews","href":"https://www.facebook.com/elvagon/","quotes":[{"text":"My family and I were passing through Las Cruces on our way to Mexico. Amazing food, friendly staff, fair prices! Would recommend 100%.","author":"Viki López","stars":5},{"text":"Authentic mexican food. very tasty and delicious. A 5 star.","author":"WilMil Yazz","stars":5},{"text":"Delicious tacos! If I lived in Las Cruces I would be there all the time!","author":"Maureen Young Tortorella","stars":5}]},{"name":"Yelp","rating":"4.7","countLabel":"out of 64 reviews","href":"https://www.yelp.com/biz/el-vagon-tacos-las-cruces","quotes":[{"text":"Delicious vegan tacos for me, yummy tacos for my carnivorous son. A win win! We ate here twice on our 2-day trip to Las Cruces, so good! Friendly and competent service. Can't wait to visit Las Cruces again so we can come back!","author":"Kerri W.","stars":5},{"text":"The Alambre tacos with a Mexican Coke is delicious. Great flavor. Quick and friendly service. The inside is fun and friendly and clean. Will definitely return.","author":"Aric C.","stars":5},{"text":"The tacos were amazing! The portions are huge, and the left overs were just as good. Our server Arely was so nice, everyone was nice I would definitely recommend!","author":"Lisa H.","stars":5}]},{"name":"Google","rating":"4.8","countLabel":"out of 582 reviews","href":"https://www.google.com/maps/place/El+Vagon+Tacos/@32.2957917,-106.7626113,17z/data=!3m1!4b1!4m6!3m5!1s0x86de17e1323b3727:0xa729e630210c1dc!8m2!3d32.2957917!4d-106.7600364!16s%2Fg%2F11t8dv788t?hl=en-US&entry=ttu","quotes":[{"text":"Everything you'd expect from a small cafe in the barrio! Great atmosphere, beautiful views around the building & of course, the very delicious TRUE New Mexico style food! Full of flavors and just the right amount of heat. Very recommend!","author":"Raymond Barron","stars":5},{"text":"Bring your appetite and empty stomach. They're very generous with the meat! Amazing tacos, perfect portions, the best beans in Las Cruces.","author":"Sara Beth Moran","stars":5},{"text":"Everything is excellent! I'm so thankful I found this spot while passing through NM. The veggie tacos are yum, their salsas add a really good kick, and the service is great. Really recommend!","author":"Carolina","stars":5}]}]};
 window.__HALITE_ECLUB__ = {"headline":"Hours","footnote":"Est. 2020 · Las Cruces, NM","locationTitle":"Location","location":"1602 S Solano Dr, Las Cruces, NM 88001","mapLabel":"Get directions","mapHref":"https://www.google.com/maps/place/El+Vagon+Tacos/@32.2957917,-106.7626113,17z/data=!3m1!4b1!4m6!3m5!1s0x86de17e1323b3727:0xa729e630210c1dc!8m2!3d32.2957917!4d-106.7600364!16s%2Fg%2F11t8dv788t?hl=en-US&entry=ttu","mapEmbedUrl":"https://maps.google.com/maps?q=El+Vagon+Tacos+1602+S+Solano+Dr+Las+Cruces+NM&hl=en&z=17&output=embed","timezone":"America/Denver","schedule":[{"dayIndex":1,"label":"Mon","closed":true},{"dayIndex":2,"label":"Tue","closed":true},{"dayIndex":3,"label":"Wed","closed":false,"hours":"11:00 AM - 6:00 PM","open":"11:00 AM","close":"6:00 PM"},{"dayIndex":4,"label":"Thu","closed":false,"hours":"11:00 AM - 8:00 PM","open":"11:00 AM","close":"8:00 PM"},{"dayIndex":5,"label":"Fri","closed":false,"hours":"11:00 AM - 9:00 PM","open":"11:00 AM","close":"9:00 PM"},{"dayIndex":6,"label":"Sat","closed":false,"hours":"11:00 AM - 9:00 PM","open":"11:00 AM","close":"9:00 PM"},{"dayIndex":0,"label":"Sun","closed":false,"hours":"11:00 AM - 6:00 PM","open":"11:00 AM","close":"6:00 PM"}]};
-window.__HALITE_I18N__ = {"es":{"nav.links.0.label":"Menú","nav.links.0.href":"/menu","nav.links.1.label":"Catering","nav.links.1.href":"/catering","nav.links.2.label":"Nuestra Historia","nav.links.2.href":"/our-story","nav.links.3.label":"Contacto","nav.links.3.href":"/contact","custom.nav.findLabel":"Ordenar en Línea","hero.headline":"Tacos Auténticos","custom.hero.headlineLine2":"en Las Cruces","hero.primaryCta.label":"Ordenar en Línea","custom.hero.secondaryCta.label":"Ver Menú","custom.eClub.headline":"Horario","custom.eClub.footnote":"Est. 2020 · Las Cruces, NM","custom.eClub.locationTitle":"Ubicación","custom.eClub.location":"1602 S Solano Dr, Las Cruces, NM 88001","custom.eClub.mapLabel":"Cómo llegar","custom.specialsCarousel.title":"Favoritos del Cliente","custom.reviews.title":"Reseñas de Clientes","custom.reviews.subtitle":"Muy bien calificados en Las Cruces","custom.reviews.platforms.0.name":"Restaurantji","custom.reviews.platforms.0.rating":"4.7","custom.reviews.platforms.0.countLabel":"de 182 reseñas","custom.reviews.platforms.1.name":"Facebook","custom.reviews.platforms.1.rating":"100%","custom.reviews.platforms.1.countLabel":"de 39 reseñas","custom.reviews.platforms.2.name":"Yelp","custom.reviews.platforms.2.rating":"4.7","custom.reviews.platforms.2.countLabel":"de 64 reseñas","custom.reviews.platforms.3.name":"Google","custom.reviews.platforms.3.rating":"4.8","custom.reviews.platforms.3.countLabel":"de 582 reseñas","custom.specialsCarousel.viewAllLabel":"Ver Menú Completo","custom.specialsCarousel.cards.0.learnLabel":"Tacos de Birria","custom.specialsCarousel.cards.0.orderLabel":"Ordenar","custom.specialsCarousel.cards.1.learnLabel":"Ramen de Birria","custom.specialsCarousel.cards.1.orderLabel":"Ordenar","custom.specialsCarousel.cards.2.learnLabel":"Caja de Tacos","custom.specialsCarousel.cards.2.orderLabel":"Ordenar","custom.specialsCarousel.cards.3.learnLabel":"Parrillas","custom.specialsCarousel.cards.3.orderLabel":"Ordenar","menu.title":"Nuestro Menú","menu.subtitle":"Tacos auténticos, quesadillas, entradas y acompañamientos hechos frescos en Las Cruces.","custom.catering.title":"Catering","custom.catering.subtitle":"Lleva El Vagon a tu próximo evento","custom.catering.intro":"Desde bodas y oficinas hasta reuniones familiares — preparamos tacos auténticos, quesadillas y más para grupos de cualquier tamaño.","custom.catering.phoneCta":"Llamar (575) 621-5897","custom.catering.emailCta":"Correo para Cotización","custom.catering.note":"Favor de avisar con 48 horas de anticipación para pedidos grandes. Menús personalizados disponibles.","custom.footer.socialTitle":"Síguenos","custom.footer.appsTitle":"Ordenar y Contacto","custom.footer.columns.0.title":"Menú","custom.footer.columns.0.links.0.label":"Entradas","custom.footer.columns.0.links.1.label":"Niños","custom.footer.columns.0.links.2.label":"Acompañamientos","custom.footer.columns.0.links.3.label":"Tacos","custom.footer.columns.0.links.4.label":"Quesadillas","custom.footer.columns.0.links.5.label":"Bebidas","custom.footer.columns.1.title":"Visítanos","custom.footer.columns.1.links.0.label":"1602 S Solano Dr","custom.footer.columns.1.links.1.label":"Las Cruces, NM 88001","custom.footer.columns.1.links.2.label":"(575) 621-5897","custom.footer.columns.1.links.3.label":"Horario y Ubicación","custom.footer.columns.2.title":"Conéctate","custom.footer.columns.2.links.0.label":"Instagram","custom.footer.columns.2.links.1.label":"Facebook","custom.footer.columns.2.links.2.label":"elvagontacos@gmail.com","custom.footer.columns.3.title":"Servicios","custom.footer.columns.3.links.0.label":"Comer Aquí","custom.footer.columns.3.links.1.label":"Para Llevar","custom.footer.columns.3.links.2.label":"Catering","custom.footer.columns.3.links.3.label":"Nuestra Historia","menu.footerNote":"Precios sujetos a cambio. Pregunte por especiales del día.","custom.footer.legal.0.label":"Privacidad","custom.footer.legal.1.label":"Accesibilidad","custom.footer.legal.2.label":"Contacto","footer.copyright":"© 2026 El Vagon Tacos. Todos los derechos reservados.","business.phone":"(575) 621-5897","integrations.email":"elvagontacos@gmail.com"}};
-window.__HALITE_INTEGRATIONS__ = {"email":"elvagontacos@gmail.com","instagram":"https://www.instagram.com/elvagontacos","facebook":"https://www.facebook.com/elvagon/","orderOnline":"https://order.spoton.com/so-el-vagon-tacos-18420"};
+window.__HALITE_I18N__ = {"es":{"nav.links.0.label":"Menú","nav.links.0.href":"/menu","nav.links.1.label":"Catering","nav.links.1.href":"/catering","nav.links.2.label":"Nuestra Historia","nav.links.2.href":"/our-story","nav.links.3.label":"Contacto","nav.links.3.href":"/contact","custom.nav.findLabel":"Ordenar en Línea","hero.headline":"Tacos Auténticos","custom.hero.headlineLine2":"en Las Cruces","hero.primaryCta.label":"Ordenar en Línea","custom.hero.secondaryCta.label":"Ver Menú","custom.eClub.headline":"Horario","custom.eClub.footnote":"Est. 2020 · Las Cruces, NM","custom.eClub.locationTitle":"Ubicación","custom.eClub.location":"1602 S Solano Dr, Las Cruces, NM 88001","custom.eClub.mapLabel":"Cómo llegar","custom.specialsCarousel.title":"Favoritos del Cliente","custom.reviews.title":"Reseñas de Clientes","custom.reviews.subtitle":"Muy bien calificados en Las Cruces","custom.reviews.platforms.0.name":"Restaurantji","custom.reviews.platforms.0.rating":"4.7","custom.reviews.platforms.0.countLabel":"de 182 reseñas","custom.reviews.platforms.1.name":"Facebook","custom.reviews.platforms.1.rating":"100%","custom.reviews.platforms.1.countLabel":"de 39 reseñas","custom.reviews.platforms.2.name":"Yelp","custom.reviews.platforms.2.rating":"4.7","custom.reviews.platforms.2.countLabel":"de 64 reseñas","custom.reviews.platforms.3.name":"Google","custom.reviews.platforms.3.rating":"4.8","custom.reviews.platforms.3.countLabel":"de 582 reseñas","custom.specialsCarousel.viewAllLabel":"Ver Menú Completo","custom.specialsCarousel.cards.0.learnLabel":"Tacos de Birria","custom.specialsCarousel.cards.0.orderLabel":"Ordenar","custom.specialsCarousel.cards.1.learnLabel":"Tacos de Asada","custom.specialsCarousel.cards.1.orderLabel":"Ordenar","custom.specialsCarousel.cards.2.learnLabel":"Ramen de Birria","custom.specialsCarousel.cards.2.orderLabel":"Ordenar","custom.specialsCarousel.cards.3.learnLabel":"Papas Cargadas","custom.specialsCarousel.cards.3.orderLabel":"Ordenar","custom.specialsCarousel.cards.4.learnLabel":"Quesadilla de Birria","custom.specialsCarousel.cards.4.orderLabel":"Ordenar","custom.specialsCarousel.cards.5.learnLabel":"Taco al Pastor","custom.specialsCarousel.cards.5.orderLabel":"Ordenar","custom.specialsCarousel.cards.6.learnLabel":"Caja de Tacos Mediana","custom.specialsCarousel.cards.6.orderLabel":"Ordenar","custom.specialsCarousel.cards.7.learnLabel":"Nachos","custom.specialsCarousel.cards.7.orderLabel":"Ordenar","menu.title":"Nuestro Menú","menu.subtitle":"Tacos auténticos, quesadillas, entradas y acompañamientos hechos frescos en Las Cruces.","custom.catering.title":"Catering","custom.catering.subtitle":"Lleva El Vagon a tu próximo evento","custom.catering.intro":"Desde bodas y oficinas hasta reuniones familiares — preparamos tacos auténticos, quesadillas y más para grupos de cualquier tamaño.","custom.catering.phoneCta":"Llamar (575) 621-5897","custom.catering.emailCta":"Correo para Cotización","custom.catering.note":"Favor de avisar con 48 horas de anticipación para pedidos grandes. Menús personalizados disponibles.","custom.footer.socialTitle":"Síguenos","custom.footer.appsTitle":"Ordenar y Contacto","custom.footer.columns.0.title":"Menú","custom.footer.columns.0.links.0.label":"Entradas","custom.footer.columns.0.links.1.label":"Niños","custom.footer.columns.0.links.2.label":"Acompañamientos","custom.footer.columns.0.links.3.label":"Tacos","custom.footer.columns.0.links.4.label":"Quesadillas","custom.footer.columns.0.links.5.label":"Bebidas","custom.footer.columns.1.title":"Visítanos","custom.footer.columns.1.links.0.label":"1602 S Solano Dr","custom.footer.columns.1.links.1.label":"Las Cruces, NM 88001","custom.footer.columns.1.links.2.label":"(575) 621-5897","custom.footer.columns.1.links.3.label":"Horario y Ubicación","custom.footer.columns.2.title":"Conéctate","custom.footer.columns.2.links.0.label":"Instagram","custom.footer.columns.2.links.1.label":"Facebook","custom.footer.columns.2.links.2.label":"elvagontacos@gmail.com","custom.footer.columns.3.title":"Servicios","custom.footer.columns.3.links.0.label":"Comer Aquí","custom.footer.columns.3.links.1.label":"Para Llevar","custom.footer.columns.3.links.2.label":"Catering","custom.footer.columns.3.links.3.label":"Nuestra Historia","menu.footerNote":"Precios del menú en línea. Sujetos a cambio. Toda la información es de order.online. Última actualización: agosto 2026.","custom.footer.legal.0.label":"Privacidad","custom.footer.legal.1.label":"Accesibilidad","custom.footer.legal.2.label":"Contacto","footer.copyright":"© 2026 El Vagon Tacos. Todos los derechos reservados.","business.phone":"(575) 621-5897","integrations.email":"elvagontacos@gmail.com"}};
+window.__HALITE_INTEGRATIONS__ = {"email":"elvagontacos@gmail.com","instagram":"https://www.instagram.com/elvagontacos","facebook":"https://www.facebook.com/elvagon/","orderOnline":"https://order.online/store/-32666423"};
 window.__HALITE_HOURS__ = {"timezone":"America/Denver","schedule":[{"dayIndex":1,"label":"Mon","closed":true},{"dayIndex":2,"label":"Tue","closed":true},{"dayIndex":3,"label":"Wed","closed":false,"hours":"11:00 AM - 6:00 PM","open":"11:00 AM","close":"6:00 PM"},{"dayIndex":4,"label":"Thu","closed":false,"hours":"11:00 AM - 8:00 PM","open":"11:00 AM","close":"8:00 PM"},{"dayIndex":5,"label":"Fri","closed":false,"hours":"11:00 AM - 9:00 PM","open":"11:00 AM","close":"9:00 PM"},{"dayIndex":6,"label":"Sat","closed":false,"hours":"11:00 AM - 9:00 PM","open":"11:00 AM","close":"9:00 PM"},{"dayIndex":0,"label":"Sun","closed":false,"hours":"11:00 AM - 6:00 PM","open":"11:00 AM","close":"6:00 PM"}]};
 (function () {
   "use strict";
@@ -1919,7 +1996,7 @@ window.__HALITE_HOURS__ = {"timezone":"America/Denver","schedule":[{"dayIndex":1
       categories = menu.categoriesEs;
     }
     return categories.filter(function (cat) {
-      return cat.id !== "family-packs" && cat.id !== "catering";
+      return cat.id !== "catering";
     });
   }
 
@@ -1930,20 +2007,24 @@ window.__HALITE_HOURS__ = {"timezone":"America/Denver","schedule":[{"dayIndex":1
     return hash;
   }
 
+  var MENU_IMAGE_NONE = "";
+
   function getItemImage(cat, item, index) {
-    if (item && item.image) return item.image;
+    if (item && typeof item.image === "string") return item.image;
     var images = window.__HALITE_MENU_IMAGES__;
-    if (!images) return "";
+    if (!images) return MENU_IMAGE_NONE;
     if (images.items) {
       var itemKey = cat.id + ":" + index;
-      if (images.items[itemKey]) return images.items[itemKey];
+      if (Object.prototype.hasOwnProperty.call(images.items, itemKey)) {
+        return images.items[itemKey] || MENU_IMAGE_NONE;
+      }
     }
     var categoryImages = images.categories && images.categories[cat.id];
     if (Array.isArray(categoryImages) && categoryImages.length) {
       return categoryImages[index % categoryImages.length];
     }
     if (typeof categoryImages === "string") return categoryImages;
-    return "";
+    return MENU_IMAGE_NONE;
   }
 
   function renderItemImage(cat, item, index, className) {
@@ -2114,6 +2195,9 @@ window.__HALITE_HOURS__ = {"timezone":"America/Denver","schedule":[{"dayIndex":1
           '<div class="og-menu-item__body">' +
           '<p class="og-menu-item__name">' +
           escapeHtml(item.name) +
+          (item.badge
+            ? '<span class="og-menu-item__badge">' + escapeHtml(item.badge) + "</span>"
+            : "") +
           "</p>" +
           (item.description
             ? '<p class="og-menu-item__desc">' + escapeHtml(item.description) + "</p>"
@@ -2603,62 +2687,148 @@ window.__HALITE_HOURS__ = {"timezone":"America/Denver","schedule":[{"dayIndex":1
 
   renderFavoritesLists();
   renderReviews();
+})();
 
-  function wireSpecialsCarousel() {
-    var specials = window.__HALITE_SPECIALS__;
-    if (!specials) return;
 
-    var integrations = window.__HALITE_INTEGRATIONS__ || {};
-    var orderHref = integrations.orderOnline || specials.orderHref || "#order";
-    var isExternalOrder = /^https?:\/\//i.test(orderHref);
+/**
+ * ELI5: The Customer Favorites photos slide by themselves and get bigger when you point at them.
+ * What: Renders every specials card from site data, then auto-plays a looping carousel.
+ * Owns: Specials carousel DOM, autoplay, arrows, hover-ready card markup.
+ * Depends on: window.__HALITE_SPECIALS__, window.__HALITE_INTEGRATIONS__, sections/specials-carousel.html
+ */
+(function () {
+  "use strict";
 
-    document.querySelectorAll(".og-specials .og-special-card").forEach(function (card, index) {
-      var cardData = specials.cards && specials.cards[index];
-      var menuHref = (cardData && cardData.menuHref) || "/menu";
-      var hitLink = card.querySelector(".og-special-card__hit");
-      if (hitLink) {
-        hitLink.setAttribute("href", menuHref);
-        if (cardData && cardData.learnLabel) {
-          hitLink.setAttribute("aria-label", cardData.learnLabel + " on menu");
-        }
+  var CAROUSEL_GAP_FALLBACK_PX = 16;
+  var CAROUSEL_AUTOPLAY_MS = 5200;
+  var CAROUSEL_MOBILE_MQ = "(max-width: 767px)";
+  var CAROUSEL_REDUCED_MOTION_MQ = "(prefers-reduced-motion: reduce)";
+  var CARD_PATH_MARKER = "cards";
+  var DEFAULT_MENU_HREF = "/menu";
+  var DEFAULT_ORDER_HREF = "#order";
+  var DEFAULT_ORDER_LABEL = "Order Now";
+  var ARIA_VIEW_ON_MENU_SUFFIX = " on menu";
+
+  var specials = window.__HALITE_SPECIALS__;
+  if (!specials) return;
+
+  var integrations = window.__HALITE_INTEGRATIONS__ || {};
+  var orderHref = integrations.orderOnline || specials.orderHref || DEFAULT_ORDER_HREF;
+  var isExternalOrder = /^https?:\/\//i.test(orderHref);
+
+  function rewriteCardPath(attr, index) {
+    if (!attr) return attr;
+    try {
+      var path = JSON.parse(attr);
+      var markerAt = path.indexOf(CARD_PATH_MARKER);
+      if (markerAt >= 0 && path[markerAt + 1] != null) {
+        path[markerAt + 1] = index;
       }
-
-      var orderBtn = card.querySelector("a.og-btn");
-      if (orderBtn) {
-        orderBtn.setAttribute("href", orderHref);
-        if (isExternalOrder) {
-          orderBtn.setAttribute("target", "_blank");
-          orderBtn.setAttribute("rel", "noopener noreferrer");
-        } else {
-          orderBtn.removeAttribute("target");
-          orderBtn.removeAttribute("rel");
-        }
-      }
-    });
+      return JSON.stringify(path);
+    } catch (err) {
+      return attr;
+    }
   }
 
-  wireSpecialsCarousel();
+  function paintCard(cardEl, cardData, index) {
+    cardEl.querySelectorAll("[data-halite-path]").forEach(function (el) {
+      el.setAttribute("data-halite-path", rewriteCardPath(el.getAttribute("data-halite-path"), index));
+    });
+    cardEl.querySelectorAll("[data-halite-href]").forEach(function (el) {
+      el.setAttribute("data-halite-href", rewriteCardPath(el.getAttribute("data-halite-href"), index));
+    });
 
-  /* Specials carousel */
-  document.querySelectorAll("[data-og-carousel]").forEach(function (root) {
+    var learnLabel = cardData.learnLabel || "";
+    var orderLabel = cardData.orderLabel || DEFAULT_ORDER_LABEL;
+    var menuHref = cardData.menuHref || DEFAULT_MENU_HREF;
+
+    var title = cardEl.querySelector(".og-special-card__title");
+    if (title) {
+      title.textContent = learnLabel;
+      title.setAttribute("data-lang-default", learnLabel);
+    }
+
+    var hitLink = cardEl.querySelector(".og-special-card__hit");
+    if (hitLink) {
+      hitLink.setAttribute("href", menuHref);
+      if (learnLabel) {
+        hitLink.setAttribute("aria-label", learnLabel + ARIA_VIEW_ON_MENU_SUFFIX);
+      }
+    }
+
+    var orderBtn = cardEl.querySelector("a.og-btn");
+    if (orderBtn) {
+      orderBtn.textContent = orderLabel;
+      orderBtn.setAttribute("data-lang-default", orderLabel);
+      orderBtn.setAttribute("href", orderHref);
+      if (isExternalOrder) {
+        orderBtn.setAttribute("target", "_blank");
+        orderBtn.setAttribute("rel", "noopener noreferrer");
+      } else {
+        orderBtn.removeAttribute("target");
+        orderBtn.removeAttribute("rel");
+      }
+    }
+
+    if (cardData.image) {
+      cardEl.style.setProperty("--card-bg", "url('" + cardData.image + "')");
+    }
+  }
+
+  function renderSpecialCards(track) {
+    var cards = specials.cards;
+    var template = track.querySelector(".og-special-card");
+    if (!cards || !cards.length || !template) return;
+
+    var frag = document.createDocumentFragment();
+    for (var i = 0; i < cards.length; i += 1) {
+      var node = template.cloneNode(true);
+      paintCard(node, cards[i], i);
+      frag.appendChild(node);
+    }
+    track.innerHTML = "";
+    track.appendChild(frag);
+  }
+
+  function trackGapPx(track) {
+    var style = window.getComputedStyle(track);
+    var gap = parseFloat(style.columnGap || style.gap);
+    if (Number.isFinite(gap)) return gap;
+    return CAROUSEL_GAP_FALLBACK_PX;
+  }
+
+  function bindCarousel(root) {
     var track = root.querySelector(".og-carousel__track");
     var viewport = root.querySelector(".og-carousel__viewport");
     var prev = root.querySelector(".og-carousel__arrow--prev");
     var next = root.querySelector(".og-carousel__arrow--next");
     if (!track || !viewport || !prev || !next) return;
 
+    renderSpecialCards(track);
+
     var index = 0;
-    var mobileMq = window.matchMedia("(max-width: 767px)");
+    var autoplayId = 0;
+    var hoverPaused = false;
+    var offscreen = false;
+    var mobileMq = window.matchMedia(CAROUSEL_MOBILE_MQ);
+    var reduceMotionMq = window.matchMedia(CAROUSEL_REDUCED_MOTION_MQ);
 
     function isTouchScrollMode() {
       return mobileMq.matches;
     }
 
+    function prefersReducedMotion() {
+      return reduceMotionMq.matches;
+    }
+
+    function cardEls() {
+      return track.querySelectorAll(".og-special-card");
+    }
+
     function cardStep() {
       var card = track.querySelector(".og-special-card");
       if (!card) return 0;
-      var gap = 16;
-      return card.getBoundingClientRect().width + gap;
+      return card.getBoundingClientRect().width + trackGapPx(track);
     }
 
     function maxTranslate() {
@@ -2668,50 +2838,127 @@ window.__HALITE_HOURS__ = {"timezone":"America/Denver","schedule":[{"dayIndex":1
     function maxIndex() {
       var step = cardStep();
       if (!step) return 0;
-      return Math.max(0, Math.ceil(maxTranslate() / step));
+      return Math.max(0, Math.round(maxTranslate() / step));
     }
 
-    function syncScrollToIndex() {
-      var step = cardStep();
-      if (!step) return;
-      viewport.scrollLeft = Math.min(index * step, maxTranslate());
+    function canSlide() {
+      return maxIndex() > 0;
     }
 
-    function update() {
-      if (isTouchScrollMode()) {
-        track.style.transform = "";
-        prev.disabled = true;
-        next.disabled = true;
-        return;
+    function markActiveCard() {
+      var cards = cardEls();
+      var activeAt = Math.min(index, cards.length - 1);
+      for (var i = 0; i < cards.length; i += 1) {
+        cards[i].classList.toggle("is-active", i === activeAt);
       }
+    }
 
+    function applyPosition(instant) {
       var step = cardStep();
       var max = maxTranslate();
-      var translate = Math.min(index * step, max);
-      track.style.transform = "translateX(" + -translate + "px)";
-      prev.disabled = translate <= 0;
-      next.disabled = translate >= max - 1;
+      var offset = Math.min(index * step, max);
+
+      if (isTouchScrollMode()) {
+        track.style.transform = "";
+        if (instant || prefersReducedMotion()) {
+          viewport.scrollLeft = offset;
+        } else {
+          viewport.scrollTo({ left: offset, behavior: "smooth" });
+        }
+      } else {
+        if (instant || prefersReducedMotion()) {
+          track.style.transition = "none";
+        } else {
+          track.style.transition = "";
+        }
+        track.style.transform = "translateX(" + -offset + "px)";
+        if (instant && !prefersReducedMotion()) {
+          track.getBoundingClientRect();
+          track.style.transition = "";
+        }
+      }
+
+      prev.disabled = !canSlide();
+      next.disabled = !canSlide();
+      markActiveCard();
+    }
+
+    function goTo(nextIndex, instant) {
+      var max = maxIndex();
+      if (max <= 0) {
+        index = 0;
+        applyPosition(true);
+        return;
+      }
+      index = ((nextIndex % (max + 1)) + (max + 1)) % (max + 1);
+      applyPosition(instant);
+    }
+
+    function goNext() {
+      goTo(index + 1, false);
+    }
+
+    function goPrev() {
+      goTo(index - 1, false);
+    }
+
+    function stopAutoplay() {
+      if (autoplayId) {
+        window.clearInterval(autoplayId);
+        autoplayId = 0;
+      }
+    }
+
+    function startAutoplay() {
+      stopAutoplay();
+      if (
+        hoverPaused ||
+        offscreen ||
+        prefersReducedMotion() ||
+        !canSlide() ||
+        document.hidden
+      ) {
+        return;
+      }
+      autoplayId = window.setInterval(goNext, CAROUSEL_AUTOPLAY_MS);
     }
 
     prev.addEventListener("click", function () {
-      index = Math.max(0, index - 1);
-      update();
+      goPrev();
+      startAutoplay();
     });
     next.addEventListener("click", function () {
-      index = Math.min(maxIndex(), index + 1);
-      update();
+      goNext();
+      startAutoplay();
+    });
+
+    root.addEventListener("mouseenter", function () {
+      hoverPaused = true;
+      stopAutoplay();
+    });
+    root.addEventListener("mouseleave", function () {
+      hoverPaused = false;
+      startAutoplay();
+    });
+    root.addEventListener("focusin", function () {
+      hoverPaused = true;
+      stopAutoplay();
+    });
+    root.addEventListener("focusout", function (event) {
+      if (!root.contains(event.relatedTarget)) {
+        hoverPaused = false;
+        startAutoplay();
+      }
+    });
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) stopAutoplay();
+      else startAutoplay();
     });
 
     function onResize() {
-      index = Math.min(index, maxIndex());
-      if (isTouchScrollMode()) {
-        track.style.transform = "";
-        syncScrollToIndex();
-        prev.disabled = true;
-        next.disabled = true;
-      } else {
-        update();
-      }
+      goTo(index, true);
+      startAutoplay();
     }
 
     if (typeof mobileMq.addEventListener === "function") {
@@ -2720,9 +2967,49 @@ window.__HALITE_HOURS__ = {"timezone":"America/Denver","schedule":[{"dayIndex":1
       mobileMq.addListener(onResize);
     }
 
+    if (typeof reduceMotionMq.addEventListener === "function") {
+      reduceMotionMq.addEventListener("change", onResize);
+    } else if (typeof reduceMotionMq.addListener === "function") {
+      reduceMotionMq.addListener(onResize);
+    }
+
     window.addEventListener("resize", onResize);
-    update();
-  });
+
+    viewport.addEventListener(
+      "scroll",
+      function () {
+        if (!isTouchScrollMode()) return;
+        var step = cardStep();
+        if (!step) return;
+        index = Math.max(0, Math.min(maxIndex(), Math.round(viewport.scrollLeft / step)));
+        markActiveCard();
+      },
+      { passive: true },
+    );
+
+    if ("IntersectionObserver" in window) {
+      var visibility = new IntersectionObserver(
+        function (entries) {
+          var entry = entries[0];
+          if (!entry) return;
+          if (entry.isIntersecting) {
+            offscreen = false;
+            startAutoplay();
+          } else {
+            offscreen = true;
+            stopAutoplay();
+          }
+        },
+        { threshold: 0.35 },
+      );
+      visibility.observe(root);
+    }
+
+    applyPosition(true);
+    startAutoplay();
+  }
+
+  document.querySelectorAll("[data-og-carousel]").forEach(bindCarousel);
 })();
 
 </script>

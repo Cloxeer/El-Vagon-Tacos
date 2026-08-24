@@ -181,7 +181,7 @@
       categories = menu.categoriesEs;
     }
     return categories.filter(function (cat) {
-      return cat.id !== "family-packs" && cat.id !== "catering";
+      return cat.id !== "catering";
     });
   }
 
@@ -192,20 +192,24 @@
     return hash;
   }
 
+  var MENU_IMAGE_NONE = "";
+
   function getItemImage(cat, item, index) {
-    if (item && item.image) return item.image;
+    if (item && typeof item.image === "string") return item.image;
     var images = window.__HALITE_MENU_IMAGES__;
-    if (!images) return "";
+    if (!images) return MENU_IMAGE_NONE;
     if (images.items) {
       var itemKey = cat.id + ":" + index;
-      if (images.items[itemKey]) return images.items[itemKey];
+      if (Object.prototype.hasOwnProperty.call(images.items, itemKey)) {
+        return images.items[itemKey] || MENU_IMAGE_NONE;
+      }
     }
     var categoryImages = images.categories && images.categories[cat.id];
     if (Array.isArray(categoryImages) && categoryImages.length) {
       return categoryImages[index % categoryImages.length];
     }
     if (typeof categoryImages === "string") return categoryImages;
-    return "";
+    return MENU_IMAGE_NONE;
   }
 
   function renderItemImage(cat, item, index, className) {
@@ -376,6 +380,9 @@
           '<div class="og-menu-item__body">' +
           '<p class="og-menu-item__name">' +
           escapeHtml(item.name) +
+          (item.badge
+            ? '<span class="og-menu-item__badge">' + escapeHtml(item.badge) + "</span>"
+            : "") +
           "</p>" +
           (item.description
             ? '<p class="og-menu-item__desc">' + escapeHtml(item.description) + "</p>"
@@ -865,124 +872,4 @@
 
   renderFavoritesLists();
   renderReviews();
-
-  function wireSpecialsCarousel() {
-    var specials = window.__HALITE_SPECIALS__;
-    if (!specials) return;
-
-    var integrations = window.__HALITE_INTEGRATIONS__ || {};
-    var orderHref = integrations.orderOnline || specials.orderHref || "#order";
-    var isExternalOrder = /^https?:\/\//i.test(orderHref);
-
-    document.querySelectorAll(".og-specials .og-special-card").forEach(function (card, index) {
-      var cardData = specials.cards && specials.cards[index];
-      var menuHref = (cardData && cardData.menuHref) || "/menu";
-      var hitLink = card.querySelector(".og-special-card__hit");
-      if (hitLink) {
-        hitLink.setAttribute("href", menuHref);
-        if (cardData && cardData.learnLabel) {
-          hitLink.setAttribute("aria-label", cardData.learnLabel + " on menu");
-        }
-      }
-
-      var orderBtn = card.querySelector("a.og-btn");
-      if (orderBtn) {
-        orderBtn.setAttribute("href", orderHref);
-        if (isExternalOrder) {
-          orderBtn.setAttribute("target", "_blank");
-          orderBtn.setAttribute("rel", "noopener noreferrer");
-        } else {
-          orderBtn.removeAttribute("target");
-          orderBtn.removeAttribute("rel");
-        }
-      }
-    });
-  }
-
-  wireSpecialsCarousel();
-
-  /* Specials carousel */
-  document.querySelectorAll("[data-og-carousel]").forEach(function (root) {
-    var track = root.querySelector(".og-carousel__track");
-    var viewport = root.querySelector(".og-carousel__viewport");
-    var prev = root.querySelector(".og-carousel__arrow--prev");
-    var next = root.querySelector(".og-carousel__arrow--next");
-    if (!track || !viewport || !prev || !next) return;
-
-    var index = 0;
-    var mobileMq = window.matchMedia("(max-width: 767px)");
-
-    function isTouchScrollMode() {
-      return mobileMq.matches;
-    }
-
-    function cardStep() {
-      var card = track.querySelector(".og-special-card");
-      if (!card) return 0;
-      var gap = 16;
-      return card.getBoundingClientRect().width + gap;
-    }
-
-    function maxTranslate() {
-      return Math.max(0, track.scrollWidth - viewport.clientWidth);
-    }
-
-    function maxIndex() {
-      var step = cardStep();
-      if (!step) return 0;
-      return Math.max(0, Math.ceil(maxTranslate() / step));
-    }
-
-    function syncScrollToIndex() {
-      var step = cardStep();
-      if (!step) return;
-      viewport.scrollLeft = Math.min(index * step, maxTranslate());
-    }
-
-    function update() {
-      if (isTouchScrollMode()) {
-        track.style.transform = "";
-        prev.disabled = true;
-        next.disabled = true;
-        return;
-      }
-
-      var step = cardStep();
-      var max = maxTranslate();
-      var translate = Math.min(index * step, max);
-      track.style.transform = "translateX(" + -translate + "px)";
-      prev.disabled = translate <= 0;
-      next.disabled = translate >= max - 1;
-    }
-
-    prev.addEventListener("click", function () {
-      index = Math.max(0, index - 1);
-      update();
-    });
-    next.addEventListener("click", function () {
-      index = Math.min(maxIndex(), index + 1);
-      update();
-    });
-
-    function onResize() {
-      index = Math.min(index, maxIndex());
-      if (isTouchScrollMode()) {
-        track.style.transform = "";
-        syncScrollToIndex();
-        prev.disabled = true;
-        next.disabled = true;
-      } else {
-        update();
-      }
-    }
-
-    if (typeof mobileMq.addEventListener === "function") {
-      mobileMq.addEventListener("change", onResize);
-    } else if (typeof mobileMq.addListener === "function") {
-      mobileMq.addListener(onResize);
-    }
-
-    window.addEventListener("resize", onResize);
-    update();
-  });
 })();
