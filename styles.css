@@ -1690,11 +1690,43 @@ html.og-dish-modal-open body {
   .og-our-story { padding: 40px 16px 56px; }
   .og-our-story__inner { grid-template-columns: 1fr; gap: 28px; }
 
-  .og-menu-list { padding: 32px 16px 48px; }
-  .og-menu-toolbar { flex-direction: column; align-items: stretch; top: calc(var(--header-height) + 2px); }
-  .og-menu-tabs { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; scrollbar-width: none; }
+  .og-menu-list { padding: 32px 16px 48px; max-width: 100%; min-width: 0; overflow-x: clip; }
+  .og-menu-list__inner { max-width: 100%; min-width: 0; }
+  .og-menu-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    top: calc(var(--header-height) + 2px);
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+  }
+  .og-menu-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
+    gap: 8px;
+    padding: 2px 0 8px;
+    scrollbar-width: none;
+  }
   .og-menu-tabs::-webkit-scrollbar { display: none; }
-  .og-menu-tabs__btn { flex-shrink: 0; font-size: 12px; padding: 9px 14px; }
+  .og-menu-tabs__btn {
+    flex: 0 0 auto;
+    font-size: 11px;
+    padding: 8px 12px;
+    white-space: nowrap;
+  }
   .og-menu-list__grid { grid-template-columns: 1fr; }
   .og-menu-list__cards { grid-template-columns: 1fr; }
   .og-menu-item__image { width: 64px; height: 64px; }
@@ -1713,11 +1745,16 @@ html.og-dish-modal-open body {
   .og-reviews__groups { grid-template-columns: 1fr; }
   .og-reviews__platforms { grid-template-columns: 1fr; }
   :root {
-    --og-carousel-card-basis: 78%;
+    --og-carousel-card-basis: 100%;
     --og-carousel-card-min-height: 340px;
+    --og-carousel-gap: 0px;
   }
-  .og-special-card { scroll-snap-align: center; }
-  .og-carousel { padding-block: 16px; }
+  .og-special-card { scroll-snap-align: start; flex: 0 0 100%; width: 100%; max-width: 100%; }
+  .og-carousel {
+    padding-block: 16px;
+    overflow: hidden;
+    max-width: 100%;
+  }
   .og-carousel__arrow {
     position: absolute;
     top: 50%;
@@ -1736,9 +1773,11 @@ html.og-dish-modal-open body {
     scrollbar-width: none;
     overscroll-behavior-x: contain;
     touch-action: pan-x pan-y;
+    padding: 16px 0;
+    max-width: 100%;
   }
   .og-carousel__viewport::-webkit-scrollbar { display: none; }
-  .og-carousel__track { transition: none; }
+  .og-carousel__track { transition: none; width: 100%; }
 
   .og-menu-grid { padding: 0 16px; margin: 40px 0; }
   .og-menu-grid__layout { grid-template-columns: 1fr; }
