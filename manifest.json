@@ -76,7 +76,7 @@
       ]
     }
   ],
-  "scripts": ["scripts.js", "carousel.js"],
+  "scripts": ["scripts.js", "carousel.js", "dish-modal.js"],
   "fields": [
     { "path": ["custom", "alertBar", "message"], "label": "Alert bar message", "section": "alertBar" },
     { "path": ["custom", "eClub", "headline"], "label": "eClub headline", "section": "eClub" },

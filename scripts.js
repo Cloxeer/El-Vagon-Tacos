@@ -375,7 +375,18 @@
     return (cat.items || [])
       .map(function (item, index) {
         return (
-          '<div class="og-menu-item og-menu-item--flat">' +
+          '<div class="og-menu-item og-menu-item--flat" role="button" tabindex="0" data-og-dish="true"' +
+          ' data-og-name="' +
+          escapeHtml(item.name) +
+          '" data-og-desc="' +
+          escapeHtml(item.description || "") +
+          '" data-og-price="' +
+          escapeHtml(item.price || "") +
+          '" data-og-badge="' +
+          escapeHtml(item.badge || "") +
+          '" data-og-image="' +
+          escapeHtml(getItemImage(cat, item, index)) +
+          '">' +
           renderItemImage(cat, item, index, "og-menu-item__image") +
           '<div class="og-menu-item__body">' +
           '<p class="og-menu-item__name">' +

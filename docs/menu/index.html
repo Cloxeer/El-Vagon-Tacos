@@ -34,8 +34,10 @@
   --og-carousel-hover-grow-x: 10%;
   --og-carousel-slide-ms: 800ms;
   --og-carousel-slide-ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --og-carousel-hover-shadow: 0 22px 44px rgba(0, 0, 0, 0.32);
-}
+  --og-dish-modal-max: 520px;
+  --og-dish-modal-radius: 16px;
+  --og-dish-modal-max-height: 90vh;
+  --og-dish-modal-photo-max: 38vh;
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -962,6 +964,16 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 .og-menu-item--flat {
   align-items: center;
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 14px 10px;
+  margin: 0 -10px;
+  transition: background 0.2s ease;
+}
+.og-menu-item--flat:hover,
+.og-menu-item--flat:focus-visible {
+  background: rgba(176, 61, 39, 0.06);
+  outline: none;
 }
 .og-menu-item__image {
   flex-shrink: 0;
@@ -1020,6 +1032,131 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   margin: 40px 0 0;
   font-size: 14px;
   color: var(--color-muted);
+}
+
+.og-dish-modal {
+  display: none;
+  padding: 0;
+  border: none;
+}
+.og-dish-modal[open] {
+  position: fixed;
+  inset: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 32px);
+  max-width: var(--og-dish-modal-max);
+  height: fit-content;
+  max-height: var(--og-dish-modal-max-height);
+  border-radius: var(--og-dish-modal-radius);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+  overflow: hidden;
+}
+.og-dish-modal::backdrop {
+  background: rgba(0, 0, 0, 0.55);
+}
+html.og-dish-modal-open,
+html.og-dish-modal-open body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+html.og-dish-modal-open body {
+  position: fixed;
+  top: var(--og-scroll-lock-y, 0px);
+  left: 0;
+  right: 0;
+  width: 100%;
+  touch-action: none;
+}
+.og-dish-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 26px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+}
+.og-dish-modal__close:hover {
+  background: var(--color-accent);
+  color: #ffffff;
+}
+.og-dish-modal__photo {
+  width: 100%;
+  background: rgba(48, 62, 30, 0.08);
+}
+.og-dish-modal__photo img {
+  width: 100%;
+  height: auto;
+  max-height: var(--og-dish-modal-photo-max);
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+.og-dish-modal__body {
+  padding: 20px 22px 24px;
+}
+.og-dish-modal__badge {
+  display: inline-block;
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  background: var(--color-accent);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+}
+.og-dish-modal__title {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.og-dish-modal__desc {
+  margin: 0 0 12px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+.og-dish-modal__price {
+  margin: 0 0 18px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+.og-dish-modal__actions {
+  display: flex;
+}
+.og-dish-modal__actions .og-btn {
+  width: 100%;
+}
+@media (max-width: 767px) {
+  .og-dish-modal[open] {
+    width: calc(100% - 24px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .og-menu-item--flat {
+    transition: none;
+  }
 }
 
 /* ── Catering page ── */
@@ -1718,6 +1855,24 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
     <div id="og-menu-list-root" class="og-menu-list__content" aria-live="polite"></div>
     <p data-halite-path='["menu","footerNote"]' class="og-menu-list__footer">Online menu prices. Prices subject to change. All info is from order.online. Last updated August 2026.</p>
   </div>
+
+  <dialog class="og-dish-modal" id="og-dish-modal" aria-labelledby="og-dish-modal-title">
+    <button type="button" class="og-dish-modal__close" data-og-dish-close aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="og-dish-modal__photo" data-og-dish-photo hidden>
+      <img id="og-dish-modal-img" alt="" />
+    </div>
+    <div class="og-dish-modal__body">
+      <p class="og-dish-modal__badge" data-og-dish-badge hidden></p>
+      <h3 class="og-dish-modal__title" id="og-dish-modal-title"></h3>
+      <p class="og-dish-modal__desc" data-og-dish-desc></p>
+      <p class="og-dish-modal__price" data-og-dish-price></p>
+      <div class="og-dish-modal__actions">
+        <a class="og-btn og-btn--cream" id="og-dish-modal-order">Order Online</a>
+      </div>
+    </div>
+  </dialog>
 </section>
 
 
@@ -1810,7 +1965,7 @@ window.__HALITE_CATERING__ = {"title":"Catering","subtitle":"Bring El Vagon to y
 window.__HALITE_SPECIALS__ = {"title":"Customer Favorites","viewAllLabel":"View Full Menu","viewAllHref":"/menu","amenities":[{"label":"Vegan options","href":"/menu#menu-tacos"},{"label":"Kids' menu","href":"/menu#menu-kiddos"}],"favoritesList":[{"label":"Birria Tacos","href":"/menu#menu-most-ordered"},{"label":"Asada Tacos","href":"/menu#menu-tacos"},{"label":"Birria Ramen","href":"/menu#menu-starters"},{"label":"Loaded Fries","href":"/menu#menu-starters"},{"label":"Birria Quesadilla","href":"/menu#menu-quesadillas"},{"label":"Pastor Taco","href":"/menu#menu-tacos"},{"label":"Taco Box - Medium","href":"/menu#menu-family-packs"},{"label":"Nachos","href":"/menu#menu-starters"}],"orderHref":"https://order.online/store/-32666423","cards":[{"learnLabel":"Birria Tacos","orderLabel":"Order Now","menuHref":"/menu#menu-most-ordered","image":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/e801e92f-6e2a-4ebd-bbb6-e62f38e39f2a-retina-large.jpg"},{"learnLabel":"Asada Tacos","orderLabel":"Order Now","menuHref":"/menu#menu-tacos","image":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/6f99c5bc-d659-4232-b4cd-d1a785a64f1a-retina-large.jpg"},{"learnLabel":"Birria Ramen","orderLabel":"Order Now","menuHref":"/menu#menu-starters","image":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/1fe60092-42c1-473f-bd6b-1c3ae6bc24be-retina-large.jpg"},{"learnLabel":"Loaded Fries","orderLabel":"Order Now","menuHref":"/menu#menu-starters","image":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/427d476d-2544-4840-b0ac-fab6ef9604f9-retina-large.jpg"},{"learnLabel":"Birria Quesadilla","orderLabel":"Order Now","menuHref":"/menu#menu-quesadillas","image":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/29c73002-e013-4a86-8462-d26c4283b51f-retina-large.jpg"},{"learnLabel":"Pastor Taco","orderLabel":"Order Now","menuHref":"/menu#menu-tacos","image":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ecc41d2f-e19b-4ec1-a699-cde69329946e-retina-large.jpg"},{"learnLabel":"Taco Box - Medium","orderLabel":"Order Now","menuHref":"/menu#menu-family-packs","image":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ee315f69-4e7e-46ec-9f1b-3758bc2e492a-retina-large.png"},{"learnLabel":"Nachos","orderLabel":"Order Now","menuHref":"/menu#menu-starters","image":"https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ef6f074f-6d0f-4cc1-9ae4-1f2144702b23-retina-large.jpg"}]};
 window.__HALITE_REVIEWS__ = {"title":"Customer Reviews","subtitle":"Highly rated across Las Cruces","platforms":[{"name":"Restaurantji","rating":"4.7","countLabel":"out of 182 reviews","href":"https://www.restaurantji.com/nm/las-cruces/el-vagon-tacos-/","quotes":[{"text":"Everything is excellent! I'm so thankful I found this spot while passing through NM. The veggie tacos are yum, their salsas add a really good kick, and the service is great. Really recommend!","author":"Carolina","stars":5},{"text":"This a casual place with excellent food and service. The server was super nice and price was very good for the amount and quality of food you get! Would definitely recommend come back!","author":"lais mamao","stars":5},{"text":"Loved it! Quick, friendly and great food. A definite must try.","author":"beau stites","stars":5}]},{"name":"Facebook","rating":"100%","countLabel":"from 39 reviews","href":"https://www.facebook.com/elvagon/","quotes":[{"text":"My family and I were passing through Las Cruces on our way to Mexico. Amazing food, friendly staff, fair prices! Would recommend 100%.","author":"Viki López","stars":5},{"text":"Authentic mexican food. very tasty and delicious. A 5 star.","author":"WilMil Yazz","stars":5},{"text":"Delicious tacos! If I lived in Las Cruces I would be there all the time!","author":"Maureen Young Tortorella","stars":5}]},{"name":"Yelp","rating":"4.7","countLabel":"out of 64 reviews","href":"https://www.yelp.com/biz/el-vagon-tacos-las-cruces","quotes":[{"text":"Delicious vegan tacos for me, yummy tacos for my carnivorous son. A win win! We ate here twice on our 2-day trip to Las Cruces, so good! Friendly and competent service. Can't wait to visit Las Cruces again so we can come back!","author":"Kerri W.","stars":5},{"text":"The Alambre tacos with a Mexican Coke is delicious. Great flavor. Quick and friendly service. The inside is fun and friendly and clean. Will definitely return.","author":"Aric C.","stars":5},{"text":"The tacos were amazing! The portions are huge, and the left overs were just as good. Our server Arely was so nice, everyone was nice I would definitely recommend!","author":"Lisa H.","stars":5}]},{"name":"Google","rating":"4.8","countLabel":"out of 582 reviews","href":"https://www.google.com/maps/place/El+Vagon+Tacos/@32.2957917,-106.7626113,17z/data=!3m1!4b1!4m6!3m5!1s0x86de17e1323b3727:0xa729e630210c1dc!8m2!3d32.2957917!4d-106.7600364!16s%2Fg%2F11t8dv788t?hl=en-US&entry=ttu","quotes":[{"text":"Everything you'd expect from a small cafe in the barrio! Great atmosphere, beautiful views around the building & of course, the very delicious TRUE New Mexico style food! Full of flavors and just the right amount of heat. Very recommend!","author":"Raymond Barron","stars":5},{"text":"Bring your appetite and empty stomach. They're very generous with the meat! Amazing tacos, perfect portions, the best beans in Las Cruces.","author":"Sara Beth Moran","stars":5},{"text":"Everything is excellent! I'm so thankful I found this spot while passing through NM. The veggie tacos are yum, their salsas add a really good kick, and the service is great. Really recommend!","author":"Carolina","stars":5}]}]};
 window.__HALITE_ECLUB__ = {"headline":"Hours","footnote":"Est. 2020 · Las Cruces, NM","locationTitle":"Location","location":"1602 S Solano Dr, Las Cruces, NM 88001","mapLabel":"Get directions","mapHref":"https://www.google.com/maps/place/El+Vagon+Tacos/@32.2957917,-106.7626113,17z/data=!3m1!4b1!4m6!3m5!1s0x86de17e1323b3727:0xa729e630210c1dc!8m2!3d32.2957917!4d-106.7600364!16s%2Fg%2F11t8dv788t?hl=en-US&entry=ttu","mapEmbedUrl":"https://maps.google.com/maps?q=El+Vagon+Tacos+1602+S+Solano+Dr+Las+Cruces+NM&hl=en&z=17&output=embed","timezone":"America/Denver","schedule":[{"dayIndex":1,"label":"Mon","closed":true},{"dayIndex":2,"label":"Tue","closed":true},{"dayIndex":3,"label":"Wed","closed":false,"hours":"11:00 AM - 6:00 PM","open":"11:00 AM","close":"6:00 PM"},{"dayIndex":4,"label":"Thu","closed":false,"hours":"11:00 AM - 8:00 PM","open":"11:00 AM","close":"8:00 PM"},{"dayIndex":5,"label":"Fri","closed":false,"hours":"11:00 AM - 9:00 PM","open":"11:00 AM","close":"9:00 PM"},{"dayIndex":6,"label":"Sat","closed":false,"hours":"11:00 AM - 9:00 PM","open":"11:00 AM","close":"9:00 PM"},{"dayIndex":0,"label":"Sun","closed":false,"hours":"11:00 AM - 6:00 PM","open":"11:00 AM","close":"6:00 PM"}]};
-window.__HALITE_I18N__ = {"es":{"nav.links.0.label":"Menú","nav.links.0.href":"/menu","nav.links.1.label":"Catering","nav.links.1.href":"/catering","nav.links.2.label":"Nuestra Historia","nav.links.2.href":"/our-story","nav.links.3.label":"Contacto","nav.links.3.href":"/contact","custom.nav.findLabel":"Ordenar en Línea","hero.headline":"Tacos Auténticos","custom.hero.headlineLine2":"en Las Cruces","hero.primaryCta.label":"Ordenar en Línea","custom.hero.secondaryCta.label":"Ver Menú","custom.eClub.headline":"Horario","custom.eClub.footnote":"Est. 2020 · Las Cruces, NM","custom.eClub.locationTitle":"Ubicación","custom.eClub.location":"1602 S Solano Dr, Las Cruces, NM 88001","custom.eClub.mapLabel":"Cómo llegar","custom.specialsCarousel.title":"Favoritos del Cliente","custom.reviews.title":"Reseñas de Clientes","custom.reviews.subtitle":"Muy bien calificados en Las Cruces","custom.reviews.platforms.0.name":"Restaurantji","custom.reviews.platforms.0.rating":"4.7","custom.reviews.platforms.0.countLabel":"de 182 reseñas","custom.reviews.platforms.1.name":"Facebook","custom.reviews.platforms.1.rating":"100%","custom.reviews.platforms.1.countLabel":"de 39 reseñas","custom.reviews.platforms.2.name":"Yelp","custom.reviews.platforms.2.rating":"4.7","custom.reviews.platforms.2.countLabel":"de 64 reseñas","custom.reviews.platforms.3.name":"Google","custom.reviews.platforms.3.rating":"4.8","custom.reviews.platforms.3.countLabel":"de 582 reseñas","custom.specialsCarousel.viewAllLabel":"Ver Menú Completo","custom.specialsCarousel.cards.0.learnLabel":"Tacos de Birria","custom.specialsCarousel.cards.0.orderLabel":"Ordenar","custom.specialsCarousel.cards.1.learnLabel":"Tacos de Asada","custom.specialsCarousel.cards.1.orderLabel":"Ordenar","custom.specialsCarousel.cards.2.learnLabel":"Ramen de Birria","custom.specialsCarousel.cards.2.orderLabel":"Ordenar","custom.specialsCarousel.cards.3.learnLabel":"Papas Cargadas","custom.specialsCarousel.cards.3.orderLabel":"Ordenar","custom.specialsCarousel.cards.4.learnLabel":"Quesadilla de Birria","custom.specialsCarousel.cards.4.orderLabel":"Ordenar","custom.specialsCarousel.cards.5.learnLabel":"Taco al Pastor","custom.specialsCarousel.cards.5.orderLabel":"Ordenar","custom.specialsCarousel.cards.6.learnLabel":"Caja de Tacos Mediana","custom.specialsCarousel.cards.6.orderLabel":"Ordenar","custom.specialsCarousel.cards.7.learnLabel":"Nachos","custom.specialsCarousel.cards.7.orderLabel":"Ordenar","menu.title":"Nuestro Menú","menu.subtitle":"Tacos auténticos, quesadillas, entradas y acompañamientos hechos frescos en Las Cruces.","custom.catering.title":"Catering","custom.catering.subtitle":"Lleva El Vagon a tu próximo evento","custom.catering.intro":"Desde bodas y oficinas hasta reuniones familiares — preparamos tacos auténticos, quesadillas y más para grupos de cualquier tamaño.","custom.catering.phoneCta":"Llamar (575) 621-5897","custom.catering.emailCta":"Correo para Cotización","custom.catering.note":"Favor de avisar con 48 horas de anticipación para pedidos grandes. Menús personalizados disponibles.","custom.footer.socialTitle":"Síguenos","custom.footer.appsTitle":"Ordenar y Contacto","custom.footer.columns.0.title":"Menú","custom.footer.columns.0.links.0.label":"Entradas","custom.footer.columns.0.links.1.label":"Niños","custom.footer.columns.0.links.2.label":"Acompañamientos","custom.footer.columns.0.links.3.label":"Tacos","custom.footer.columns.0.links.4.label":"Quesadillas","custom.footer.columns.0.links.5.label":"Bebidas","custom.footer.columns.1.title":"Visítanos","custom.footer.columns.1.links.0.label":"1602 S Solano Dr","custom.footer.columns.1.links.1.label":"Las Cruces, NM 88001","custom.footer.columns.1.links.2.label":"(575) 621-5897","custom.footer.columns.1.links.3.label":"Horario y Ubicación","custom.footer.columns.2.title":"Conéctate","custom.footer.columns.2.links.0.label":"Instagram","custom.footer.columns.2.links.1.label":"Facebook","custom.footer.columns.2.links.2.label":"elvagontacos@gmail.com","custom.footer.columns.3.title":"Servicios","custom.footer.columns.3.links.0.label":"Comer Aquí","custom.footer.columns.3.links.1.label":"Para Llevar","custom.footer.columns.3.links.2.label":"Catering","custom.footer.columns.3.links.3.label":"Nuestra Historia","menu.footerNote":"Precios del menú en línea. Sujetos a cambio. Toda la información es de order.online. Última actualización: agosto 2026.","custom.footer.legal.0.label":"Privacidad","custom.footer.legal.1.label":"Accesibilidad","custom.footer.legal.2.label":"Contacto","footer.copyright":"© 2026 El Vagon Tacos. Todos los derechos reservados.","business.phone":"(575) 621-5897","integrations.email":"elvagontacos@gmail.com"}};
+window.__HALITE_I18N__ = {"es":{"nav.links.0.label":"Menú","nav.links.0.href":"/menu","nav.links.1.label":"Catering","nav.links.1.href":"/catering","nav.links.2.label":"Nuestra Historia","nav.links.2.href":"/our-story","nav.links.3.label":"Contacto","nav.links.3.href":"/contact","custom.nav.findLabel":"Ordenar en Línea","hero.headline":"Tacos Auténticos","custom.hero.headlineLine2":"en Las Cruces","hero.primaryCta.label":"Ordenar en Línea","custom.hero.secondaryCta.label":"Ver Menú","custom.eClub.headline":"Horario","custom.eClub.footnote":"Est. 2020 · Las Cruces, NM","custom.eClub.locationTitle":"Ubicación","custom.eClub.location":"1602 S Solano Dr, Las Cruces, NM 88001","custom.eClub.mapLabel":"Cómo llegar","custom.specialsCarousel.title":"Favoritos del Cliente","custom.reviews.title":"Reseñas de Clientes","custom.reviews.subtitle":"Muy bien calificados en Las Cruces","custom.reviews.platforms.0.name":"Restaurantji","custom.reviews.platforms.0.rating":"4.7","custom.reviews.platforms.0.countLabel":"de 182 reseñas","custom.reviews.platforms.1.name":"Facebook","custom.reviews.platforms.1.rating":"100%","custom.reviews.platforms.1.countLabel":"de 39 reseñas","custom.reviews.platforms.2.name":"Yelp","custom.reviews.platforms.2.rating":"4.7","custom.reviews.platforms.2.countLabel":"de 64 reseñas","custom.reviews.platforms.3.name":"Google","custom.reviews.platforms.3.rating":"4.8","custom.reviews.platforms.3.countLabel":"de 582 reseñas","custom.specialsCarousel.viewAllLabel":"Ver Menú Completo","custom.specialsCarousel.cards.0.learnLabel":"Tacos de Birria","custom.specialsCarousel.cards.0.orderLabel":"Ordenar","custom.specialsCarousel.cards.1.learnLabel":"Tacos de Asada","custom.specialsCarousel.cards.1.orderLabel":"Ordenar","custom.specialsCarousel.cards.2.learnLabel":"Ramen de Birria","custom.specialsCarousel.cards.2.orderLabel":"Ordenar","custom.specialsCarousel.cards.3.learnLabel":"Papas Cargadas","custom.specialsCarousel.cards.3.orderLabel":"Ordenar","custom.specialsCarousel.cards.4.learnLabel":"Quesadilla de Birria","custom.specialsCarousel.cards.4.orderLabel":"Ordenar","custom.specialsCarousel.cards.5.learnLabel":"Taco al Pastor","custom.specialsCarousel.cards.5.orderLabel":"Ordenar","custom.specialsCarousel.cards.6.learnLabel":"Caja de Tacos Mediana","custom.specialsCarousel.cards.6.orderLabel":"Ordenar","custom.specialsCarousel.cards.7.learnLabel":"Nachos","custom.specialsCarousel.cards.7.orderLabel":"Ordenar","custom.dishModal.closeLabel":"Cerrar","custom.dishModal.orderLabel":"Ordenar en Línea","menu.title":"Nuestro Menú","menu.subtitle":"Tacos auténticos, quesadillas, entradas y acompañamientos hechos frescos en Las Cruces.","custom.catering.title":"Catering","custom.catering.subtitle":"Lleva El Vagon a tu próximo evento","custom.catering.intro":"Desde bodas y oficinas hasta reuniones familiares — preparamos tacos auténticos, quesadillas y más para grupos de cualquier tamaño.","custom.catering.phoneCta":"Llamar (575) 621-5897","custom.catering.emailCta":"Correo para Cotización","custom.catering.note":"Favor de avisar con 48 horas de anticipación para pedidos grandes. Menús personalizados disponibles.","custom.footer.socialTitle":"Síguenos","custom.footer.appsTitle":"Ordenar y Contacto","custom.footer.columns.0.title":"Menú","custom.footer.columns.0.links.0.label":"Entradas","custom.footer.columns.0.links.1.label":"Niños","custom.footer.columns.0.links.2.label":"Acompañamientos","custom.footer.columns.0.links.3.label":"Tacos","custom.footer.columns.0.links.4.label":"Quesadillas","custom.footer.columns.0.links.5.label":"Bebidas","custom.footer.columns.1.title":"Visítanos","custom.footer.columns.1.links.0.label":"1602 S Solano Dr","custom.footer.columns.1.links.1.label":"Las Cruces, NM 88001","custom.footer.columns.1.links.2.label":"(575) 621-5897","custom.footer.columns.1.links.3.label":"Horario y Ubicación","custom.footer.columns.2.title":"Conéctate","custom.footer.columns.2.links.0.label":"Instagram","custom.footer.columns.2.links.1.label":"Facebook","custom.footer.columns.2.links.2.label":"elvagontacos@gmail.com","custom.footer.columns.3.title":"Servicios","custom.footer.columns.3.links.0.label":"Comer Aquí","custom.footer.columns.3.links.1.label":"Para Llevar","custom.footer.columns.3.links.2.label":"Catering","custom.footer.columns.3.links.3.label":"Nuestra Historia","menu.footerNote":"Precios del menú en línea. Sujetos a cambio. Toda la información es de order.online. Última actualización: agosto 2026.","custom.footer.legal.0.label":"Privacidad","custom.footer.legal.1.label":"Accesibilidad","custom.footer.legal.2.label":"Contacto","footer.copyright":"© 2026 El Vagon Tacos. Todos los derechos reservados.","business.phone":"(575) 621-5897","integrations.email":"elvagontacos@gmail.com"}};
 window.__HALITE_INTEGRATIONS__ = {"email":"elvagontacos@gmail.com","instagram":"https://www.instagram.com/elvagontacos","facebook":"https://www.facebook.com/elvagon/","orderOnline":"https://order.online/store/-32666423"};
 window.__HALITE_HOURS__ = {"timezone":"America/Denver","schedule":[{"dayIndex":1,"label":"Mon","closed":true},{"dayIndex":2,"label":"Tue","closed":true},{"dayIndex":3,"label":"Wed","closed":false,"hours":"11:00 AM - 6:00 PM","open":"11:00 AM","close":"6:00 PM"},{"dayIndex":4,"label":"Thu","closed":false,"hours":"11:00 AM - 8:00 PM","open":"11:00 AM","close":"8:00 PM"},{"dayIndex":5,"label":"Fri","closed":false,"hours":"11:00 AM - 9:00 PM","open":"11:00 AM","close":"9:00 PM"},{"dayIndex":6,"label":"Sat","closed":false,"hours":"11:00 AM - 9:00 PM","open":"11:00 AM","close":"9:00 PM"},{"dayIndex":0,"label":"Sun","closed":false,"hours":"11:00 AM - 6:00 PM","open":"11:00 AM","close":"6:00 PM"}]};
 (function () {
@@ -2190,7 +2345,18 @@ window.__HALITE_HOURS__ = {"timezone":"America/Denver","schedule":[{"dayIndex":1
     return (cat.items || [])
       .map(function (item, index) {
         return (
-          '<div class="og-menu-item og-menu-item--flat">' +
+          '<div class="og-menu-item og-menu-item--flat" role="button" tabindex="0" data-og-dish="true"' +
+          ' data-og-name="' +
+          escapeHtml(item.name) +
+          '" data-og-desc="' +
+          escapeHtml(item.description || "") +
+          '" data-og-price="' +
+          escapeHtml(item.price || "") +
+          '" data-og-badge="' +
+          escapeHtml(item.badge || "") +
+          '" data-og-image="' +
+          escapeHtml(getItemImage(cat, item, index)) +
+          '">' +
           renderItemImage(cat, item, index, "og-menu-item__image") +
           '<div class="og-menu-item__body">' +
           '<p class="og-menu-item__name">' +
@@ -2704,7 +2870,7 @@ window.__HALITE_HOURS__ = {"timezone":"America/Denver","schedule":[{"dayIndex":1
   var CAROUSEL_MOBILE_MQ = "(max-width: 767px)";
   var CAROUSEL_REDUCED_MOTION_MQ = "(prefers-reduced-motion: reduce)";
   var CARD_PATH_MARKER = "cards";
-  var DEFAULT_MENU_HREF = "/menu";
+  var MENU_PAGE = "menu/index.html";
   var DEFAULT_ORDER_HREF = "#order";
   var DEFAULT_ORDER_LABEL = "Order Now";
   var ARIA_VIEW_ON_MENU_SUFFIX = " on menu";
@@ -2715,6 +2881,14 @@ window.__HALITE_HOURS__ = {"timezone":"America/Denver","schedule":[{"dayIndex":1
   var integrations = window.__HALITE_INTEGRATIONS__ || {};
   var orderHref = integrations.orderOnline || specials.orderHref || DEFAULT_ORDER_HREF;
   var isExternalOrder = /^https?:\/\//i.test(orderHref);
+
+  function menuPageHref(href) {
+    if (!href) return MENU_PAGE;
+    if (/^https?:\/\//i.test(href)) return href;
+    var hashAt = href.indexOf("#");
+    var hash = hashAt >= 0 ? href.slice(hashAt) : "";
+    return MENU_PAGE + hash;
+  }
 
   function rewriteCardPath(attr, index) {
     if (!attr) return attr;
@@ -2740,7 +2914,7 @@ window.__HALITE_HOURS__ = {"timezone":"America/Denver","schedule":[{"dayIndex":1
 
     var learnLabel = cardData.learnLabel || "";
     var orderLabel = cardData.orderLabel || DEFAULT_ORDER_LABEL;
-    var menuHref = cardData.menuHref || DEFAULT_MENU_HREF;
+    var menuHref = menuPageHref(cardData.menuHref);
 
     var title = cardEl.querySelector(".og-special-card__title");
     if (title) {
@@ -3010,6 +3184,205 @@ window.__HALITE_HOURS__ = {"timezone":"America/Denver","schedule":[{"dayIndex":1
   }
 
   document.querySelectorAll("[data-og-carousel]").forEach(bindCarousel);
+})();
+
+
+/**
+ * ELI5: Tap a menu dish and a big photo card pops up so you can see it and order.
+ * What: Opens a product dialog from a menu row; close via X, backdrop, or Escape.
+ * Owns: Dish modal open/close, fill, and order link.
+ * Depends on: #og-dish-modal, .og-menu-item--flat[data-og-dish], window.__HALITE_INTEGRATIONS__
+ */
+(function () {
+  "use strict";
+
+  var DISH_CLOSE_LABEL_EN = "Close";
+  var DISH_ORDER_LABEL_EN = "Order Online";
+  var DISH_CLOSE_I18N_KEY = "custom.dishModal.closeLabel";
+  var DISH_ORDER_I18N_KEY = "custom.dishModal.orderLabel";
+  var DEFAULT_ORDER_HREF = "#order";
+
+  var dialog = document.getElementById("og-dish-modal");
+  if (!dialog) return;
+
+  var photoWrap = dialog.querySelector("[data-og-dish-photo]");
+  var photoImg = document.getElementById("og-dish-modal-img");
+  var titleEl = document.getElementById("og-dish-modal-title");
+  var descEl = dialog.querySelector("[data-og-dish-desc]");
+  var priceEl = dialog.querySelector("[data-og-dish-price]");
+  var badgeEl = dialog.querySelector("[data-og-dish-badge]");
+  var closeBtn = dialog.querySelector("[data-og-dish-close]");
+  var orderBtn = document.getElementById("og-dish-modal-order");
+
+  if (dialog.parentNode !== document.body) {
+    document.body.appendChild(dialog);
+  }
+
+  function currentLang() {
+    return document.documentElement.lang || "en";
+  }
+
+  function i18nLabel(key, fallback) {
+    var pack = window.__HALITE_I18N__;
+    var lang = currentLang();
+    if (lang === "en" || !pack || !pack[lang] || pack[lang][key] == null) {
+      return fallback;
+    }
+    return pack[lang][key];
+  }
+
+  function orderHref() {
+    var integrations = window.__HALITE_INTEGRATIONS__ || {};
+    return integrations.orderOnline || DEFAULT_ORDER_HREF;
+  }
+
+  function applyChromeLabels() {
+    var closeLabel = i18nLabel(DISH_CLOSE_I18N_KEY, DISH_CLOSE_LABEL_EN);
+    var orderLabel = i18nLabel(DISH_ORDER_I18N_KEY, DISH_ORDER_LABEL_EN);
+    if (closeBtn) closeBtn.setAttribute("aria-label", closeLabel);
+    if (orderBtn) orderBtn.textContent = orderLabel;
+  }
+
+  function fillDish(row) {
+    var name = row.getAttribute("data-og-name") || "";
+    var desc = row.getAttribute("data-og-desc") || "";
+    var price = row.getAttribute("data-og-price") || "";
+    var badge = row.getAttribute("data-og-badge") || "";
+    var image = row.getAttribute("data-og-image") || "";
+
+    if (titleEl) titleEl.textContent = name;
+    if (descEl) {
+      descEl.textContent = desc;
+      descEl.hidden = !desc;
+    }
+    if (priceEl) {
+      priceEl.textContent = price;
+      priceEl.hidden = !price;
+    }
+    if (badgeEl) {
+      badgeEl.textContent = badge;
+      badgeEl.hidden = !badge;
+    }
+    if (photoWrap && photoImg) {
+      if (image) {
+        photoImg.src = image;
+        photoImg.alt = name;
+        photoWrap.hidden = false;
+      } else {
+        photoImg.removeAttribute("src");
+        photoImg.alt = "";
+        photoWrap.hidden = true;
+      }
+    }
+
+    applyChromeLabels();
+    if (!orderBtn) return;
+    var href = orderHref();
+    orderBtn.setAttribute("href", href);
+    if (/^https?:\/\//i.test(href)) {
+      orderBtn.setAttribute("target", "_blank");
+      orderBtn.setAttribute("rel", "noopener noreferrer");
+    } else {
+      orderBtn.removeAttribute("target");
+      orderBtn.removeAttribute("rel");
+    }
+  }
+
+  var SCROLL_LOCK_CLASS = "og-dish-modal-open";
+  var SCROLL_LOCK_VAR = "--og-scroll-lock-y";
+
+  function onLockedScroll(event) {
+    event.preventDefault();
+  }
+
+  function lockPageScroll() {
+    var y = window.scrollY || 0;
+    document.documentElement.style.setProperty(SCROLL_LOCK_VAR, "-" + y + "px");
+    document.documentElement.classList.add(SCROLL_LOCK_CLASS);
+    document.addEventListener("wheel", onLockedScroll, { passive: false });
+    document.addEventListener("touchmove", onLockedScroll, { passive: false });
+  }
+
+  function unlockPageScroll() {
+    document.removeEventListener("wheel", onLockedScroll);
+    document.removeEventListener("touchmove", onLockedScroll);
+    var lockedTop = document.documentElement.style.getPropertyValue(SCROLL_LOCK_VAR);
+    document.documentElement.classList.remove(SCROLL_LOCK_CLASS);
+    document.documentElement.style.removeProperty(SCROLL_LOCK_VAR);
+    var y = 0;
+    if (lockedTop) {
+      y = Math.abs(parseInt(lockedTop, 10) || 0);
+    }
+    window.scrollTo(0, y);
+  }
+
+  function openDish(row) {
+    fillDish(row);
+    lockPageScroll();
+    if (typeof dialog.showModal === "function") {
+      dialog.showModal();
+    } else {
+      dialog.setAttribute("open", "");
+    }
+    if (closeBtn && typeof closeBtn.focus === "function") {
+      closeBtn.focus({ preventScroll: true });
+    }
+  }
+
+  function closeDish() {
+    if (typeof dialog.close === "function" && dialog.open) {
+      dialog.close();
+    } else {
+      dialog.removeAttribute("open");
+      unlockPageScroll();
+    }
+  }
+
+  function dishRowFromEvent(event) {
+    var node = event.target;
+    if (!node || !node.closest) return null;
+    return node.closest(".og-menu-item--flat[data-og-dish]");
+  }
+
+  document.addEventListener("click", function (event) {
+    var row = dishRowFromEvent(event);
+    if (!row) return;
+    event.preventDefault();
+    openDish(row);
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    var row = dishRowFromEvent(event);
+    if (!row) return;
+    event.preventDefault();
+    openDish(row);
+  });
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", function (event) {
+      event.preventDefault();
+      closeDish();
+    });
+  }
+
+  if (orderBtn) {
+    orderBtn.addEventListener("click", function () {
+      closeDish();
+    });
+  }
+
+  dialog.addEventListener("close", unlockPageScroll);
+
+  dialog.addEventListener("click", function (event) {
+    if (event.target === dialog) closeDish();
+  });
+
+  document.querySelectorAll(".og-lang-toggle__btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      if (dialog.open) applyChromeLabels();
+    });
+  });
 })();
 
 </script>

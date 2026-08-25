@@ -12,7 +12,7 @@
   var CAROUSEL_MOBILE_MQ = "(max-width: 767px)";
   var CAROUSEL_REDUCED_MOTION_MQ = "(prefers-reduced-motion: reduce)";
   var CARD_PATH_MARKER = "cards";
-  var DEFAULT_MENU_HREF = "/menu";
+  var MENU_PAGE = "menu/index.html";
   var DEFAULT_ORDER_HREF = "#order";
   var DEFAULT_ORDER_LABEL = "Order Now";
   var ARIA_VIEW_ON_MENU_SUFFIX = " on menu";
@@ -23,6 +23,14 @@
   var integrations = window.__HALITE_INTEGRATIONS__ || {};
   var orderHref = integrations.orderOnline || specials.orderHref || DEFAULT_ORDER_HREF;
   var isExternalOrder = /^https?:\/\//i.test(orderHref);
+
+  function menuPageHref(href) {
+    if (!href) return MENU_PAGE;
+    if (/^https?:\/\//i.test(href)) return href;
+    var hashAt = href.indexOf("#");
+    var hash = hashAt >= 0 ? href.slice(hashAt) : "";
+    return MENU_PAGE + hash;
+  }
 
   function rewriteCardPath(attr, index) {
     if (!attr) return attr;
@@ -48,7 +56,7 @@
 
     var learnLabel = cardData.learnLabel || "";
     var orderLabel = cardData.orderLabel || DEFAULT_ORDER_LABEL;
-    var menuHref = cardData.menuHref || DEFAULT_MENU_HREF;
+    var menuHref = menuPageHref(cardData.menuHref);
 
     var title = cardEl.querySelector(".og-special-card__title");
     if (title) {

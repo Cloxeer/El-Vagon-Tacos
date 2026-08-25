@@ -10,4 +10,22 @@
     <div id="og-menu-list-root" class="og-menu-list__content" aria-live="polite"></div>
     <p class="og-menu-list__footer" data-halite-path='["menu","footerNote"]'>Prices subject to change. Ask about daily specials.</p>
   </div>
+
+  <dialog class="og-dish-modal" id="og-dish-modal" aria-labelledby="og-dish-modal-title">
+    <button type="button" class="og-dish-modal__close" data-og-dish-close aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="og-dish-modal__photo" data-og-dish-photo hidden>
+      <img id="og-dish-modal-img" alt="" />
+    </div>
+    <div class="og-dish-modal__body">
+      <p class="og-dish-modal__badge" data-og-dish-badge hidden></p>
+      <h3 class="og-dish-modal__title" id="og-dish-modal-title"></h3>
+      <p class="og-dish-modal__desc" data-og-dish-desc></p>
+      <p class="og-dish-modal__price" data-og-dish-price></p>
+      <div class="og-dish-modal__actions">
+        <a class="og-btn og-btn--cream" id="og-dish-modal-order">Order Online</a>
+      </div>
+    </div>
+  </dialog>
 </section>
