@@ -18,6 +18,7 @@
     { "key": "menuList", "file": "sections/menu-list.html", "placement": "main" },
     { "key": "catering", "file": "sections/catering.html", "placement": "main" },
     { "key": "quickActions", "file": "sections/quick-actions.html", "placement": "main" },
+    { "key": "notFound", "file": "sections/not-found.html", "placement": "main" },
     { "key": "footer", "file": "sections/footer.html", "placement": "afterMain" }
   ],
   "pages": [
@@ -74,6 +75,16 @@
         { "key": "eClub", "file": "sections/eclub.html", "placement": "main" },
         { "key": "footer", "file": "sections/footer.html", "placement": "afterMain" }
       ]
+    },
+    {
+      "id": "notFound",
+      "label": "404",
+      "path": "404.html",
+      "sections": [
+        { "key": "nav", "file": "sections/nav.html", "placement": "beforeMain" },
+        { "key": "notFound", "file": "sections/not-found.html", "placement": "main" },
+        { "key": "footer", "file": "sections/footer.html", "placement": "afterMain" }
+      ]
     }
   ],
   "scripts": ["scripts.js", "carousel.js", "dish-modal.js"],
@@ -94,6 +105,9 @@
     { "path": ["menu", "title"], "label": "Full menu title", "section": "menuList" },
     { "path": ["menu", "subtitle"], "label": "Full menu subtitle", "section": "menuList" },
     { "path": ["menu", "footerNote"], "label": "Menu footer note", "section": "menuList" },
-    { "path": ["custom", "quickActions", "cards"], "label": "Quick action cards", "section": "quickActions" }
+    { "path": ["custom", "quickActions", "cards"], "label": "Quick action cards", "section": "quickActions" },
+    { "path": ["custom", "notFound", "title"], "label": "404 title", "section": "notFound" },
+    { "path": ["custom", "notFound", "body"], "label": "404 body", "section": "notFound" },
+    { "path": ["custom", "notFound", "ctaLabel"], "label": "404 home button", "section": "notFound" }
   ]
 }

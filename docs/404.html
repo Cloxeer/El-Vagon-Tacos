@@ -11,6 +11,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="./favicon-192x192.png"/>
 <link rel="apple-touch-icon" href="./apple-touch-icon.png"/>
 <title>El Vagon Tacos — Las Cruces, NM</title>
+<meta name="robots" content="noindex"/>
 <meta name="description" content="Authentic tacos, quesadillas, birria ramen, and catering in Las Cruces. Est. 2020. Order online or call (575) 621-5897."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -1827,7 +1828,7 @@ html.og-dish-modal-open body {
 }
 </style>
 </head>
-<body data-page="home">
+<body data-page="notFound">
 
 <header class="og-header" id="og-header" data-halite-section="nav">
   <div class="og-header__inner">
@@ -1889,134 +1890,13 @@ html.og-dish-modal-open body {
 
 <main>
 
-<section class="og-hero" id="order" data-halite-section="hero">
-  <div class="og-hero__media">
-    <img data-halite-path='["hero","image"]' data-halite-image="true" src="./images/hero-poster.png" class="og-hero__image" alt=""/>
-    <div class="og-hero__overlay"></div>
-  </div>
-  <div class="og-hero__content">
-    <h1 class="og-hero__headline">
-      <span data-halite-path='["hero","headline"]' class="og-hero__line">Authentic Tacos</span>
-      <span data-halite-path='["custom","hero","headlineLine2"]' class="og-hero__line og-hero__line--secondary">in Las Cruces</span>
-    </h1>
-    <div class="og-hero__ctas">
-      <a data-halite-path='["hero","primaryCta","label"]' class="og-btn og-btn--cream" href="#order">Order Online</a>
-      <a data-halite-path='["custom","hero","secondaryCta","label"]' class="og-btn og-btn--cream" href="menu/index.html">See Menu</a>
+<section class="og-catering" id="not-found" data-halite-section="notFound">
+  <div class="og-catering__inner">
+    <h1 data-halite-path='["custom","notFound","title"]' class="og-section-title"></h1>
+    <p data-halite-path='["custom","notFound","body"]' data-halite-rich="true" class="og-catering__intro"></p>
+    <div class="og-catering__cta">
+      <a href="index.html" class="og-btn og-btn--cream"><span data-halite-path='["custom","notFound","ctaLabel"]'></span></a>
     </div>
-  </div>
-</section>
-
-
-<section class="og-hours-loc" id="og-hours-loc" data-halite-section="eClub">
-  <div class="og-hours-loc__inner">
-    <div class="og-hours-loc__block">
-      <h2 data-halite-path='["custom","eClub","headline"]' class="og-hours-loc__title">Hours</h2>
-      <div class="og-hours-loc__status" id="og-hours-status" aria-live="polite">
-        <span class="og-hours-loc__clock" id="og-hours-clock"></span>
-        <span class="og-hours-loc__open-badge" id="og-hours-open-badge" hidden></span>
-      </div>
-      <div class="og-hours-loc__schedule" id="og-hours-schedule" aria-label="Weekly hours"></div>
-      <p data-halite-path='["custom","eClub","footnote"]' class="og-hours-loc__note">Est. 2020 · Las Cruces, NM</p>
-    </div>
-    <div class="og-hours-loc__block">
-      <h2 data-halite-path='["custom","eClub","locationTitle"]' class="og-hours-loc__title">Location</h2>
-      <p data-halite-path='["custom","eClub","location"]' class="og-hours-loc__text">1602 S Solano Dr, Las Cruces, NM 88001</p>
-      <a data-halite-path='["custom","eClub","mapLabel"]' class="og-link-arrow og-hours-loc__map-link" href="https://www.google.com/maps/place/El+Vagon+Tacos/@32.2957917,-106.7626113,17z/data=!3m1!4b1!4m6!3m5!1s0x86de17e1323b3727:0xa729e630210c1dc!8m2!3d32.2957917!4d-106.7600364!16s%2Fg%2F11t8dv788t?hl=en-US&entry=ttu">Get directions</a>
-      <iframe
-        class="og-hours-loc__map"
-        title="El Vagon Tacos on Google Maps"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        src="https://maps.google.com/maps?q=El+Vagon+Tacos+1602+S+Solano+Dr+Las+Cruces+NM&hl=en&z=17&output=embed"
-      ></iframe>
-    </div>
-  </div>
-</section>
-
-
-<section class="og-specials" id="specials" data-halite-section="specialsCarousel">
-  <div class="og-specials__inner">
-    <div class="og-title-row">
-      <span class="og-title-row__taco-wrap og-title-row__taco-wrap--left" aria-hidden="true">
-        <img class="og-title-row__taco" src="./images/tacos-decorative.png" alt="" width="72" height="72" />
-      </span>
-      <span class="og-title-row__divider" aria-hidden="true"></span>
-      <h2 data-halite-path='["custom","specialsCarousel","title"]' class="og-section-title">Customer Favorites</h2>
-      <span class="og-title-row__divider" aria-hidden="true"></span>
-      <span class="og-title-row__taco-wrap og-title-row__taco-wrap--right" aria-hidden="true">
-        <img class="og-title-row__taco" src="./images/tacos-decorative.png" alt="" width="72" height="72" />
-      </span>
-    </div>
-
-    <ul class="og-specials__amenities" id="og-favorites-amenities" aria-label="Amenities"></ul>
-
-    <div class="og-carousel" data-og-carousel>
-      <button type="button" class="og-carousel__arrow og-carousel__arrow--prev" aria-label="Previous">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 4L8 12L16 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-
-      <div class="og-carousel__viewport">
-        <div class="og-carousel__track">
-          <article class="og-special-card" data-halite-path='["custom","specialsCarousel","cards",0]' style="--card-bg: url('./images/special-1.jpg')">
-            <a class="og-special-card__hit"  data-halite-href='["custom","specialsCarousel","cards",0,"menuHref"]' aria-label="View on menu"            href="menu/index.html#menu-most-ordered"></a>
-            <div class="og-special-card__content">
-              <h3 data-halite-path='["custom","specialsCarousel","cards","0","learnLabel"]' class="og-special-card__title">Birria Tacos</h3>
-              <a data-halite-path='["custom","specialsCarousel","cards","0","orderLabel"]' class="og-btn og-btn--cream" href="#order">Order Now</a>
-            </div>
-          </article>
-          <article class="og-special-card" data-halite-path='["custom","specialsCarousel","cards",1]' style="--card-bg: url('./images/special-2.jpg')">
-            <a class="og-special-card__hit"  data-halite-href='["custom","specialsCarousel","cards",1,"menuHref"]' aria-label="View on menu"            href="menu/index.html#menu-tacos"></a>
-            <div class="og-special-card__content">
-              <h3 data-halite-path='["custom","specialsCarousel","cards","1","learnLabel"]' class="og-special-card__title">Asada Tacos</h3>
-              <a data-halite-path='["custom","specialsCarousel","cards","1","orderLabel"]' class="og-btn og-btn--cream" href="#order">Order Now</a>
-            </div>
-          </article>
-          <article class="og-special-card" data-halite-path='["custom","specialsCarousel","cards",2]' style="--card-bg: url('./images/special-3.jpg')">
-            <a class="og-special-card__hit"  data-halite-href='["custom","specialsCarousel","cards",2,"menuHref"]' aria-label="View on menu"            href="menu/index.html#menu-starters"></a>
-            <div class="og-special-card__content">
-              <h3 data-halite-path='["custom","specialsCarousel","cards","2","learnLabel"]' class="og-special-card__title">Birria Ramen</h3>
-              <a data-halite-path='["custom","specialsCarousel","cards","2","orderLabel"]' class="og-btn og-btn--cream" href="#order">Order Now</a>
-            </div>
-          </article>
-          <article class="og-special-card" data-halite-path='["custom","specialsCarousel","cards",3]' style="--card-bg: url('./images/special-4.jpg')">
-            <a class="og-special-card__hit"  data-halite-href='["custom","specialsCarousel","cards",3,"menuHref"]' aria-label="View on menu"            href="menu/index.html#menu-starters"></a>
-            <div class="og-special-card__content">
-              <h3 data-halite-path='["custom","specialsCarousel","cards","3","learnLabel"]' class="og-special-card__title">Loaded Fries</h3>
-              <a data-halite-path='["custom","specialsCarousel","cards","3","orderLabel"]' class="og-btn og-btn--cream" href="#order">Order Now</a>
-            </div>
-          </article>
-        </div>
-      </div>
-
-      <button type="button" class="og-carousel__arrow og-carousel__arrow--next" aria-label="Next">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 4L16 12L8 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-    </div>
-
-    <ul class="og-specials__favorites" id="og-favorites-list" aria-label="Customer favorites"></ul>
-
-    <div class="og-specials__footer">
-      <a data-halite-path='["custom","specialsCarousel","viewAllLabel"]' class="og-link-arrow" href="menu/index.html">View Full Menu</a>
-    </div>
-  </div>
-</section>
-
-
-<section class="og-reviews" id="reviews" data-halite-section="reviews">
-  <div class="og-reviews__inner">
-    <div class="og-title-row">
-      <span class="og-title-row__taco-wrap og-title-row__taco-wrap--left" aria-hidden="true">
-        <img class="og-title-row__taco" src="./images/tacos-decorative.png" alt="" width="72" height="72" />
-      </span>
-      <span class="og-title-row__divider" aria-hidden="true"></span>
-      <h2 data-halite-path='["custom","reviews","title"]' class="og-section-title">Customer Reviews</h2>
-      <span class="og-title-row__divider" aria-hidden="true"></span>
-      <span class="og-title-row__taco-wrap og-title-row__taco-wrap--right" aria-hidden="true">
-        <img class="og-title-row__taco" src="./images/tacos-decorative.png" alt="" width="72" height="72" />
-      </span>
-    </div>
-    <p data-halite-path='["custom","reviews","subtitle"]' class="og-reviews__subtitle">Highly rated across Las Cruces</p>
-    <div class="og-reviews__groups" id="og-reviews-groups" aria-label="Reviews by platform"></div>
   </div>
 </section>
 

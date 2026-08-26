@@ -3,6 +3,7 @@ meta:
   title: El Vagon Tacos — Las Cruces, NM
   description: Authentic tacos, quesadillas, birria ramen, and catering in Las
     Cruces. Est. 2020. Order online or call (575) 621-5897.
+  favicon: /images/tacos-decorative.png
 theme:
   fontDisplay: Nunito Sans
   fontBody: Roboto
