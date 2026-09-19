@@ -1,0 +1,1177 @@
+identity:
+  id: ws_33afda9a6e64
+project:
+  version: 2
+  projectType: restaurant
+  sections:
+    - nav
+    - hero
+    - eClub
+    - ourStory
+    - specialsCarousel
+    - reviews
+    - menuList
+    - catering
+    - footer
+  pages:
+    - id: home
+      label: Home
+      path: index.html
+      sections:
+        - nav
+        - hero
+        - eClub
+        - specialsCarousel
+        - reviews
+        - footer
+    - id: menu
+      label: Menu
+      path: menu/index.html
+      sections:
+        - nav
+        - menuList
+        - footer
+    - id: catering
+      label: Catering
+      path: catering/index.html
+      sections:
+        - nav
+        - catering
+        - reviews
+        - footer
+    - id: our-story
+      label: Our Story
+      path: our-story/index.html
+      sections:
+        - nav
+        - ourStory
+        - footer
+    - id: contact
+      label: Contact
+      path: contact/index.html
+      sections:
+        - nav
+        - eClub
+        - footer
+  templateVariant: olive-garden
+site:
+  type: restaurant
+  meta:
+    title: El Vagon Tacos — Las Cruces, NM
+    description: Authentic tacos, quesadillas, birria ramen, and catering in Las
+      Cruces. Est. 2020. Order online or call (575) 621-5897.
+    favicon: /images/tacos-decorative.png
+  theme:
+    fontDisplay: Nunito Sans
+    fontBody: Roboto
+    colorText: "#000000"
+    colorMuted: "#303E1E"
+    colorAccent: "#B03D27"
+    colorBackground: "#FFFFFF"
+    colorSurface: "#FFEDD8"
+  business:
+    name: El Vagon Tacos
+    phone: (575) 621-5897
+    phoneTel: "5756215897"
+    address:
+      street: 1602 S Solano Dr
+      city: Las Cruces
+      state: New Mexico
+      zip: "88001"
+      note: Las Cruces, NM
+    hours:
+      label: Hours
+      time: Wed–Sun 11 AM–6/9 PM · Mon & Tue closed
+    established: "2020"
+  nav:
+    links:
+      - href: /menu
+        label: Menu
+      - href: /catering
+        label: Catering
+      - href: /our-story
+        label: Our Story
+      - href: /contact
+        label: Contact
+    phone:
+      showInDesktopHeader: false
+      showInMobileMenu: false
+      showInFooter: true
+      showInFooterOnMobile: false
+  hero:
+    tag: Las Cruces · Est. 2020
+    headline: Authentic Tacos
+    image: images/hero-poster.png
+    primaryCta:
+      label: Order Online
+      href: "#order"
+    showPhoneCta: false
+  infoStrip:
+    enabled: false
+  gallery: []
+  about:
+    eyebrow: El Vagon Tacos · Est. 2020
+    headline: Highly-Rated Authentic Tacos
+    paragraphs:
+      - Family-owned taco shop serving Las Cruces since 2020 with birria,
+        pastor, asada, and more.
+      - Dine in, take out, catering, and family packs for every occasion.
+    image: images/hero-poster.png
+    imageAlt: Tacos — placeholder photo
+    services:
+      - Dine-in
+      - Catering
+      - Takeout & Delivery
+      - Vegan options
+      - Kids' menu
+  menu:
+    eyebrow: El Vagon
+    title: Our Menu
+    subtitle: Authentic tacos, quesadillas, starters, and sides made fresh in Las Cruces.
+    tabs:
+      - all
+    categories:
+      - id: most-ordered
+        title: Most Ordered
+        note: The most commonly ordered items from order.online.
+        items:
+          - name: Birria Tacos
+            description: Birria on corn tortillas with mozzarella.
+            price: $14.99
+            badge: "#1 most liked"
+          - name: Asada Tacos
+            description: Steak tacos on corn tortillas with mozzarella.
+            price: $13.99
+          - name: Birria Ramen
+            description: Slow-cooked beef birria in a rich broth with ramen noodles, onions,
+              and cilantro. Served with tortilla chips, red salsa, and limes.
+            price: $13.99
+          - name: Loaded Fries
+            description: French fries with nacho cheese, mozzarella, cilantro, onion, sour
+              cream, and your choice of meat.
+            price: $13.99
+          - name: Birria Quesadilla
+            description: Tender beef, melted cheese, onions, and cilantro in a folded
+              tortilla. Served with consomé for dipping.
+            price: $13.99
+          - name: Pastor Taco
+            description: Marinated pork (al pastor) tacos.
+            price: $13.99
+          - name: Taco Box - Medium
+            description: 20 tacos with mozzarella and your choice of meat.
+            price: $63.99
+          - name: Nachos
+            description: Crispy nachos with nacho cheese, refried beans, mozzarella,
+              cilantro, onion, sour cream, and your choice of meat.
+            price: $15.39
+      - id: starters
+        title: Starters
+        items:
+          - name: Birria Ramen
+            description: Slow-cooked beef birria in a rich broth with ramen noodles, onions,
+              and cilantro. Served with tortilla chips, red salsa, and limes.
+            price: $13.99
+          - name: Papota
+            description: Baked potato with butter, mozzarella, cilantro, onion, sour cream,
+              and your choice of meat.
+            price: $12.99
+          - name: Loaded Fries
+            description: French fries with nacho cheese, mozzarella, cilantro, onion, sour
+              cream, and your choice of meat.
+            price: $13.99
+          - name: Nachos
+            description: Crispy nachos with nacho cheese, refried beans, mozzarella,
+              cilantro, onion, sour cream, and your choice of meat.
+            price: $15.39
+          - name: Chips N' Guac
+            description: Tortilla chips with guacamole.
+            price: $9.59
+      - id: tacos
+        title: Tacos
+        note: Served on a corn tortilla with mozzarella cheese.
+        items:
+          - name: Birria Tacos
+            description: Birria on corn tortillas with mozzarella.
+            price: $14.99
+            badge: "#1 most liked"
+          - name: Asada Tacos
+            description: Steak tacos on corn tortillas with mozzarella.
+            price: $13.99
+          - name: Pastor Taco
+            description: Marinated pork (al pastor) tacos.
+            price: $13.99
+          - name: Chicken Adobado Tacos
+            description: Chicken adobado on corn tortillas with mozzarella.
+            price: $13.99
+          - name: Alambre Tacos
+            description: Alambre tacos with mixed grilled meat, peppers, and onion.
+            price: $14.99
+          - name: Veggie Taco
+            description: Grilled zucchini, carrots, onions, pasilla, and bell peppers on a
+              corn tortilla with cheese.
+            price: $13.99
+          - name: Vegan Tacos
+            description: Plant-based tacos with grilled vegetables.
+            price: $13.99
+          - name: Shrimp Tacos
+            description: Shrimp in soft tortillas with fresh salsa.
+            price: $16.39
+          - name: Shrimp Taco (1)
+            description: Grilled shrimp with lettuce, pico de gallo, and chipotle sauce on a
+              flour tortilla.
+            price: $4.99
+      - id: quesadillas
+        title: Quesadillas
+        note: Served on a flour tortilla with mozzarella cheese.
+        items:
+          - name: Birria Quesadilla
+            description: Tender beef, melted cheese, onions, and cilantro in a folded
+              tortilla. Served with consomé for dipping.
+            price: $13.99
+          - name: Asada Quesadilla
+            description: Steak and melted cheese, served with sour cream and salsas.
+            price: $13.99
+          - name: Pastor Quesadilla
+            description: Pork adobado and melted cheese, served with sour cream and salsa.
+            price: $13.99
+          - name: Chicken Adobado Quesadilla
+            description: Marinated chicken adobado, melted cheese, and chipotle cream.
+            price: $13.99
+          - name: Alambre Quesadilla
+            description: Steak, bell peppers, onions, bacon, and melted cheese, served with
+              sour cream.
+            price: $14.99
+          - name: Cheese Quesadilla
+            description: Melted cheese in a crispy folded tortilla.
+            price: $6.79
+      - id: sides
+        title: Sides
+        items:
+          - name: Elote
+            description: Corn in a cup with mayonnaise, cotija, chili powder, crema, and
+              lime.
+            price: $5.99
+          - name: Chipotle Sweet Potato Fries
+            description: Sweet potato fries with chipotle dry seasoning.
+            price: $7.99
+          - name: Side of Guacamole
+            description: Fresh creamy avocado dip.
+            price: $5.99
+          - name: Side Chips & Salsa
+            description: Freshly fried tortilla chips with house red and green salsa.
+            price: $4.99
+          - name: 28 Oz Side Salsa
+            description: Large salsa — traditional, red (creamy árbol), or green (creamy
+              jalapeño).
+            price: $10.99
+          - name: Side of Rice
+            description: Lightly seasoned Mexican rice.
+            price: $2.99
+          - name: Large Rice
+            description: Mexican rice cooked with tomato, garlic, onion, and spices.
+            price: $8.29
+          - name: Side of Beans
+            description: Savory seasoned beans.
+            price: $2.99
+          - name: Large Beans
+            description: Slow-cooked pinto beans, typically topped with queso fresco.
+            price: $8.99
+          - name: Baked Potato
+            description: Baked potato with butter, sour cream, and shredded cheese.
+            price: $4.99
+          - name: Lg Consome
+            description: Braised beef broth with onion, cilantro, and lime.
+            price: $5.99
+      - id: kiddos
+        title: Kiddos
+        note: Kids 12 & under.
+        items:
+          - name: Kids Chicken Quesadilla
+            description: Grilled chicken and melted cheese in a flour tortilla.
+            price: $10.59
+          - name: Kids Papita
+            description: Choice of asada or chicken.
+            price: $8.69
+          - name: Cheese Quesadilla with Fries
+            description: Grilled flour tortilla with melted cheese, served with fries.
+            price: $8.99
+          - name: Kids 2 Tacos
+            description: Choice of asada, pastor, birria, chicken adobado, alambre, or
+              veggie.
+            price: $9.99
+      - id: family-packs
+        title: Family Packs
+        items:
+          - name: Taco Box - Small
+            description: 12 tacos with mozzarella and your choice of meat.
+            price: $37.99
+          - name: Taco Box - Medium
+            description: 20 tacos with mozzarella and your choice of meat.
+            price: $63.99
+          - name: Taco Box - Large
+            description: 28 tacos with mozzarella and your choice of meat.
+            price: $84.99
+          - name: Taco Box - Mix Box
+            description: 14 tacos and 8 quesadilla pieces with mozzarella and your choice of
+              meat.
+            price: $70.99
+          - name: Parrillas
+            description: Grilled meats with tortillas, onions, cilantro, chiles, beans, and
+              rice.
+            price: $37.99
+      - id: drinks
+        title: Drinks
+        items:
+          - name: Aguas
+            description: House agua fresca.
+            price: $6.49
+          - name: Small Agua with Topping
+            description: Agua fresca with optional chamoy, tajín, or fruit.
+            price: $4.79
+          - name: Large Agua with Topping
+            description: Agua fresca topped with chamoy, tajín, and chile.
+            price: $6.69
+          - name: Small Agua
+            description: Kids-size agua fresca.
+            price: $4.79
+          - name: Mexican Coke
+            description: Bottled Coke made with cane sugar.
+            price: $4.79
+          - name: Can Soda
+            description: Coke, Diet Coke, or Sprite.
+            price: $2.99
+          - name: 20 oz Coke
+            description: ""
+            price: $4.45
+          - name: 20 oz Coke Zero
+            description: ""
+            price: $4.45
+          - name: 20 oz Diet Coke
+            description: ""
+            price: $4.45
+          - name: 20 oz Sprite
+            description: ""
+            price: $4.45
+      - id: trays
+        title: Trays
+        items:
+          - name: Tray of Rice
+            description: Seasoned Mexican rice tray.
+            price: $27.89
+          - name: Tray of Beans
+            description: Refried beans, typically topped with melted jack and cheddar.
+            price: $31.69
+          - name: Tray of Meat
+            description: Seasoned meats with sautéed onions and peppers.
+            price: $124.89
+          - name: Tray of Birria
+            description: Tray of birria.
+            price: $127.69
+    footerNote: Online menu prices. Prices subject to change. All info is from
+      order.online. Last updated August 2026.
+  specials:
+    eyebrow: Favorites
+    title: Customer Favorites
+    subtitle: Highly rated in Las Cruces
+    tiles:
+      - when: "#1 most liked"
+        what: Birria Tacos
+        price: $14.99
+      - when: Every day
+        what: Birria Ramen
+        price: $13.99
+      - when: Every day
+        what: Asada Tacos
+        price: $13.99
+      - when: Most ordered
+        what: Loaded Fries
+        price: $13.99
+  contact:
+    headline: Visit El Vagon Tacos
+    mapEmbedUrl: https://maps.google.com/maps?q=El+Vagon+Tacos+1602+S+Solano+Dr+Las+Cruces+NM&hl=en&z=17&output=embed
+    takeoutNote: 1602 S Solano Dr, Las Cruces, NM 88001
+    services:
+      - Amazing food, friendly staff, fair prices! — Viki López
+      - The food was amazing and Cindy is super nice and friendly. — Guadalupe
+        Rogers
+      - Great food and our waitress Arely was wonderful! — Trish Black
+  footer:
+    links:
+      - label: (575) 621-5897
+        href: tel:5756215897
+    copyright: © 2026 El Vagon Tacos. All rights reserved.
+    disclaimer: 1602 S Solano Dr, Las Cruces, NM 88001 · elvagontacos@gmail.com
+  footerCredit:
+    enabled: true
+    prefix: Created by
+    haliteText: ""
+    haliteUrl: ""
+    conjunction: ""
+    arrowheadText: Fintech Lab powered by Nusenda Credit Union
+    arrowheadUrl: https://arrowheadcenter.nmsu.edu/program/nusenda_fintech_lab/index.html
+    programLogo: /images/fintech-lab-logo.png
+  custom:
+    nav:
+      logo: images/logo.png
+      title: images/title.png
+      homeHref: /
+      findLabel: Order Online
+      menuMobileLabel: See Menu
+      loginLabel: Order Online
+      specialsLabel: Catering
+      giftLabel: Contact
+      eclubLabel: Hours
+      careersLabel: About
+      contactLabel: Contact
+    hero:
+      headlineLine2: in Las Cruces
+      secondaryCta:
+        label: See Menu
+        href: /menu
+    eClub:
+      headline: Hours
+      footnote: Est. 2020 · Las Cruces, NM
+      locationTitle: Location
+      location: 1602 S Solano Dr, Las Cruces, NM 88001
+      mapLabel: Get directions
+      mapHref: https://www.google.com/maps/place/El+Vagon+Tacos/@32.2957917,-106.7626113,17z/data=!3m1!4b1!4m6!3m5!1s0x86de17e1323b3727:0xa729e630210c1dc!8m2!3d32.2957917!4d-106.7600364!16s%2Fg%2F11t8dv788t?hl=en-US&entry=ttu
+      mapEmbedUrl: https://maps.google.com/maps?q=El+Vagon+Tacos+1602+S+Solano+Dr+Las+Cruces+NM&hl=en&z=17&output=embed
+      timezone: America/Denver
+      schedule:
+        - dayIndex: 1
+          label: Mon
+          closed: true
+        - dayIndex: 2
+          label: Tue
+          closed: true
+        - dayIndex: 3
+          label: Wed
+          closed: false
+          hours: 11:00 AM - 6:00 PM
+          open: 11:00 AM
+          close: 6:00 PM
+        - dayIndex: 4
+          label: Thu
+          closed: false
+          hours: 11:00 AM - 8:00 PM
+          open: 11:00 AM
+          close: 8:00 PM
+        - dayIndex: 5
+          label: Fri
+          closed: false
+          hours: 11:00 AM - 9:00 PM
+          open: 11:00 AM
+          close: 9:00 PM
+        - dayIndex: 6
+          label: Sat
+          closed: false
+          hours: 11:00 AM - 9:00 PM
+          open: 11:00 AM
+          close: 9:00 PM
+        - dayIndex: 0
+          label: Sun
+          closed: false
+          hours: 11:00 AM - 6:00 PM
+          open: 11:00 AM
+          close: 6:00 PM
+    specialsCarousel:
+      title: Customer Favorites
+      viewAllLabel: View Full Menu
+      viewAllHref: /menu
+      amenities:
+        - label: Vegan options
+          href: /menu#menu-tacos
+        - label: Kids' menu
+          href: /menu#menu-kiddos
+      favoritesList:
+        - label: Birria Tacos
+          href: /menu#menu-most-ordered
+        - label: Asada Tacos
+          href: /menu#menu-tacos
+        - label: Birria Ramen
+          href: /menu#menu-starters
+        - label: Loaded Fries
+          href: /menu#menu-starters
+        - label: Birria Quesadilla
+          href: /menu#menu-quesadillas
+        - label: Pastor Taco
+          href: /menu#menu-tacos
+        - label: Taco Box - Medium
+          href: /menu#menu-family-packs
+        - label: Nachos
+          href: /menu#menu-starters
+      orderHref: https://order.online/store/-32666423
+      cards:
+        - learnLabel: Birria Tacos
+          orderLabel: Order Now
+          menuHref: /menu#menu-most-ordered
+          image: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/e801e92f-6e2a-4ebd-bbb6-e62f38e39f2a-retina-large.jpg
+        - learnLabel: Asada Tacos
+          orderLabel: Order Now
+          menuHref: /menu#menu-tacos
+          image: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/6f99c5bc-d659-4232-b4cd-d1a785a64f1a-retina-large.jpg
+        - learnLabel: Birria Ramen
+          orderLabel: Order Now
+          menuHref: /menu#menu-starters
+          image: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/1fe60092-42c1-473f-bd6b-1c3ae6bc24be-retina-large.jpg
+        - learnLabel: Loaded Fries
+          orderLabel: Order Now
+          menuHref: /menu#menu-starters
+          image: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/427d476d-2544-4840-b0ac-fab6ef9604f9-retina-large.jpg
+        - learnLabel: Birria Quesadilla
+          orderLabel: Order Now
+          menuHref: /menu#menu-quesadillas
+          image: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/29c73002-e013-4a86-8462-d26c4283b51f-retina-large.jpg
+        - learnLabel: Pastor Taco
+          orderLabel: Order Now
+          menuHref: /menu#menu-tacos
+          image: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ecc41d2f-e19b-4ec1-a699-cde69329946e-retina-large.jpg
+        - learnLabel: Taco Box - Medium
+          orderLabel: Order Now
+          menuHref: /menu#menu-family-packs
+          image: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ee315f69-4e7e-46ec-9f1b-3758bc2e492a-retina-large.png
+        - learnLabel: Nachos
+          orderLabel: Order Now
+          menuHref: /menu#menu-starters
+          image: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ef6f074f-6d0f-4cc1-9ae4-1f2144702b23-retina-large.jpg
+    reviews:
+      title: Customer Reviews
+      subtitle: Highly rated across Las Cruces
+      platforms:
+        - name: Restaurantji
+          rating: "4.7"
+          countLabel: out of 182 reviews
+          href: https://www.restaurantji.com/nm/las-cruces/el-vagon-tacos-/
+          quotes:
+            - text: Everything is excellent! I'm so thankful I found this spot while passing
+                through NM. The veggie tacos are yum, their salsas add a really
+                good kick, and the service is great. Really recommend!
+              author: Carolina
+              stars: 5
+            - text: This a casual place with excellent food and service. The server was super
+                nice and price was very good for the amount and quality of food
+                you get! Would definitely recommend come back!
+              author: lais mamao
+              stars: 5
+            - text: Loved it! Quick, friendly and great food. A definite must try.
+              author: beau stites
+              stars: 5
+        - name: Facebook
+          rating: 100%
+          countLabel: from 39 reviews
+          href: https://www.facebook.com/elvagon/
+          quotes:
+            - text: My family and I were passing through Las Cruces on our way to Mexico.
+                Amazing food, friendly staff, fair prices! Would recommend 100%.
+              author: Viki López
+              stars: 5
+            - text: Authentic mexican food. very tasty and delicious. A 5 star.
+              author: WilMil Yazz
+              stars: 5
+            - text: Delicious tacos! If I lived in Las Cruces I would be there all the time!
+              author: Maureen Young Tortorella
+              stars: 5
+        - name: Yelp
+          rating: "4.7"
+          countLabel: out of 64 reviews
+          href: https://www.yelp.com/biz/el-vagon-tacos-las-cruces
+          quotes:
+            - text: Delicious vegan tacos for me, yummy tacos for my carnivorous son. A win
+                win! We ate here twice on our 2-day trip to Las Cruces, so good!
+                Friendly and competent service. Can't wait to visit Las Cruces
+                again so we can come back!
+              author: Kerri W.
+              stars: 5
+            - text: The Alambre tacos with a Mexican Coke is delicious. Great flavor. Quick
+                and friendly service. The inside is fun and friendly and clean.
+                Will definitely return.
+              author: Aric C.
+              stars: 5
+            - text: The tacos were amazing! The portions are huge, and the left overs were
+                just as good. Our server Arely was so nice, everyone was nice I
+                would definitely recommend!
+              author: Lisa H.
+              stars: 5
+        - name: Google
+          rating: "4.8"
+          countLabel: out of 582 reviews
+          href: https://www.google.com/maps/place/El+Vagon+Tacos/@32.2957917,-106.7626113,17z/data=!3m1!4b1!4m6!3m5!1s0x86de17e1323b3727:0xa729e630210c1dc!8m2!3d32.2957917!4d-106.7600364!16s%2Fg%2F11t8dv788t?hl=en-US&entry=ttu
+          quotes:
+            - text: Everything you'd expect from a small cafe in the barrio! Great atmosphere,
+                beautiful views around the building & of course, the very
+                delicious TRUE New Mexico style food! Full of flavors and just
+                the right amount of heat. Very recommend!
+              author: Raymond Barron
+              stars: 5
+            - text: Bring your appetite and empty stomach. They're very generous with the
+                meat! Amazing tacos, perfect portions, the best beans in Las
+                Cruces.
+              author: Sara Beth Moran
+              stars: 5
+            - text: Everything is excellent! I'm so thankful I found this spot while passing
+                through NM. The veggie tacos are yum, their salsas add a really
+                good kick, and the service is great. Really recommend!
+              author: Carolina
+              stars: 5
+    footer:
+      socialTitle: Follow Us
+      appsTitle: Order & Contact
+      columns:
+        - title: Menu
+          links:
+            - label: Starters
+              href: /menu#menu-starters
+            - label: Kiddos
+              href: /menu#menu-kiddos
+            - label: Sides
+              href: /menu#menu-sides
+            - label: Tacos
+              href: /menu#menu-tacos
+            - label: Quesadillas
+              href: /menu#menu-quesadillas
+            - label: Drinks
+              href: /menu#menu-drinks
+        - title: Visit
+          links:
+            - label: 1602 S Solano Dr
+              href: https://www.google.com/maps/place/El+Vagon+Tacos/@32.2957917,-106.7626113,17z/data=!3m1!4b1!4m6!3m5!1s0x86de17e1323b3727:0xa729e630210c1dc!8m2!3d32.2957917!4d-106.7600364!16s%2Fg%2F11t8dv788t?hl=en-US&entry=ttu
+            - label: Las Cruces, NM 88001
+              href: https://www.google.com/maps/place/El+Vagon+Tacos/@32.2957917,-106.7626113,17z/data=!3m1!4b1!4m6!3m5!1s0x86de17e1323b3727:0xa729e630210c1dc!8m2!3d32.2957917!4d-106.7600364!16s%2Fg%2F11t8dv788t?hl=en-US&entry=ttu
+            - label: (575) 621-5897
+              href: tel:5756215897
+            - label: Hours & Location
+              href: /contact
+        - title: Connect
+          links:
+            - label: Instagram
+              href: https://www.instagram.com/elvagontacos
+            - label: Facebook
+              href: https://www.facebook.com/elvagon/
+            - label: elvagontacos@gmail.com
+              href: mailto:elvagontacos@gmail.com
+        - title: Services
+          links:
+            - label: Dine-In
+              href: /menu
+            - label: Takeout
+              href: "#order"
+            - label: Catering
+              href: /catering
+            - label: Our Story
+              href: /our-story
+      legal:
+        - label: Privacy
+          href: "#"
+        - label: Accessibility
+          href: "#"
+        - label: Contact
+          href: "#contact"
+    catering:
+      title: Catering
+      subtitle: Bring El Vagon to your next event
+      intro: From weddings and office lunches to family gatherings — we prepare fresh,
+        authentic tacos, quesadillas, and more for groups of any size. Family
+        packs and custom menus available.
+      phoneCta: Call (575) 621-5897
+      emailCta: Email for a Quote
+      note: Please allow 48 hours notice for large orders. Custom menus available upon
+        request.
+      packages:
+        - name: Taco Box - Small
+          description: 12 tacos with mozzarella and your choice of meat.
+          price: $37.99
+        - name: Taco Box - Medium
+          description: 20 tacos with mozzarella and your choice of meat.
+          price: $63.99
+        - name: Taco Box - Large
+          description: 28 tacos with mozzarella and your choice of meat.
+          price: $84.99
+        - name: Taco Box - Mix Box
+          description: 14 tacos and 8 quesadilla pieces with mozzarella and your choice of
+            meat.
+          price: $70.99
+        - name: Parrillas
+          description: Grilled meats with tortillas, onions, cilantro, chiles, beans, and
+            rice.
+          price: $37.99
+        - name: Tray of Rice
+          description: Seasoned Mexican rice tray.
+          price: $27.89
+        - name: Tray of Beans
+          description: Refried beans, typically topped with melted jack and cheddar.
+          price: $31.69
+        - name: Tray of Meat
+          description: Seasoned meats with sautéed onions and peppers.
+          price: $124.89
+        - name: Tray of Birria
+          description: Tray of birria.
+          price: $127.69
+      packagesEs:
+        - name: Caja de Tacos Chica
+          description: 12 tacos con mozzarella y carne a elegir.
+          price: $37.99
+        - name: Caja de Tacos Mediana
+          description: 20 tacos con mozzarella y carne a elegir.
+          price: $63.99
+        - name: Caja de Tacos Grande
+          description: 28 tacos con mozzarella y carne a elegir.
+          price: $84.99
+        - name: Caja Mixta
+          description: 14 tacos y 8 pedazos de quesadilla.
+          price: $70.99
+        - name: Parrillas
+          description: Carnes asadas con tortillas, cebolla, cilantro, chiles, frijoles y
+            arroz.
+          price: $37.99
+        - name: Charola de Arroz
+          description: Charola de arroz mexicano.
+          price: $27.89
+        - name: Charola de Frijoles
+          description: Frijoles refritos con queso.
+          price: $31.69
+        - name: Charola de Carne
+          description: Carnes sazonadas con cebolla y pimiento.
+          price: $124.89
+        - name: Charola de Birria
+          description: Charola de birria.
+          price: $127.69
+    menuImages:
+      items:
+        starters:0: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/1fe60092-42c1-473f-bd6b-1c3ae6bc24be-retina-large.jpg
+        starters:1: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/617e9fe8-6f70-4a1b-b07d-1dcc710a5899.png
+        starters:2: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/427d476d-2544-4840-b0ac-fab6ef9604f9-retina-large.jpg
+        starters:3: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ef6f074f-6d0f-4cc1-9ae4-1f2144702b23-retina-large.jpg
+        starters:4: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/fc801432-289c-440d-9f92-e7f2f89777be.jpg
+        tacos:0: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/e801e92f-6e2a-4ebd-bbb6-e62f38e39f2a-retina-large.jpg
+        tacos:1: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/6f99c5bc-d659-4232-b4cd-d1a785a64f1a-retina-large.jpg
+        tacos:2: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ecc41d2f-e19b-4ec1-a699-cde69329946e-retina-large.jpg
+        tacos:3: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/000ccb22-ba72-4b3c-8aa9-4e281e2418ae-retina-large.jpg
+        tacos:4: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/7fec2fb1-8d1a-4dcf-9d0d-cbe7ece4e40f-retina-large.jpg
+        tacos:5: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/b14b7203-3c18-4aaf-a881-71946b3eeb50.jpg
+        tacos:6: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ba94069b-87b3-4897-b05c-bbce85121505-retina-large.jpg
+        tacos:7: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/1f632a64-7387-452f-97ba-979d62aa5326-retina-large.jpg
+        tacos:8: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/21326dca-648e-492f-a26c-82c06f6fe94d.jpg
+        quesadillas:0: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/29c73002-e013-4a86-8462-d26c4283b51f-retina-large.jpg
+        quesadillas:1: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/f205ee13-56dc-4bbb-a8d1-374ff6992b67-retina-large.jpg
+        quesadillas:2: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ad3f699a-b31c-4477-9083-6562960c88a3-retina-large.png
+        quesadillas:3: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/7cef58fe-e12a-4c5d-b7ab-9b3728c0a4f1-retina-large.jpg
+        quesadillas:4: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/d2a96171-ff54-4b4f-9d1a-bd405979a772.png
+        quesadillas:5: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/81c67284-05df-460b-9e3e-f27b5aa8b7e5-2861357c-4c79-487f-86ae-076ff5d21301.jpg
+        sides:0: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/0163a4bb-7133-4892-82f1-5752e757e38b-a618828e-ff31-4e0d-b8b0-f13b04ae4d51.jpg
+        sides:1: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/bb8846a1-d30c-4c65-b10b-cc46d77b2194.jpg
+        sides:2: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/7539cb81-752f-4edb-af1a-7bfdc8f89dc3.png
+        sides:3: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/83123f70-2c58-4b01-9c78-9befad872fec.png
+        sides:4: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/03716a47-c7a7-417a-a871-a989c4590bee.jpg
+        sides:5: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/e4e65f9a-1bc5-4e1e-8533-eef71b57630c-retina-large.jpg
+        sides:6: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/e4e65f9a-1bc5-4e1e-8533-eef71b57630c-retina-large.jpg
+        sides:7: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ea78d6e7-c1d8-413d-9e27-9026d7350d05-retina-large.jpg
+        sides:8: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ea78d6e7-c1d8-413d-9e27-9026d7350d05-retina-large.jpg
+        sides:9: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/d0ff2d71-b2f5-4142-aa14-7473ea8cc93e-retina-large.jpg
+        sides:10: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/0f1abc35-1192-4601-9fd9-7179a50287e1-d9fef73b-4413-4b2c-8dca-97ddeced4828.jpg
+        kiddos:0: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/e8ae2ed9-2f04-474f-b6a0-2dddc07a2d39-d9fe4d94-1196-4c2f-b68d-88ac4c0044f2.jpg
+        kiddos:1: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/9bf00a77-fe87-416a-9778-dbe612dfbf51.jpg
+        kiddos:2: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/18fd44b2-0f52-41f0-a24f-c8ea97ad3afd.jpg
+        kiddos:3: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/725084e7-1740-4e78-9e5f-6ee043962d01.jpg
+        drinks:0: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/0830912e-96ff-4f95-88aa-3420ae79b89f-retina-large.jpg
+        drinks:1: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/1f7953d8-50df-468d-ac40-8e6b95dfe052.jpg
+        drinks:2: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/3c8dbad0-4059-4f01-a517-e3ce37771ead.png
+        drinks:4: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/621d9ac7-7673-4801-bef5-79768c9c6b5c-retina-large.jpeg
+        drinks:5: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/10041ef7-9f70-4c81-aef5-89c0578aeb19.jpg
+        drinks:6: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/f6c0cf64-1ecd-4812-861b-789f63b61e5a-retina-large.jpg
+        drinks:7: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/85c5e634-d9a7-40fd-a2f1-b312af4f5760-5a601862-89b4-4a6d-b391-63d8a2508167-retina-large.jpg
+        drinks:8: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/122ddb7a-1572-4499-a7eb-e5fc6f456395-40737ece-e74f-47bf-8920-d4e45b77bbcd-retina-large.jpg
+        drinks:9: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/242f4baa-a988-4533-92a0-997b457b1416-df8592ee-addf-476c-a656-218fa6f30e17-retina-large.jpg
+        family-packs:0: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/d889d8a0-df9f-454c-91af-37576a9cf779-retina-large.jpg
+        family-packs:1: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ee315f69-4e7e-46ec-9f1b-3758bc2e492a-retina-large.png
+        family-packs:2: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/17b00922-6e15-4533-822b-3dfa0be5f05e-retina-large.jpg
+        family-packs:3: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/88c156fd-3c81-44a8-9f75-6f5ca2e84ef2-retina-large.png
+        family-packs:4: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/b090097c-9483-410d-83ff-a765e9604e03-retina-large.png
+        trays:0: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/768e2895-76a7-4e7a-98ad-fcc00043ee39-c90ee2ca-6d7a-4727-94a3-cb26824315c1-retina-large.jpg
+        trays:2: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/47d5f18e-64d6-428d-b807-38d06855fbab-retina-large.png
+        trays:3: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/2c8a0dfc-ea22-4ffe-bd66-3681a2c68b37-retina-large.jpg
+        drinks:3: ""
+        trays:1: ""
+        most-ordered:0: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/e801e92f-6e2a-4ebd-bbb6-e62f38e39f2a-retina-large.jpg
+        most-ordered:1: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/6f99c5bc-d659-4232-b4cd-d1a785a64f1a-retina-large.jpg
+        most-ordered:2: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/1fe60092-42c1-473f-bd6b-1c3ae6bc24be-retina-large.jpg
+        most-ordered:3: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/427d476d-2544-4840-b0ac-fab6ef9604f9-retina-large.jpg
+        most-ordered:4: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/29c73002-e013-4a86-8462-d26c4283b51f-retina-large.jpg
+        most-ordered:5: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ecc41d2f-e19b-4ec1-a699-cde69329946e-retina-large.jpg
+        most-ordered:6: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ee315f69-4e7e-46ec-9f1b-3758bc2e492a-retina-large.png
+        most-ordered:7: https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ef6f074f-6d0f-4cc1-9ae4-1f2144702b23-retina-large.jpg
+      categories:
+        starters:
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/1fe60092-42c1-473f-bd6b-1c3ae6bc24be-retina-large.jpg
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/617e9fe8-6f70-4a1b-b07d-1dcc710a5899.png
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/427d476d-2544-4840-b0ac-fab6ef9604f9-retina-large.jpg
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ef6f074f-6d0f-4cc1-9ae4-1f2144702b23-retina-large.jpg
+        tacos:
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/e801e92f-6e2a-4ebd-bbb6-e62f38e39f2a-retina-large.jpg
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/6f99c5bc-d659-4232-b4cd-d1a785a64f1a-retina-large.jpg
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ecc41d2f-e19b-4ec1-a699-cde69329946e-retina-large.jpg
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/000ccb22-ba72-4b3c-8aa9-4e281e2418ae-retina-large.jpg
+        quesadillas:
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/29c73002-e013-4a86-8462-d26c4283b51f-retina-large.jpg
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/f205ee13-56dc-4bbb-a8d1-374ff6992b67-retina-large.jpg
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ad3f699a-b31c-4477-9083-6562960c88a3-retina-large.png
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/7cef58fe-e12a-4c5d-b7ab-9b3728c0a4f1-retina-large.jpg
+        sides:
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/0163a4bb-7133-4892-82f1-5752e757e38b-a618828e-ff31-4e0d-b8b0-f13b04ae4d51.jpg
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/bb8846a1-d30c-4c65-b10b-cc46d77b2194.jpg
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/7539cb81-752f-4edb-af1a-7bfdc8f89dc3.png
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/83123f70-2c58-4b01-9c78-9befad872fec.png
+        kiddos:
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/e8ae2ed9-2f04-474f-b6a0-2dddc07a2d39-d9fe4d94-1196-4c2f-b68d-88ac4c0044f2.jpg
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/9bf00a77-fe87-416a-9778-dbe612dfbf51.jpg
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/18fd44b2-0f52-41f0-a24f-c8ea97ad3afd.jpg
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/725084e7-1740-4e78-9e5f-6ee043962d01.jpg
+        drinks:
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/0830912e-96ff-4f95-88aa-3420ae79b89f-retina-large.jpg
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/1f7953d8-50df-468d-ac40-8e6b95dfe052.jpg
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/ugc/3c8dbad0-4059-4f01-a517-e3ce37771ead.png
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/621d9ac7-7673-4801-bef5-79768c9c6b5c-retina-large.jpeg
+        family-packs:
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/d889d8a0-df9f-454c-91af-37576a9cf779-retina-large.jpg
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/ee315f69-4e7e-46ec-9f1b-3758bc2e492a-retina-large.png
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/17b00922-6e15-4533-822b-3dfa0be5f05e-retina-large.jpg
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/88c156fd-3c81-44a8-9f75-6f5ca2e84ef2-retina-large.png
+        trays:
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/768e2895-76a7-4e7a-98ad-fcc00043ee39-c90ee2ca-6d7a-4727-94a3-cb26824315c1-retina-large.jpg
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/47d5f18e-64d6-428d-b807-38d06855fbab-retina-large.png
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/2c8a0dfc-ea22-4ffe-bd66-3681a2c68b37-retina-large.jpg
+        most-ordered:
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/e801e92f-6e2a-4ebd-bbb6-e62f38e39f2a-retina-large.jpg
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/6f99c5bc-d659-4232-b4cd-d1a785a64f1a-retina-large.jpg
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/1fe60092-42c1-473f-bd6b-1c3ae6bc24be-retina-large.jpg
+          - https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=70/media/photosV2/427d476d-2544-4840-b0ac-fab6ef9604f9-retina-large.jpg
+    menuCategoriesEs:
+      - id: most-ordered
+        title: Más Pedidos
+        note: Los artículos más pedidos en order.online.
+        items:
+          - name: Tacos de Birria
+            description: Birria en tortilla de maíz con mozzarella.
+            price: $14.99
+            badge: "#1 más gustado"
+          - name: Tacos de Asada
+            description: Tacos de asada en tortilla de maíz con mozzarella.
+            price: $13.99
+          - name: Ramen de Birria
+            description: Birria de res en caldo con ramen, cebolla y cilantro. Con totopos,
+              salsa roja y limones.
+            price: $13.99
+          - name: Papas Cargadas
+            description: Papas fritas con queso nacho, mozzarella, cilantro, cebolla, crema
+              y carne a elegir.
+            price: $13.99
+          - name: Quesadilla de Birria
+            description: Res, queso, cebolla y cilantro. Con consomé para dippear.
+            price: $13.99
+          - name: Taco al Pastor
+            description: Tacos de cerdo marinado al pastor.
+            price: $13.99
+          - name: Caja de Tacos Mediana
+            description: 20 tacos con mozzarella y carne a elegir.
+            price: $63.99
+          - name: Nachos
+            description: Nachos con queso, frijoles, mozzarella, cilantro, cebolla, crema y
+              carne a elegir.
+            price: $15.39
+      - id: starters
+        title: Entradas
+        items:
+          - name: Ramen de Birria
+            description: Birria de res en caldo con ramen, cebolla y cilantro. Con totopos,
+              salsa roja y limones.
+            price: $13.99
+          - name: Papota
+            description: Papa al horno con mantequilla, mozzarella, cilantro, cebolla, crema
+              y carne a elegir.
+            price: $12.99
+          - name: Papas Cargadas
+            description: Papas fritas con queso nacho, mozzarella, cilantro, cebolla, crema
+              y carne a elegir.
+            price: $13.99
+          - name: Nachos
+            description: Nachos con queso, frijoles, mozzarella, cilantro, cebolla, crema y
+              carne a elegir.
+            price: $15.39
+          - name: Totopos con Guacamole
+            description: Totopos con guacamole.
+            price: $9.59
+      - id: tacos
+        title: Tacos
+        note: En tortilla de maíz con queso mozzarella.
+        items:
+          - name: Tacos de Birria
+            description: Birria en tortilla de maíz con mozzarella.
+            price: $14.99
+            badge: "#1 más gustado"
+          - name: Tacos de Asada
+            description: Tacos de asada en tortilla de maíz con mozzarella.
+            price: $13.99
+          - name: Taco al Pastor
+            description: Tacos de cerdo marinado al pastor.
+            price: $13.99
+          - name: Tacos de Pollo Adobado
+            description: Pollo adobado en tortilla de maíz con mozzarella.
+            price: $13.99
+          - name: Tacos de Alambre
+            description: Alambre con carne, pimientos y cebolla.
+            price: $14.99
+          - name: Taco Veggie
+            description: Calabaza, zanahoria, cebolla, pasilla y pimiento en tortilla de
+              maíz con queso.
+            price: $13.99
+          - name: Tacos Veganos
+            description: Tacos de verduras a la parrilla.
+            price: $13.99
+          - name: Tacos de Camarón
+            description: Camarón en tortilla suave con salsa fresca.
+            price: $16.39
+          - name: Taco de Camarón (1)
+            description: Camarón a la parrilla con lechuga, pico de gallo y chipotle.
+            price: $4.99
+      - id: quesadillas
+        title: Quesadillas
+        note: En tortilla de harina con queso mozzarella.
+        items:
+          - name: Quesadilla de Birria
+            description: Res, queso, cebolla y cilantro. Con consomé para dippear.
+            price: $13.99
+          - name: Quesadilla de Asada
+            description: Asada y queso, con crema y salsas.
+            price: $13.99
+          - name: Quesadilla al Pastor
+            description: Cerdo adobado y queso, con crema y salsa.
+            price: $13.99
+          - name: Quesadilla de Pollo Adobado
+            description: Pollo adobado, queso y crema de chipotle.
+            price: $13.99
+          - name: Quesadilla de Alambre
+            description: Asada, pimiento, cebolla, tocino y queso, con crema.
+            price: $14.99
+          - name: Quesadilla de Queso
+            description: Queso derretido en tortilla crujiente.
+            price: $6.79
+      - id: sides
+        title: Acompañamientos
+        items:
+          - name: Elote
+            description: Elote en vaso con mayonesa, cotija, chile, crema y limón.
+            price: $5.99
+          - name: Papas Dulces Chipotle
+            description: Papas de camote con sazón de chipotle.
+            price: $7.99
+          - name: Guacamole
+            description: Guacamole fresco.
+            price: $5.99
+          - name: Totopos y Salsa
+            description: Totopos con salsa roja y verde.
+            price: $4.99
+          - name: Salsa 28 oz
+            description: Salsa grande — tradicional, roja o verde.
+            price: $10.99
+          - name: Arroz
+            description: Arroz mexicano.
+            price: $2.99
+          - name: Arroz Grande
+            description: Arroz mexicano con jitomate, ajo y cebolla.
+            price: $8.29
+          - name: Frijoles
+            description: Frijoles sazonados.
+            price: $2.99
+          - name: Frijoles Grandes
+            description: Frijoles de la olla, con queso fresco.
+            price: $8.99
+          - name: Papa al Horno
+            description: Papa al horno con mantequilla, crema y queso.
+            price: $4.99
+          - name: Consomé Grande
+            description: Consomé de res con cebolla, cilantro y limón.
+            price: $5.99
+      - id: kiddos
+        title: Niños
+        note: Niños de 12 años o menos.
+        items:
+          - name: Quesadilla de Pollo
+            description: Pollo asado y queso en tortilla de harina.
+            price: $10.59
+          - name: Papita
+            description: Asada o pollo.
+            price: $8.69
+          - name: Quesadilla de Queso con Papas
+            description: Quesadilla de queso con papas fritas.
+            price: $8.99
+          - name: 2 Tacos de Niño
+            description: Asada, pastor, birria, pollo adobado, alambre o veggie.
+            price: $9.99
+      - id: family-packs
+        title: Paquetes Familiares
+        items:
+          - name: Caja de Tacos Chica
+            description: 12 tacos con mozzarella y carne a elegir.
+            price: $37.99
+          - name: Caja de Tacos Mediana
+            description: 20 tacos con mozzarella y carne a elegir.
+            price: $63.99
+          - name: Caja de Tacos Grande
+            description: 28 tacos con mozzarella y carne a elegir.
+            price: $84.99
+          - name: Caja Mixta
+            description: 14 tacos y 8 pedazos de quesadilla.
+            price: $70.99
+          - name: Parrillas
+            description: Carnes asadas con tortillas, cebolla, cilantro, chiles, frijoles y
+              arroz.
+            price: $37.99
+      - id: drinks
+        title: Bebidas
+        items:
+          - name: Aguas
+            description: Agua fresca de la casa.
+            price: $6.49
+          - name: Agua Chica con Topping
+            description: Agua fresca con chamoy, tajín o fruta.
+            price: $4.79
+          - name: Agua Grande con Topping
+            description: Agua fresca con chamoy, tajín y chile.
+            price: $6.69
+          - name: Agua Chica
+            description: Agua fresca tamaño niño.
+            price: $4.79
+          - name: Coca Mexicana
+            description: Coca de caña en botella.
+            price: $4.79
+          - name: Refresco en Lata
+            description: Coca, Coca Light o Sprite.
+            price: $2.99
+          - name: Coca 20 oz
+            description: ""
+            price: $4.45
+          - name: Coca Zero 20 oz
+            description: ""
+            price: $4.45
+          - name: Coca Light 20 oz
+            description: ""
+            price: $4.45
+          - name: Sprite 20 oz
+            description: ""
+            price: $4.45
+      - id: trays
+        title: Charolas
+        items:
+          - name: Charola de Arroz
+            description: Charola de arroz mexicano.
+            price: $27.89
+          - name: Charola de Frijoles
+            description: Frijoles refritos con queso.
+            price: $31.69
+          - name: Charola de Carne
+            description: Carnes sazonadas con cebolla y pimiento.
+            price: $124.89
+          - name: Charola de Birria
+            description: Charola de birria.
+            price: $127.69
+    i18n:
+      es:
+        nav.links.0.label: Menú
+        nav.links.0.href: /menu
+        nav.links.1.label: Catering
+        nav.links.1.href: /catering
+        nav.links.2.label: Nuestra Historia
+        nav.links.2.href: /our-story
+        nav.links.3.label: Contacto
+        nav.links.3.href: /contact
+        custom.nav.findLabel: Ordenar en Línea
+        hero.headline: Tacos Auténticos
+        custom.hero.headlineLine2: en Las Cruces
+        hero.primaryCta.label: Ordenar en Línea
+        custom.hero.secondaryCta.label: Ver Menú
+        custom.eClub.headline: Horario
+        custom.eClub.footnote: Est. 2020 · Las Cruces, NM
+        custom.eClub.locationTitle: Ubicación
+        custom.eClub.location: 1602 S Solano Dr, Las Cruces, NM 88001
+        custom.eClub.mapLabel: Cómo llegar
+        custom.specialsCarousel.title: Favoritos del Cliente
+        custom.reviews.title: Reseñas de Clientes
+        custom.reviews.subtitle: Muy bien calificados en Las Cruces
+        custom.reviews.platforms.0.name: Restaurantji
+        custom.reviews.platforms.0.rating: "4.7"
+        custom.reviews.platforms.0.countLabel: de 182 reseñas
+        custom.reviews.platforms.1.name: Facebook
+        custom.reviews.platforms.1.rating: 100%
+        custom.reviews.platforms.1.countLabel: de 39 reseñas
+        custom.reviews.platforms.2.name: Yelp
+        custom.reviews.platforms.2.rating: "4.7"
+        custom.reviews.platforms.2.countLabel: de 64 reseñas
+        custom.reviews.platforms.3.name: Google
+        custom.reviews.platforms.3.rating: "4.8"
+        custom.reviews.platforms.3.countLabel: de 582 reseñas
+        custom.specialsCarousel.viewAllLabel: Ver Menú Completo
+        custom.specialsCarousel.cards.0.learnLabel: Tacos de Birria
+        custom.specialsCarousel.cards.0.orderLabel: Ordenar
+        custom.specialsCarousel.cards.1.learnLabel: Tacos de Asada
+        custom.specialsCarousel.cards.1.orderLabel: Ordenar
+        custom.specialsCarousel.cards.2.learnLabel: Ramen de Birria
+        custom.specialsCarousel.cards.2.orderLabel: Ordenar
+        custom.specialsCarousel.cards.3.learnLabel: Papas Cargadas
+        custom.specialsCarousel.cards.3.orderLabel: Ordenar
+        custom.specialsCarousel.cards.4.learnLabel: Quesadilla de Birria
+        custom.specialsCarousel.cards.4.orderLabel: Ordenar
+        custom.specialsCarousel.cards.5.learnLabel: Taco al Pastor
+        custom.specialsCarousel.cards.5.orderLabel: Ordenar
+        custom.specialsCarousel.cards.6.learnLabel: Caja de Tacos Mediana
+        custom.specialsCarousel.cards.6.orderLabel: Ordenar
+        custom.specialsCarousel.cards.7.learnLabel: Nachos
+        custom.specialsCarousel.cards.7.orderLabel: Ordenar
+        custom.dishModal.closeLabel: Cerrar
+        custom.dishModal.orderLabel: Ordenar en Línea
+        menu.title: Nuestro Menú
+        menu.subtitle: Tacos auténticos, quesadillas, entradas y acompañamientos hechos
+          frescos en Las Cruces.
+        custom.catering.title: Catering
+        custom.catering.subtitle: Lleva El Vagon a tu próximo evento
+        custom.catering.intro: Desde bodas y oficinas hasta reuniones familiares —
+          preparamos tacos auténticos, quesadillas y más para grupos de
+          cualquier tamaño.
+        custom.catering.phoneCta: Llamar (575) 621-5897
+        custom.catering.emailCta: Correo para Cotización
+        custom.catering.note: Favor de avisar con 48 horas de anticipación para pedidos
+          grandes. Menús personalizados disponibles.
+        custom.footer.socialTitle: Síguenos
+        custom.footer.appsTitle: Ordenar y Contacto
+        custom.footer.columns.0.title: Menú
+        custom.footer.columns.0.links.0.label: Entradas
+        custom.footer.columns.0.links.1.label: Niños
+        custom.footer.columns.0.links.2.label: Acompañamientos
+        custom.footer.columns.0.links.3.label: Tacos
+        custom.footer.columns.0.links.4.label: Quesadillas
+        custom.footer.columns.0.links.5.label: Bebidas
+        custom.footer.columns.1.title: Visítanos
+        custom.footer.columns.1.links.0.label: 1602 S Solano Dr
+        custom.footer.columns.1.links.1.label: Las Cruces, NM 88001
+        custom.footer.columns.1.links.2.label: (575) 621-5897
+        custom.footer.columns.1.links.3.label: Horario y Ubicación
+        custom.footer.columns.2.title: Conéctate
+        custom.footer.columns.2.links.0.label: Instagram
+        custom.footer.columns.2.links.1.label: Facebook
+        custom.footer.columns.2.links.2.label: elvagontacos@gmail.com
+        custom.footer.columns.3.title: Servicios
+        custom.footer.columns.3.links.0.label: Comer Aquí
+        custom.footer.columns.3.links.1.label: Para Llevar
+        custom.footer.columns.3.links.2.label: Catering
+        custom.footer.columns.3.links.3.label: Nuestra Historia
+        menu.footerNote: "Precios del menú en línea. Sujetos a cambio. Toda la
+          información es de order.online. Última actualización: agosto 2026."
+        custom.footer.legal.0.label: Privacidad
+        custom.footer.legal.1.label: Accesibilidad
+        custom.footer.legal.2.label: Contacto
+        footer.copyright: © 2026 El Vagon Tacos. Todos los derechos reservados.
+        business.phone: (575) 621-5897
+        integrations.email: elvagontacos@gmail.com
+  integrations:
+    email: elvagontacos@gmail.com
+    instagram: https://www.instagram.com/elvagontacos
+    facebook: https://www.facebook.com/elvagon/
+    orderOnline: https://order.online/store/-32666423

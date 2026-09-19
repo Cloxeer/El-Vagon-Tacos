@@ -1,0 +1,188 @@
+<!doctype html>
+<!--
+  ELI5: A joke "WANTED" poster showing who built this website.
+  What: Unlinked credits page (/credits, also reached via /me and /halite). noindex, self-contained.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="author" content="Sebastian Salgado, Halite Studio">
+<title>Credits | El Vagon Tacos</title>
+<link rel="icon" href="../favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #2b1d12;
+    --ink-soft: #5a4330;
+    --paper: #e9d6ad;
+    --paper-edge: #c9a96e;
+    --stamp: #a3231b;
+    --night: #0e0d0c;
+    --night-text: rgba(255, 255, 255, 0.6);
+    --tilt: -1.5deg;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 3rem 1rem;
+    background: radial-gradient(circle at 50% 30%, #23201d, var(--night) 70%);
+    font-family: "Special Elite", "Courier New", monospace;
+    color: var(--ink);
+  }
+  .poster {
+    position: relative;
+    width: min(100%, 30rem);
+    padding: 2.5rem 2rem 2rem;
+    text-align: center;
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(255, 255, 255, 0.35), transparent 50%),
+      radial-gradient(ellipse at 80% 90%, rgba(120, 80, 30, 0.25), transparent 55%),
+      var(--paper);
+    box-shadow: inset 0 0 3rem rgba(110, 70, 20, 0.45), 0 1.5rem 3rem rgba(0, 0, 0, 0.6);
+    transform: rotate(var(--tilt));
+    animation: pin-up 0.9s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+  }
+  .poster::before, .poster::after {
+    content: "";
+    position: absolute;
+    top: 0.75rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #d9d9d9, #555);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+  }
+  .poster::before { left: 0.9rem; }
+  .poster::after { right: 0.9rem; }
+  h1 {
+    font-family: "Rye", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(3.5rem, 16vw, 5.5rem);
+    line-height: 1;
+    letter-spacing: 0.04em;
+  }
+  .for {
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .mugshot {
+    margin: 1.5rem auto;
+    width: 11rem;
+    aspect-ratio: 4 / 5;
+    border: 3px solid var(--ink);
+    background: repeating-linear-gradient(0deg, transparent 0 1.2rem, rgba(43, 29, 18, 0.15) 1.2rem 1.3rem), #d8c08f;
+    display: grid;
+    place-items: end center;
+    overflow: hidden;
+  }
+  .mugshot svg { width: 85%; height: auto; fill: var(--ink); }
+  .name {
+    font-family: "Rye", Georgia, serif;
+    font-size: clamp(1.6rem, 7vw, 2.1rem);
+    line-height: 1.1;
+  }
+  .alias { margin-top: 0.25rem; color: var(--ink-soft); }
+  .charges {
+    margin: 1.5rem 0;
+    padding: 1rem 0;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    text-align: left;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .charges h2 {
+    font-family: "Rye", Georgia, serif;
+    font-weight: 400;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .charges ul { padding-left: 1.2rem; }
+  .reward-label { font-family: "Rye", Georgia, serif; font-size: 1.6rem; }
+  .reward { font-size: 1.1rem; }
+  .fine { margin-top: 1.25rem; font-size: 0.8rem; color: var(--ink-soft); line-height: 1.5; }
+  .stamp {
+    position: absolute;
+    right: 1rem;
+    top: 30%;
+    padding: 0.35rem 0.75rem;
+    border: 4px double var(--stamp);
+    color: var(--stamp);
+    font-family: "Rye", Georgia, serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    transform: rotate(14deg);
+    opacity: 0.85;
+    animation: stamp 0.35s ease-in 1s both;
+  }
+  .below {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: var(--night-text);
+    font-size: 0.85rem;
+  }
+  .below a { color: inherit; }
+  .below img { height: 5rem; width: auto; padding: 0.5rem 1rem; background: #f7f7f7; border-radius: 0.5rem; }
+  @keyframes pin-up {
+    from { opacity: 0; transform: translateY(-2rem) rotate(4deg); }
+    to { opacity: 1; transform: rotate(var(--tilt)); }
+  }
+  @keyframes stamp {
+    from { opacity: 0; transform: rotate(14deg) scale(2.5); }
+    to { opacity: 0.85; transform: rotate(14deg) scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .poster, .stamp { animation: none; }
+  }
+</style>
+</head>
+<body>
+<main class="poster">
+  <h1>WANTED</h1>
+  <p class="for">for building this website</p>
+
+  <div class="mugshot" aria-hidden="true">
+    <svg viewBox="0 0 100 110"><circle cx="50" cy="38" r="22"/><path d="M8 110c0-26 19-44 42-44s42 18 42 44z"/><text x="50" y="47" font-size="26" text-anchor="middle" fill="#d8c08f" font-family="Georgia, serif">?</text></svg>
+  </div>
+
+  <p class="name">SEBASTIAN SALGADO</p>
+  <p class="alias">of Halite Studio &middot; a.k.a. &ldquo;The Web Guy&rdquo;</p>
+
+  <section class="charges">
+    <h2>~ Charges ~</h2>
+    <ul>
+      <li>Building this site for Arrowhead Center&rsquo;s Fintech Lab</li>
+      <li>Photographed the menu so many times the tacos filed a complaint</li>
+      <li>Unlicensed carrying of a laptop into a taco truck</li>
+      <li>Pushing to production at 2&nbsp;a.m., fueled only by al pastor</li>
+    </ul>
+  </section>
+
+  <p class="reward-label">REWARD</p>
+  <p class="reward">$0.00 &amp; one (1) high five (tacos not included)</p>
+
+  <p class="fine">Last seen: Las Cruces, NM.<br>If found, do not approach &mdash; he will ask how your website is doing.</p>
+
+  <span class="stamp" aria-hidden="true">CAUGHT CODING</span>
+</main>
+
+<div class="below">
+  <img src="../images/fintech-lab-logo.png" alt="Fintech Lab powered by Nusenda Credit Union">
+  <a href="../index.html">&larr; Back to El Vagon Tacos</a>
+</div>
+</body>
+</html>
